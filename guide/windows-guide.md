@@ -10,7 +10,7 @@ to create your first application.
 
 ## Prerequisites
 
-The following is a list of prequisites for running the Game Closure SDK on windows.
+The following is a list of prequisites for running the Game Closure SDK on Windows.
 Download the following projects and refer to the sections below for configuration tips.
 
 **Web and Native Development**
@@ -36,7 +36,7 @@ For more information, see the [Android Setup Guide](http://doc.gameclosure.com/n
 ###Installation Tip
 
 The easiest way to install these packages is through their
-respective installers. Note the location that each of the above dependencies is installed to because they will need to be added to your Windows envirnment PATH. For some of the above dependencies they come as zip downloads rather than installers. In these cases, they need to be unzipped and the location of the unzipped files needs to be added to your PATH. *[This is true for the **Android NDK**, **ant** build tools, and the **Android SDK** when using the adt bundle]*
+respective installers. Note the location that each of the above dependencies is installed to because they will need to be added to your Windows environment PATH. For some of the above dependencies they come as zip downloads rather than installers. In these cases, they need to be unzipped and the location of the unzipped files needs to be added to your PATH. *[This is true for the **Android NDK**, **ant** build tools, and the **Android SDK** when using the adt bundle]*
 
 ## Add the tools to your PATH
 Once the above dependencies are downloaded and installed, it is important that the following directories are listed in your PATH environment variable. Note that the location of these directies depends on where you installed the dependencies.
@@ -52,6 +52,10 @@ Once the above dependencies are downloaded and installed, it is important that t
 * **{ant install location}**\apache-ant-1.8.4\bin
 * **{android-sdk install location}**\android-sdk\tools
 * **{android-sdk install location}**\android-sdk\platform-tools
+
+Depending on your version of Windows, the full path to the NDK bin directory may look like this instead:
+
+* **{android-ndk install location}**\android-ndk-r8d\prebuilt\windows-x86_64\bin
 
 If you need assistance configuring the path refer to this [document](http://docs.oracle.com/javase/tutorial/essential/environment/paths.html) which describes how to configure the java environment variables.
 
