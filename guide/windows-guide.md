@@ -31,6 +31,8 @@ the browser we use to develop the Game Closure SDK and test against.
 * [Android ndk](http://developer.android.com/tools/sdk/ndk/index.html)
 * [Apache Ant](http://ant.apache.org/manual/install.html)
 
+For more information, see the [Android Setup Guide](http://doc.gameclosure.com/native/android-setup.html).
+
 ###Installation Tip
 
 The easiest way to install these packages is through their
