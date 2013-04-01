@@ -78,6 +78,7 @@ C:\Program Files\nodejs\
 ###JAVA HOME
 Your **JAVA_HOME** environment variable should also be set to the location of your java directory. For example: `C:\Program Files\Java\jdk1.7.0_13`
 
+For more information on managing environment variables in Windows, see [Microsoft's official docs](http://support.microsoft.com/kb/310519).
 
 ## Install the SDK
 
