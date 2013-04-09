@@ -98,42 +98,9 @@ Parameters
 import ui.filter.MultiplyFilter as MultiplyFilter;
 ~~~
 
-
-# Class: ui.filter.PositiveMaskFilter
-
-Inherits from
-:    1. [ui.filter.Filter](#class-ui.filter.filter)
-
-Positive masking.
-
-## Methods
-
-### new PositiveMaskFilter ([options])
+# View.removeFilter(filter_type)
 
 Parameters
-:    1. `options {object}`
-	     * `image {string}` ---Image URL.
+:    1. `filter_type {string}` ---One of: "LinearAdd", "Multiply"
 
-~~~
-import ui.filter.PositiveMaskFilter as PositiveMaskFilter;
-~~~
-
-
-# Class: ui.filter.NegativeMaskFilter
-
-Inherits from
-:    1. [ui.filter.Filter](#class-ui.filter.filter)
-
-Negative masking.
-
-## Methods
-
-### new NegativeMaskFilter ([options])
-
-Parameters
-:    1. `options {object}`
-	     * `image {string}` ---Image URL.
-
-~~~
-import ui.filter.NegativeMaskFilter as NegativeMaskFilter;
-~~~
+Remove the filter of type `filter_type` from the view.
