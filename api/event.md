@@ -467,3 +467,14 @@ Allow the callback chain to be fired again.
 ### clear ()
 
 Clears all of the registered callbacks and executes `callback.reset ()`.
+
+
+# NATIVE.onBackButton
+
+When the back button is pressed on an Android device, `NATIVE.onBackButton` is called. Here's how to use it:
+
+~~~
+NATIVE.onBackButton = function() {
+    console.log("someone hit the back button!");
+};
+~~~
