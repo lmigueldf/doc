@@ -11,7 +11,7 @@ to create your first application.
 ## Prerequisites
 
 We're only supporting OSX at this time, but we have some
-success running on Linux and Windows. If you're using an
+success running on Linux and [Windows](./windows-guide.html). If you're using an
 unsupported platform, make sure the following prerequisites
 are installed and the symlinks all work, and you may have
 some luck.

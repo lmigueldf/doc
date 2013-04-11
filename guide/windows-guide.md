@@ -93,7 +93,7 @@ To download the Game Closure DevKit, open a `git bash` terminal, and issue the f
 commands:
 
 ~~~
-$ git clone git@github.com:gameclosure/devkit
+$ git clone git@github.com:gameclosure/devkit.git
 $ cd devkit
 ~~~
 
