@@ -17,7 +17,7 @@ your game loop.
 * [Pause an Animation](../example/animation-pause/)
 * [Create a Trail Animation](../example/animation-trail/)
 * [Multiple Animations](../example/animation-multibox/)
-
+* [Particle Engine](../example/animation-particles/)
 
 ## Methods
 
