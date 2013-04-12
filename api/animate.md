@@ -321,3 +321,149 @@ queue, the `finish` event will be published.
 
 Published when all animations in the group have completed
 all the frames in their respective animation queues.
+
+
+# Class: ParticleEngine
+
+Inherits from
+:    1. [ui.View](./ui-view.html)
+
+Set up a particle engine like this:
+
+~~~
+import ui.ParticleEngine as ParticleEngine;
+
+this.pEngine = new ParticleEngine({
+  superview: someView,
+  x: 0,
+  y: 0,
+  width: 1,
+  height: 1,
+  initImage: 'resources/images/sparkle.png',
+  initCount: 10
+});
+~~~
+
+When the time is right, emit particles like this:
+
+~~~
+var particleObjects = this.pEngine.obtainParticleArray(10);
+for (var i = 0; i < 10; i++) {
+  var pObj = particleObjects[i];
+  pObj.dx = Math.random() * 100;
+  pObj.dy = Math.random() * 100;
+}
+this.pEngine.emitParticles(particleObjects);
+~~~
+
+Don't forget to update the particle engine in your tick function:
+
+~~~
+var tick = function(dt) {
+  // .. tick logic ..
+  this.pEngine.runTick(dt);
+  // .. more tick logic ..
+};
+~~~
+
+## Basics
+
+The goal of this class is to facilitate high performance
+view animation with minimal garbage collection.
+
+There are two ways to define particle data objects:
+
+* Cartesian Physics
+* Polar Physics
+
+All deltas are in units per second.
+
+
+## Cartesian Physics
+
+### Position
+
+* `x`           starting x position
+* `y`           starting y position
+* `r`           rotation
+* `anchorX`     x anchor
+* `anchorY`     y anchor
+
+### Velocity
+
+* `dx`          delta x
+* `dy`          delta y
+* `dr`          delta r
+* `danchorX`    delta anchor x
+* `danchorY`    delta anchor y
+
+### Acceleration
+
+* `ddx`         delta delta x
+* `ddy`         delta delta y
+* `ddr`         delta delta r
+* `ddanchorX`   delta delta anchor x
+* `ddanchorY`   delta delta anchor y
+
+
+## Polar Physics
+
+* `polar`       (boolean) set true to use polar coordinates
+* `ox`          x origin
+* `oy`          y origin
+* `theta`       starting angle
+* `radius`      starting radius
+* `dtheta`      delta theta
+* `dradius`     delta radius
+* `ddtheta`     delta delta theta
+* `ddradius`    delta delta radius
+
+NOTE: when using polar particles,
+`dx`, `dy`, `ddx`, and `ddy` translate the polar origin point
+
+
+## General
+
+### Size
+
+* `width`       width
+* `dwidth`      delta width
+* `ddwidth`     delta delta width
+* `height`      height
+* `dheight`     delta height
+* `ddheight`    delta delta height
+* `scale`       scale
+* `dscale`      delta scale
+* `ddscale`     delta delta scale
+
+### Opacity
+
+* `opacity`     opacity
+* `dopacity`    delta opacity
+* `ddopacity`   delta delta opacity
+
+### Lifespan
+
+* `ttl`         time to live in milliseconds
+* `delay`       time in ms before particle goes active
+
+### Other
+
+* `image`       (string) the image URL used for this particle
+* `transition`  (string) transition function ID, defaults to "linear"
+* `onStart`     (function) called when a particle becomes active
+* `onDeath`     (function) called when a particle finishes
+
+### Triggers
+
+* `property`    (string) check this property's value for trigger
+* `value`       (number) value at which to trigger an action
+* `smaller`     (boolean) if true, check if a property is < value, otherwise >
+* `action`      (function) called when trigger occurs, passes particle
+* `count`       (number) removes trigger after it has occurred count times (optional)
+
+### Internal Use
+
+* `visible`     (boolean) style.visible handled by the engine
+* `elapsed`     milliseconds passed since going active
+* `external`    (boolean) if true, we don't own this particle, so don't recycle it
