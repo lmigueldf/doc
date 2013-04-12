@@ -328,6 +328,44 @@ all the frames in their respective animation queues.
 Inherits from
 :    1. [ui.View](./ui-view.html)
 
+Set up a particle engine like this:
+
+~~~
+import ui.ParticleEngine as ParticleEngine;
+
+this.pEngine = new ParticleEngine({
+  superview: someView,
+  x: 0,
+  y: 0,
+  width: 1,
+  height: 1,
+  initImage: 'resources/images/sparkle.png',
+  initCount: 10
+});
+~~~
+
+When the time is right, emit particles like this:
+
+~~~
+var particleObjects = this.pEngine.obtainParticleArray(10);
+for (var i = 0; i < 10; i++) {
+  var pObj = particleObjects[i];
+  pObj.dx = Math.random() * 100;
+  pObj.dy = Math.random() * 100;
+}
+this.pEngine.emitParticles(particleObjects);
+~~~
+
+Don't forget to update the particle engine in your tick function:
+
+~~~
+var tick = function(dt) {
+  // .. tick logic ..
+  this.pEngine.runTick(dt);
+  // .. more tick logic ..
+};
+~~~
+
 ## Basics
 
 The goal of this class is to facilitate high performance
