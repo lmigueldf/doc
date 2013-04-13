@@ -480,9 +480,3 @@ pObj.triggers.push({
 ~~~
 
 NOTE: you can access and modify a particle's data object at any time via its `pData` property.
-
-### Internal Use
-
-* `visible`     (boolean) style.visible handled by the engine
-* `elapsed`     milliseconds passed since going active
-* `external`    (boolean) if true, we don't own this particle, so don't recycle it
