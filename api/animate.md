@@ -374,6 +374,18 @@ var tick = function(dt) {
 };
 ~~~
 
+## Overview
+
+ParticleEngine.js uses a pool of ImageViews to animate special effects as defined by particle objects. To create an effect, first call obtainParticleArray(n) where n is the number of particles you want in your effect. You will receive an array with n particle object literals pre-populated with their default property values. Modify the particle object properties to define how they move through space and time. Once all of your objects' properties are established, pass the same array back to the particle engine via emitParticles(array). The arrays, object literals, and ImageViews are all managed internally by the engine to minimize garbage creation and collection.
+
+All numeric particle properties can have their own velocity and acceleration set by prefixing 'd' and 'dd', respectively, to the property name. For example, if you want to stretch a particle's width, and then have it shrink, you might define particle properties like this:
+
+~~~
+pObj.width = 100;
+pObj.dwidth = 50;
+pObj.ddwidth = -75;
+~~~
+
 ## Cartesian Physics
 
 ### Position
