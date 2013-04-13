@@ -328,7 +328,15 @@ all the frames in their respective animation queues.
 Inherits from
 :    1. [ui.View](./ui-view.html)
 
-Set up a particle engine like this:
+The goal of this class is to facilitate high performance
+view animation with minimal garbage collection.
+
+There are two ways to define particle data objects:
+
+* Cartesian Physics
+* Polar Physics
+
+All deltas are in units per second. Set up a particle engine like this:
 
 ~~~
 import ui.ParticleEngine as ParticleEngine;
@@ -365,19 +373,6 @@ var tick = function(dt) {
   // .. more tick logic ..
 };
 ~~~
-
-## Basics
-
-The goal of this class is to facilitate high performance
-view animation with minimal garbage collection.
-
-There are two ways to define particle data objects:
-
-* Cartesian Physics
-* Polar Physics
-
-All deltas are in units per second.
-
 
 ## Cartesian Physics
 
