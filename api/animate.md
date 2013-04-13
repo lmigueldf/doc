@@ -456,11 +456,30 @@ NOTE: when using polar particles,
 
 ### Triggers
 
+Triggers allow you to attach any number of callbacks to a particle. They fire when a certain particle property reaches a certain value, as specified per each trigger.
+
 * `property`    (string) check this property's value for trigger
 * `value`       (number) value at which to trigger an action
 * `smaller`     (boolean) if true, check if a property is < value, otherwise >
 * `action`      (function) called when trigger occurs, passes particle
 * `count`       (number) removes trigger after it has occurred count times (optional)
+
+For example, a trigger that causes particles to bounce off of a certain y-value, as if it were solid ground, might look like this:
+
+~~~
+pObj.triggers.push({
+    property: 'y',
+    value: 500,
+    smaller: false,
+    action: function(particle) {
+        // bounce the particle!
+        particle.style.y = 500;
+        particle.pData.dy = -particle.pData.dy / 2;
+    }
+});
+~~~
+
+NOTE: you can access and modify a particle's data object at any time via its `pData` property.
 
 ### Internal Use
 
