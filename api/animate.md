@@ -338,8 +338,6 @@ import ui.ParticleEngine as ParticleEngine;
 
 this.pEngine = new ParticleEngine({
   superview: someView,
-  x: 0,
-  y: 0,
   width: 1,
   height: 1,
   initCount: 10
