@@ -377,21 +377,21 @@ These properties control the size and opacity of the particle over time. All del
 
 ### Size
 
-* `width {number}`       width
-* `dwidth {number}`      delta width
-* `ddwidth {number}`     delta delta width
-* `height {number}`      height
-* `dheight {number}`     delta height
-* `ddheight {number}`    delta delta height
-* `scale {number}`       scale
-* `dscale {number}`      delta scale
-* `ddscale {number}`     delta delta scale
+* `width {number}`       width (default: 1)
+* `dwidth {number}`      delta width (default: 0)
+* `ddwidth {number}`     delta delta width (default: 0)
+* `height {number}`      height (default: 1)
+* `dheight {number}`     delta height (default: 0)
+* `ddheight {number}`    delta delta height (default: 0)
+* `scale {number}`       scale (default: 1)
+* `dscale {number}`      delta scale (default: 0)
+* `ddscale {number}`     delta delta scale (default: 0)
 
 ### Opacity
 
-* `opacity {number}`     opacity
-* `dopacity {number}`    delta opacity
-* `ddopacity {number}`   delta delta opacity
+* `opacity {number}`     opacity (default: 1)
+* `dopacity {number}`    delta opacity (default: 0)
+* `ddopacity {number}`   delta delta opacity (default: 0)
 
 All numeric particle properties can have their own velocity and acceleration set by prefixing 'd' and 'dd', respectively, to the property name. For example, if you want to stretch a particle's width, and then have it shrink, you might define particle properties like this:
 
@@ -405,15 +405,15 @@ The following properties govern the basic timing and appearance of the particle.
 
 ### Lifespan
 
-* `ttl {number}`         time to live in milliseconds
-* `delay {number}`       time in ms before particle goes active
+* `ttl {number}`         time to live in milliseconds (default: 1000)
+* `delay {number}`       time in ms before particle goes active (default: 0)
 
 ### Other
 
-* `image {string}`        the image URL used for this particle
-* `transition {string}`   transition function ID, defaults to "linear"
-* `onStart {function}`    called when a particle becomes active
-* `onDeath {function}`    called when a particle finishes
+* `image {string}`        the image URL used for this particle (default: null)
+* `transition {string}`   transition function ID (default: "linear")
+* `onStart {function}`    called when a particle becomes active (default: null)
+* `onDeath {function}`    called when a particle finishes (default: null)
 
 `transition` can be one of: "linear", "easeIn", "easeInOut", "easeOut".
 
@@ -429,29 +429,29 @@ If you like properties like `x` and `y`, you'll love Cartesian Physics. Here are
 
 ### Position
 
-* `x {number}`           starting x position
-* `y {number}`           starting y position
-* `r {number}`           rotation
-* `anchorX {number}`     x anchor
-* `anchorY {number}`     y anchor
+* `x {number}`           starting x position (default: 0)
+* `y {number}`           starting y position (default: 0)
+* `r {number}`           rotation (default: 0)
+* `anchorX {number}`     x anchor (default: 0)
+* `anchorY {number}`     y anchor (default: 0)
 
 And here are the corresponding delta properties:
 
 ### Velocity
 
-* `dx {number}`          delta x
-* `dy {number}`          delta y
-* `dr {number}`          delta r
-* `danchorX {number}`    delta anchor x
-* `danchorY {number}`    delta anchor y
+* `dx {number}`          delta x (default: 0)
+* `dy {number}`          delta y (default: 0)
+* `dr {number}`          delta r (default: 0)
+* `danchorX {number}`    delta anchor x (default: 0)
+* `danchorY {number}`    delta anchor y (default: 0)
 
 ### Acceleration
 
-* `ddx {number}`         delta delta x
-* `ddy {number}`         delta delta y
-* `ddr {number}`         delta delta r
-* `ddanchorX {number}`   delta delta anchor x
-* `ddanchorY {number}`   delta delta anchor y
+* `ddx {number}`         delta delta x (default: 0)
+* `ddy {number}`         delta delta y (default: 0)
+* `ddr {number}`         delta delta r (default: 0)
+* `ddanchorX {number}`   delta delta anchor x (default: 0)
+* `ddanchorY {number}`   delta delta anchor y (default: 0)
 
 Say I wanted to launch of bunch of particles up and to the right and let gravity take over. Say I also wanted a bit of variance. I'd probably do something like this:
 
@@ -471,18 +471,17 @@ This will shoot a light spray of particles up and to the right, to be rained dow
 
 ## Polar Physics
 
-* `polar {boolean}`      set true to use polar coordinates
-* `ox {number}`          x origin
-* `oy {number}`          y origin
-* `theta {number}`       starting angle
-* `radius {number}`      starting radius
-* `dtheta {number}`      delta theta
-* `dradius {number}`     delta radius
-* `ddtheta {number}`     delta delta theta
-* `ddradius {number}`    delta delta radius
+* `polar {boolean}`      set true to use polar coordinates (default: false)
+* `ox {number}`          x origin (default: 0)
+* `oy {number}`          y origin (default: 0)
+* `theta {number}`       starting angle (default: 0)
+* `radius {number}`      starting radius (default: 0)
+* `dtheta {number}`      delta theta (default: 0)
+* `dradius {number}`     delta radius (default: 0)
+* `ddtheta {number}`     delta delta theta (default: 0)
+* `ddradius {number}`    delta delta radius (default: 0)
 
-NOTE: when using polar particles,
-`dx`, `dy`, `ddx`, and `ddy` translate the polar origin point
+NOTE: when using polar particles, `dx`, `dy`, `ddx`, and `ddy` translate the polar origin point
 
 
 ## Triggers
