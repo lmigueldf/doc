@@ -342,7 +342,6 @@ this.pEngine = new ParticleEngine({
   y: 0,
   width: 1,
   height: 1,
-  initImage: 'resources/images/sparkle.png',
   initCount: 10
 });
 ~~~
@@ -355,6 +354,9 @@ for (var i = 0; i < 10; i++) {
   var pObj = particleObjects[i];
   pObj.dx = Math.random() * 100;
   pObj.dy = Math.random() * 100;
+  pObj.width = 20;
+  pObj.height = 20;
+  pObj.image = 'resources/images/sparkle.png';
 }
 this.pEngine.emitParticles(particleObjects);
 ~~~
@@ -462,6 +464,9 @@ for (var i = 0; i < 10; i++) {
   pObj.dx = 100 + Math.random() * 20;
   pObj.dy = -100 + Math.random() * 20;
   pObj.ddy = 50; // gravity is same for all particles
+  pObj.width = 20;
+  pObj.height = 20;
+  pObj.image = 'resources/images/sparkle.png';
 }
 this.pEngine.emitParticles(particleObjects);
 ~~~
@@ -470,6 +475,8 @@ This will shoot a light spray of particles up and to the right, to be rained dow
 
 
 ## Polar Physics
+
+Enjoy circles, angles, and vectors? Then Polar Physics is for you.
 
 * `polar {boolean}`      set true to use polar coordinates (default: false)
 * `ox {number}`          x origin (default: 0)
@@ -481,7 +488,25 @@ This will shoot a light spray of particles up and to the right, to be rained dow
 * `ddtheta {number}`     delta delta theta (default: 0)
 * `ddradius {number}`    delta delta radius (default: 0)
 
-NOTE: when using polar particles, `dx`, `dy`, `ddx`, and `ddy` translate the polar origin point
+Try this simple effect, which pulses particles away from and toward the center:
+
+~~~
+var particleObjects = this.pEngine.obtainParticleArray(10);
+for (var i = 0; i < 10; i++) {
+  var pObj = particleObjects[i];
+  pObj.polar = true;
+  pObj.dradius = 400;
+  pObj.ddradius = -200;
+  pObj.theta = i * 2 * Math.PI / 10;
+  pObj.ttl = 5000;
+  pObj.width = 20;
+  pObj.height = 20;
+  pObj.image = 'resources/images/sparkle.png';
+}
+this.pEngine.emitParticles(particleObjects);
+~~~
+
+NOTE: when using polar particles, `dx`, `dy`, `ddx`, and `ddy` translate the polar origin point.
 
 
 ## Triggers
