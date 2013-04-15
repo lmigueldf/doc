@@ -425,6 +425,8 @@ There are two ways to define the motion of particle data objects:
 
 ## Cartesian Physics
 
+If you like properties like `x` and `y`, you'll love Cartesian Physics. Here are the basic properties you'll need:
+
 ### Position
 
 * `x`           starting x position
@@ -432,6 +434,8 @@ There are two ways to define the motion of particle data objects:
 * `r`           rotation
 * `anchorX`     x anchor
 * `anchorY`     y anchor
+
+And here are the corresponding delta properties:
 
 ### Velocity
 
@@ -448,6 +452,21 @@ There are two ways to define the motion of particle data objects:
 * `ddr`         delta delta r
 * `ddanchorX`   delta delta anchor x
 * `ddanchorY`   delta delta anchor y
+
+Say I wanted to launch of bunch of particles up and to the right and let gravity take over. Say I also wanted a bit of variance. I'd probably do something like this:
+
+~~~
+var particleObjects = this.pEngine.obtainParticleArray(10);
+for (var i = 0; i < 10; i++) {
+  var pObj = particleObjects[i];
+  pObj.dx = 100 + Math.random() * 20;
+  pObj.dy = -100 + Math.random() * 20;
+  pObj.ddy = 50; // gravity is same for all particles
+}
+this.pEngine.emitParticles(particleObjects);
+~~~
+
+This will shoot a light spray of particles up and to the right, to be rained down in due time thanks to delta delta y.
 
 
 ## Polar Physics
