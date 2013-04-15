@@ -331,12 +331,7 @@ Inherits from
 The goal of this class is to facilitate high performance
 view animation with minimal garbage collection.
 
-There are two ways to define particle data objects:
-
-* Cartesian Physics
-* Polar Physics
-
-All deltas are in units per second. Set up a particle engine like this:
+Set up a particle engine like this:
 
 ~~~
 import ui.ParticleEngine as ParticleEngine;
@@ -376,7 +371,27 @@ var tick = function(dt) {
 
 ## Overview
 
-ParticleEngine.js uses a pool of ImageViews to animate special effects as defined by particle objects. To create an effect, first call obtainParticleArray(n) where n is the number of particles you want in your effect. You will receive an array with n particle object literals pre-populated with their default property values. Modify the particle object properties to define how they move through space and time. Once all of your objects' properties are established, pass the same array back to the particle engine via emitParticles(array). The arrays, object literals, and ImageViews are all managed internally by the engine to minimize garbage creation and collection.
+`ParticleEngine.js` uses a pool of `ImageView`s to animate special effects as defined by particle objects. To create an effect, first call `obtainParticleArray(n)` where n is the number of particles you want in your effect. You will receive an array with n particle object literals pre-populated with their default property values. Modify the particle object properties to define how they move through space and time. Once all of your objects' properties are established, pass the same array back to the particle engine via `emitParticles(array)`. The arrays, object literals, and `ImageView`s are all managed internally by the engine to minimize garbage creation and collection.
+
+These properties control the size and opacity of the particle over time. All deltas are in units per second.
+
+### Size
+
+* `width`       width
+* `dwidth`      delta width
+* `ddwidth`     delta delta width
+* `height`      height
+* `dheight`     delta height
+* `ddheight`    delta delta height
+* `scale`       scale
+* `dscale`      delta scale
+* `ddscale`     delta delta scale
+
+### Opacity
+
+* `opacity`     opacity
+* `dopacity`    delta opacity
+* `ddopacity`   delta delta opacity
 
 All numeric particle properties can have their own velocity and acceleration set by prefixing 'd' and 'dd', respectively, to the property name. For example, if you want to stretch a particle's width, and then have it shrink, you might define particle properties like this:
 
@@ -385,6 +400,28 @@ pObj.width = 100;
 pObj.dwidth = 50;
 pObj.ddwidth = -75;
 ~~~
+
+The following properties govern the basic timing and appearance of the particle.
+
+### Lifespan
+
+* `ttl`         time to live in milliseconds
+* `delay`       time in ms before particle goes active
+
+### Other
+
+* `image`       (string) the image URL used for this particle
+* `transition`  (string) transition function ID, defaults to "linear"
+* `onStart`     (function) called when a particle becomes active
+* `onDeath`     (function) called when a particle finishes
+
+`transition` can be one of: "linear", "easeIn", "easeInOut", "easeOut".
+
+There are two ways to define the motion of particle data objects:
+
+* Cartesian Physics
+* Polar Physics
+
 
 ## Cartesian Physics
 
@@ -429,39 +466,7 @@ NOTE: when using polar particles,
 `dx`, `dy`, `ddx`, and `ddy` translate the polar origin point
 
 
-## General
-
-### Size
-
-* `width`       width
-* `dwidth`      delta width
-* `ddwidth`     delta delta width
-* `height`      height
-* `dheight`     delta height
-* `ddheight`    delta delta height
-* `scale`       scale
-* `dscale`      delta scale
-* `ddscale`     delta delta scale
-
-### Opacity
-
-* `opacity`     opacity
-* `dopacity`    delta opacity
-* `ddopacity`   delta delta opacity
-
-### Lifespan
-
-* `ttl`         time to live in milliseconds
-* `delay`       time in ms before particle goes active
-
-### Other
-
-* `image`       (string) the image URL used for this particle
-* `transition`  (string) transition function ID, defaults to "linear"
-* `onStart`     (function) called when a particle becomes active
-* `onDeath`     (function) called when a particle finishes
-
-### Triggers
+## Triggers
 
 Triggers allow you to attach any number of callbacks to a particle. They fire when a certain particle property reaches a certain value, as specified per each trigger.
 
