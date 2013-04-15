@@ -377,21 +377,21 @@ These properties control the size and opacity of the particle over time. All del
 
 ### Size
 
-* `width`       width
-* `dwidth`      delta width
-* `ddwidth`     delta delta width
-* `height`      height
-* `dheight`     delta height
-* `ddheight`    delta delta height
-* `scale`       scale
-* `dscale`      delta scale
-* `ddscale`     delta delta scale
+* `width {number}`       width
+* `dwidth {number}`      delta width
+* `ddwidth {number}`     delta delta width
+* `height {number}`      height
+* `dheight {number}`     delta height
+* `ddheight {number}`    delta delta height
+* `scale {number}`       scale
+* `dscale {number}`      delta scale
+* `ddscale {number}`     delta delta scale
 
 ### Opacity
 
-* `opacity`     opacity
-* `dopacity`    delta opacity
-* `ddopacity`   delta delta opacity
+* `opacity {number}`     opacity
+* `dopacity {number}`    delta opacity
+* `ddopacity {number}`   delta delta opacity
 
 All numeric particle properties can have their own velocity and acceleration set by prefixing 'd' and 'dd', respectively, to the property name. For example, if you want to stretch a particle's width, and then have it shrink, you might define particle properties like this:
 
@@ -405,15 +405,15 @@ The following properties govern the basic timing and appearance of the particle.
 
 ### Lifespan
 
-* `ttl`         time to live in milliseconds
-* `delay`       time in ms before particle goes active
+* `ttl {number}`         time to live in milliseconds
+* `delay {number}`       time in ms before particle goes active
 
 ### Other
 
-* `image`       (string) the image URL used for this particle
-* `transition`  (string) transition function ID, defaults to "linear"
-* `onStart`     (function) called when a particle becomes active
-* `onDeath`     (function) called when a particle finishes
+* `image {string}`        the image URL used for this particle
+* `transition {string}`   transition function ID, defaults to "linear"
+* `onStart {function}`    called when a particle becomes active
+* `onDeath {function}`    called when a particle finishes
 
 `transition` can be one of: "linear", "easeIn", "easeInOut", "easeOut".
 
@@ -429,29 +429,29 @@ If you like properties like `x` and `y`, you'll love Cartesian Physics. Here are
 
 ### Position
 
-* `x`           starting x position
-* `y`           starting y position
-* `r`           rotation
-* `anchorX`     x anchor
-* `anchorY`     y anchor
+* `x {number}`           starting x position
+* `y {number}`           starting y position
+* `r {number}`           rotation
+* `anchorX {number}`     x anchor
+* `anchorY {number}`     y anchor
 
 And here are the corresponding delta properties:
 
 ### Velocity
 
-* `dx`          delta x
-* `dy`          delta y
-* `dr`          delta r
-* `danchorX`    delta anchor x
-* `danchorY`    delta anchor y
+* `dx {number}`          delta x
+* `dy {number}`          delta y
+* `dr {number}`          delta r
+* `danchorX {number}`    delta anchor x
+* `danchorY {number}`    delta anchor y
 
 ### Acceleration
 
-* `ddx`         delta delta x
-* `ddy`         delta delta y
-* `ddr`         delta delta r
-* `ddanchorX`   delta delta anchor x
-* `ddanchorY`   delta delta anchor y
+* `ddx {number}`         delta delta x
+* `ddy {number}`         delta delta y
+* `ddr {number}`         delta delta r
+* `ddanchorX {number}`   delta delta anchor x
+* `ddanchorY {number}`   delta delta anchor y
 
 Say I wanted to launch of bunch of particles up and to the right and let gravity take over. Say I also wanted a bit of variance. I'd probably do something like this:
 
@@ -471,15 +471,15 @@ This will shoot a light spray of particles up and to the right, to be rained dow
 
 ## Polar Physics
 
-* `polar`       (boolean) set true to use polar coordinates
-* `ox`          x origin
-* `oy`          y origin
-* `theta`       starting angle
-* `radius`      starting radius
-* `dtheta`      delta theta
-* `dradius`     delta radius
-* `ddtheta`     delta delta theta
-* `ddradius`    delta delta radius
+* `polar {boolean}`      set true to use polar coordinates
+* `ox {number}`          x origin
+* `oy {number}`          y origin
+* `theta {number}`       starting angle
+* `radius {number}`      starting radius
+* `dtheta {number}`      delta theta
+* `dradius {number}`     delta radius
+* `ddtheta {number}`     delta delta theta
+* `ddradius {number}`    delta delta radius
 
 NOTE: when using polar particles,
 `dx`, `dy`, `ddx`, and `ddy` translate the polar origin point
@@ -489,11 +489,11 @@ NOTE: when using polar particles,
 
 Triggers allow you to attach any number of callbacks to a particle. They fire when a certain particle property reaches a certain value, as specified per each trigger.
 
-* `property`    (string) check this property's value for trigger
-* `value`       (number) value at which to trigger an action
-* `smaller`     (boolean) if true, check if a property is < value, otherwise >
-* `action`      (function) called when trigger occurs, passes particle
-* `count`       (number) removes trigger after it has occurred count times (optional)
+* `property {string}`     check this property's value for trigger
+* `value {number}`        value at which to trigger an action
+* `smaller {boolean}`     if true, check if a property is < value, otherwise >
+* `action {function}`     called when trigger occurs, passes particle
+* `count {number}`        removes trigger after it has occurred count times (optional)
 
 For example, a trigger that causes particles to bounce off of a certain y-value, as if it were solid ground, might look like this:
 
