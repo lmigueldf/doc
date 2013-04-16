@@ -17,7 +17,7 @@ your game loop.
 * [Pause an Animation](../example/animation-pause/)
 * [Create a Trail Animation](../example/animation-trail/)
 * [Multiple Animations](../example/animation-multibox/)
-
+* [Particle Engine](../example/animation-particles/)
 
 ## Methods
 
@@ -328,6 +328,39 @@ all the frames in their respective animation queues.
 Inherits from
 :    1. [ui.View](./ui-view.html)
 
+The goal of this class is to facilitate high performance
+view animation with minimal garbage collection.
+
+## Methods
+
+### obtainParticleArray (count)
+
+Parameters
+:    1. `count {number}` ---How many particle objects to return.
+
+Returns
+:    1. `{Array}` ---Returns an array of `count` particle objects.
+
+Call `obtainParticleArray` to get an array of particle objects. These objects should be modified and passed into `emitParticles` when they're ready.
+
+### emitParticles (pArray)
+
+Parameters
+:    1. `pArray {array}` ---An array of particle objects to animate.
+
+Call `emitParticles` with an array of particle objects to queue them up for animation.
+
+### runTick (dt)
+
+Parameters
+:    1. `dt {number}` ---How many milliseconds of particle animations to run.
+
+Calling `runTick` runs enqueued particle animations for `dt` milliseconds.
+
+## Overview
+
+`ParticleEngine.js` uses a pool of `ImageView`s to animate special effects as defined by particle objects. To create an effect, first call `obtainParticleArray(n)` where n is the number of particles you want in your effect. You will receive an array with n particle object literals pre-populated with their default property values. Modify the particle object properties to define how they move through space and time. Once all of your objects' properties are established, pass the same array back to the particle engine via `emitParticles(array)`. The arrays, object literals, and `ImageView`s are all managed internally by the engine to minimize garbage creation and collection.
+
 Set up a particle engine like this:
 
 ~~~
@@ -335,11 +368,8 @@ import ui.ParticleEngine as ParticleEngine;
 
 this.pEngine = new ParticleEngine({
   superview: someView,
-  x: 0,
-  y: 0,
   width: 1,
   height: 1,
-  initImage: 'resources/images/sparkle.png',
   initCount: 10
 });
 ~~~
@@ -352,6 +382,9 @@ for (var i = 0; i < 10; i++) {
   var pObj = particleObjects[i];
   pObj.dx = Math.random() * 100;
   pObj.dy = Math.random() * 100;
+  pObj.width = 20;
+  pObj.height = 20;
+  pObj.image = 'resources/images/sparkle.png';
 }
 this.pEngine.emitParticles(particleObjects);
 ~~~
@@ -366,104 +399,163 @@ var tick = function(dt) {
 };
 ~~~
 
-## Basics
+These properties control the size and opacity of the particle over time. All deltas are in units per second.
 
-The goal of this class is to facilitate high performance
-view animation with minimal garbage collection.
+### Size
 
-There are two ways to define particle data objects:
+* `width {number}`       width (default: 1)
+* `dwidth {number}`      delta width (default: 0)
+* `ddwidth {number}`     delta delta width (default: 0)
+* `height {number}`      height (default: 1)
+* `dheight {number}`     delta height (default: 0)
+* `ddheight {number}`    delta delta height (default: 0)
+* `scale {number}`       scale (default: 1)
+* `dscale {number}`      delta scale (default: 0)
+* `ddscale {number}`     delta delta scale (default: 0)
+
+### Opacity
+
+* `opacity {number}`     opacity (default: 1)
+* `dopacity {number}`    delta opacity (default: 0)
+* `ddopacity {number}`   delta delta opacity (default: 0)
+
+All numeric particle properties can have their own velocity and acceleration set by prefixing 'd' and 'dd', respectively, to the property name. For example, if you want to stretch a particle's width, and then have it shrink, you might define particle properties like this:
+
+~~~
+pObj.width = 100;
+pObj.dwidth = 50;
+pObj.ddwidth = -75;
+~~~
+
+The following properties govern the basic timing and appearance of the particle.
+
+### Lifespan
+
+* `ttl {number}`         time to live in milliseconds (default: 1000)
+* `delay {number}`       time in ms before particle goes active (default: 0)
+
+### Other
+
+* `image {string}`        the image URL used for this particle (default: null)
+* `transition {string}`   transition function ID (default: "linear")
+* `onStart {function}`    called when a particle becomes active (default: null)
+* `onDeath {function}`    called when a particle finishes (default: null)
+
+`transition` can be one of: "linear", "easeIn", "easeInOut", "easeOut".
+
+There are two ways to define the motion of particle data objects:
 
 * Cartesian Physics
 * Polar Physics
 
-All deltas are in units per second.
-
 
 ## Cartesian Physics
 
+If you like properties like `x` and `y`, you'll love Cartesian Physics. Here are the basic properties you'll need:
+
 ### Position
 
-* `x`           starting x position
-* `y`           starting y position
-* `r`           rotation
-* `anchorX`     x anchor
-* `anchorY`     y anchor
+* `x {number}`           starting x position (default: 0)
+* `y {number}`           starting y position (default: 0)
+* `r {number}`           rotation (default: 0)
+* `anchorX {number}`     x anchor (default: 0)
+* `anchorY {number}`     y anchor (default: 0)
+
+And here are the corresponding delta properties:
 
 ### Velocity
 
-* `dx`          delta x
-* `dy`          delta y
-* `dr`          delta r
-* `danchorX`    delta anchor x
-* `danchorY`    delta anchor y
+* `dx {number}`          delta x (default: 0)
+* `dy {number}`          delta y (default: 0)
+* `dr {number}`          delta r (default: 0)
+* `danchorX {number}`    delta anchor x (default: 0)
+* `danchorY {number}`    delta anchor y (default: 0)
 
 ### Acceleration
 
-* `ddx`         delta delta x
-* `ddy`         delta delta y
-* `ddr`         delta delta r
-* `ddanchorX`   delta delta anchor x
-* `ddanchorY`   delta delta anchor y
+* `ddx {number}`         delta delta x (default: 0)
+* `ddy {number}`         delta delta y (default: 0)
+* `ddr {number}`         delta delta r (default: 0)
+* `ddanchorX {number}`   delta delta anchor x (default: 0)
+* `ddanchorY {number}`   delta delta anchor y (default: 0)
+
+Say I wanted to launch of bunch of particles up and to the right and let gravity take over. Say I also wanted a bit of variance. I'd probably do something like this:
+
+~~~
+var particleObjects = this.pEngine.obtainParticleArray(10);
+for (var i = 0; i < 10; i++) {
+  var pObj = particleObjects[i];
+  pObj.dx = 100 + Math.random() * 20;
+  pObj.dy = -100 + Math.random() * 20;
+  pObj.ddy = 50; // gravity is same for all particles
+  pObj.width = 20;
+  pObj.height = 20;
+  pObj.image = 'resources/images/sparkle.png';
+}
+this.pEngine.emitParticles(particleObjects);
+~~~
+
+This will shoot a light spray of particles up and to the right, to be rained down in due time thanks to delta delta y.
 
 
 ## Polar Physics
 
-* `polar`       (boolean) set true to use polar coordinates
-* `ox`          x origin
-* `oy`          y origin
-* `theta`       starting angle
-* `radius`      starting radius
-* `dtheta`      delta theta
-* `dradius`     delta radius
-* `ddtheta`     delta delta theta
-* `ddradius`    delta delta radius
+Enjoy circles, angles, and vectors? Then Polar Physics is for you.
 
-NOTE: when using polar particles,
-`dx`, `dy`, `ddx`, and `ddy` translate the polar origin point
+* `polar {boolean}`      set true to use polar coordinates (default: false)
+* `ox {number}`          x origin (default: 0)
+* `oy {number}`          y origin (default: 0)
+* `theta {number}`       starting angle (default: 0)
+* `radius {number}`      starting radius (default: 0)
+* `dtheta {number}`      delta theta (default: 0)
+* `dradius {number}`     delta radius (default: 0)
+* `ddtheta {number}`     delta delta theta (default: 0)
+* `ddradius {number}`    delta delta radius (default: 0)
+
+Try this simple effect, which pulses particles away from and toward the center:
+
+~~~
+var particleObjects = this.pEngine.obtainParticleArray(10);
+for (var i = 0; i < 10; i++) {
+  var pObj = particleObjects[i];
+  pObj.polar = true;
+  pObj.dradius = 400;
+  pObj.ddradius = -200;
+  pObj.theta = i * 2 * Math.PI / 10;
+  pObj.ttl = 5000;
+  pObj.width = 20;
+  pObj.height = 20;
+  pObj.image = 'resources/images/sparkle.png';
+}
+this.pEngine.emitParticles(particleObjects);
+~~~
+
+NOTE: when using polar particles, `dx`, `dy`, `ddx`, and `ddy` translate the polar origin point.
 
 
-## General
+## Triggers
 
-### Size
+Triggers allow you to attach any number of callbacks to a particle. They fire when a certain particle property reaches a certain value, as specified per each trigger.
 
-* `width`       width
-* `dwidth`      delta width
-* `ddwidth`     delta delta width
-* `height`      height
-* `dheight`     delta height
-* `ddheight`    delta delta height
-* `scale`       scale
-* `dscale`      delta scale
-* `ddscale`     delta delta scale
+* `property {string}`     check this property's value for trigger
+* `value {number}`        value at which to trigger an action
+* `smaller {boolean}`     if true, check if a property is < value, otherwise >
+* `action {function}`     called when trigger occurs, passes particle
+* `count {number}`        removes trigger after it has occurred count times (optional)
 
-### Opacity
+For example, a trigger that causes particles to bounce off of a certain y-value, as if it were solid ground, might look like this:
 
-* `opacity`     opacity
-* `dopacity`    delta opacity
-* `ddopacity`   delta delta opacity
+~~~
+pObj.triggers.push({
+    property: 'y',
+    value: 500,
+    smaller: false,
+    action: function(particle) {
+        // bounce the particle!
+        particle.style.y = 500;
+        particle.pData.dy = -particle.pData.dy / 2;
+    }
+});
+~~~
 
-### Lifespan
-
-* `ttl`         time to live in milliseconds
-* `delay`       time in ms before particle goes active
-
-### Other
-
-* `image`       (string) the image URL used for this particle
-* `transition`  (string) transition function ID, defaults to "linear"
-* `onStart`     (function) called when a particle becomes active
-* `onDeath`     (function) called when a particle finishes
-
-### Triggers
-
-* `property`    (string) check this property's value for trigger
-* `value`       (number) value at which to trigger an action
-* `smaller`     (boolean) if true, check if a property is < value, otherwise >
-* `action`      (function) called when trigger occurs, passes particle
-* `count`       (number) removes trigger after it has occurred count times (optional)
-
-### Internal Use
-
-* `visible`     (boolean) style.visible handled by the engine
-* `elapsed`     milliseconds passed since going active
-* `external`    (boolean) if true, we don't own this particle, so don't recycle it
+NOTE: you can access and modify a particle's data object at any time via its `pData` property.
