@@ -341,21 +341,21 @@ Parameters
 Returns
 :    1. `{Array}` ---Returns an array of `count` particle objects.
 
-Call `obtainParticleArray` to get an array of particle objects. These objects should be modified and passed into `emitParticles` when they're ready.
+Call `obtainParticleArray` to get the array of particle objects from the engine. These objects should be modified and passed into `emitParticles` when they're ready. Note that there is only one particle objects array per engine. This array is provided by the engine, and there's no need to create your own.
 
 ### emitParticles (pArray)
 
 Parameters
 :    1. `pArray {array}` ---An array of particle objects to animate.
 
-Call `emitParticles` with an array of particle objects to queue them up for animation.
+Call `emitParticles` with the array of particle objects to queue them up for animation. Remember that this is the same array returned by `obtainParticleArray`.
 
 ### runTick (dt)
 
 Parameters
 :    1. `dt {number}` ---How many milliseconds of particle animations to run.
 
-Calling `runTick` runs enqueued particle animations for `dt` milliseconds.
+Calling `runTick` runs enqueued particle animations for `dt` milliseconds. This arrangement means that you can have hundreds of particle engines in your game, and none of them will tick unless you explicitly ask them to. It also makes it easy to speed up or slow down your effects by simply scaling the `dt` you pass into `runTick`.
 
 ## Overview
 
