@@ -39,7 +39,6 @@ Parameters
 		 * `id {string}` ---Unique identifier.
 		 * `tag {string}` ---Human readable tag for the UI Inspector.
 		 * `filters {Filter}` ---Filter object.
-		 * `circle {boolean} = false` ---Whether the view is a circle.
 		 * `infinite {boolean} = false` ---Infinite width and height generally for maps or backgrounds.
 		 * `canHandleEvents {boolean} = true` ---Input events can pass through if `false`.
 
@@ -244,9 +243,9 @@ Determine if the given point is contained by the view.
 ### getBoundingShape ()
 
 Returns
-:    1. `{Rect}` or `{Circle}`, the shape defined when the view was created.
+:    1. `{Rect}`, the shape defined when the view was created.
 
-Return the bounding shape for a view, this is a rectangle or circle.
+Return the bounding shape for a view.
 
 ### getRelativeRegion (region, parent)
 
