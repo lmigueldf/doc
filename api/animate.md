@@ -331,6 +331,36 @@ Inherits from
 The goal of this class is to facilitate high performance
 view animation with minimal garbage collection.
 
+## Methods
+
+### obtainParticleArray (count)
+
+Parameters
+:    1. `count {number}` ---How many particle objects to return.
+
+Returns
+:    1. `{Array}` ---Returns an array of `count` particle objects.
+
+Call `obtainParticleArray` to get an array of particle objects. These objects should be modified and passed into `emitParticles` when they're ready.
+
+### emitParticles (pArray)
+
+Parameters
+:    1. `pArray {array}` ---An array of particle objects to animate.
+
+Call `emitParticles` with an array of particle objects to queue them up for animation.
+
+### runTick (dt)
+
+Parameters
+:    1. `dt {number}` ---How many milliseconds of particle animations to run.
+
+Calling `runTick` runs enqueued particle animations for `dt` milliseconds.
+
+## Overview
+
+`ParticleEngine.js` uses a pool of `ImageView`s to animate special effects as defined by particle objects. To create an effect, first call `obtainParticleArray(n)` where n is the number of particles you want in your effect. You will receive an array with n particle object literals pre-populated with their default property values. Modify the particle object properties to define how they move through space and time. Once all of your objects' properties are established, pass the same array back to the particle engine via `emitParticles(array)`. The arrays, object literals, and `ImageView`s are all managed internally by the engine to minimize garbage creation and collection.
+
 Set up a particle engine like this:
 
 ~~~
@@ -368,10 +398,6 @@ var tick = function(dt) {
   // .. more tick logic ..
 };
 ~~~
-
-## Overview
-
-`ParticleEngine.js` uses a pool of `ImageView`s to animate special effects as defined by particle objects. To create an effect, first call `obtainParticleArray(n)` where n is the number of particles you want in your effect. You will receive an array with n particle object literals pre-populated with their default property values. Modify the particle object properties to define how they move through space and time. Once all of your objects' properties are established, pass the same array back to the particle engine via `emitParticles(array)`. The arrays, object literals, and `ImageView`s are all managed internally by the engine to minimize garbage creation and collection.
 
 These properties control the size and opacity of the particle over time. All deltas are in units per second.
 
