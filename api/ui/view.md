@@ -245,7 +245,7 @@ Determine if the given point is contained by the view.
 Returns
 :    1. `{Rect}`, the shape defined when the view was created.
 
-Return the bounding shape for a view.
+Return the bounding rectangle for a view.
 
 ### getRelativeRegion (region, parent)
 
