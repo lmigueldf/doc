@@ -110,6 +110,8 @@ Parameters
 		 * `repaintOnEvent {boolean} = true` ---Redraw the screen when a user event occurs, such as touch or click.
 		 * `mergeMoveEvents {boolean} = false` ---Multiple move events in an animation frame are merged together by taking the last event.
 
+To tweak any of these parameters from your `Application.js` file, simply define `this._settings` as an object with one or more of these options.
+
 ### Class Method: Engine.get ()
 
 Returns
