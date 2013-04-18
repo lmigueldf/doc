@@ -333,7 +333,6 @@ The `style` object contains the following properties:
 * `offsetY {number} = 0` ---The y position of the anchor point for translation, relative to the top-left corner of the view.
 * `anchorX {number} = 0` ---The x position of the anchor point for rotation and scaling, relative to the top-left corner of the view.
 * `anchorY {number} = 0` ---The y position of the anchor point for rotation and scaling, relative to the top-left corner of the view.
-* `centerAnchor {boolean} = false` ---If `true`, centers anchorX and anchorY, recentering whenever dimensions change.
 * `flipX {boolean} = false` ---If `true`, flips the view in-place on the x-axis.
 * `flipY {boolean} = false` ---If `true`, flips the view in-place on the y-axis.
 * `width {number}` ---The width of a view, defaults to the width of the view's parent.
@@ -347,6 +346,12 @@ The `style` object contains the following properties:
 * `zIndex {number} = 0` ---The larger the value, the closer to the front the view appears. This is relative to a view's siblings, not the entire scene graph.
 * `backgroundColor {string}` ---Background color of the view.
 * `clip {boolean} = false` ---If `true`, child views get clipped to the boundaries of this view.
+
+The following `style` properties are available to any view with a `'box'` or `'linear'` layout:
+
+* `centerAnchor {boolean} = false` ---If `true`, centers anchorX and anchorY, recentering whenever dimensions change.
+* `centerX {boolean} = false` ---If `true`, centers x, recentering whenever dimensions change.
+* `centerY {boolean} = false` ---If `true`, centers y, recentering whenever dimensions change.
 
 The `style` object contains the following methods:
 
