@@ -91,6 +91,10 @@ Sometimes Xcode will be unable to communicate with the device.  First attempt to
 
 If this doesn't help, rebooting the iOS device is sometimes the only option to restore communications.  This mainly seems to happen when breaking connection while using native breakpoints in Xcode.
 
+## EMFILE Release Build Failures
+
+The release builds open a lot of files during the JavaScript code compression step.  If you see "Error: EMFILE, too many open files" in your build log then you should run this command at a console: `sudo ulimit -S -n 2048` to increase the open file limit.
+
 ## Advanced: Debugging Native Code
 
 If the native DevKit code is crashing and you want to help looking into the issue, then you will want to go into the Build Settings for the Xcode project and change some options to enable debugging:

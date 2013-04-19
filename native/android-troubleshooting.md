@@ -44,7 +44,6 @@ If you see an exception trace in the log then it will contain information about 
 
 If you see "JavaScript error out of memory" at the console then you probably have a memory leak.  The best way to debug this sort of issue is to back off to using just your browser for development.  Chrome has the best heap profiler available, and you can [use it](https://developers.google.com/chrome-developer-tools/docs/heap-profiling) to find and fix JavaScript memory leaks.
 
-
 ## Custom TrueType Fonts Not Working
 
 On Android, it is crucial that custom .TTF file names match one of the names inside the font file.
@@ -92,3 +91,7 @@ Further references:
 
 * [Using Hardware Devices](http://developer.android.com/guide/developing/device.html)
 * [Android Debug Bridge](http://developer.android.com/guide/developing/tools/adb.html)
+
+## EMFILE Release Build Failures
+
+The release builds open a lot of files during the JavaScript code compression step.  If you see "Error: EMFILE, too many open files" in your build log then you should run this command at a console: `sudo ulimit -S -n 2048` to increase the open file limit.
