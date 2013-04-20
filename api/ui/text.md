@@ -157,8 +157,9 @@ be updated.
 
 Parameters
 :    1. `options {object}`
-	     * `prompt {text} = ''` ---The text message shown on the dialog.
-		 * `autoShowKeyboard {boolean} = false` ---Show the keyboard when the dailog is shown on native.
+     * `prompt {text} = ''` ---The text message shown on the dialog.
+     * `autoShowKeyboard {boolean} = false` ---Show the keyboard when the dailog is shown on native.
+     * `isPassword {boolean} = false` ---This is a password field -- hide input.
 
 ~~~
 import ui.TextPromptView as TextPromptView;
