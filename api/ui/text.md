@@ -12,7 +12,7 @@ fit, setting `autoFontSize` scales the text until it fits in the view.
 
 The minimum and maximum size can be controlled with the `style.minWidth`, `style.minHeight`, `style.maxWidth`
 and `style.maxHeight` properties. If both `autoSize` and `autoFontSize` are set to true and the view is smaller
-then the given maximum size then the view will grow to fit the text (if necessary) and if the maximum size
+than the given maximum size then the view will grow to fit the text (if necessary) and if the maximum size
 is reached and the text still does not fit then the font will be scaled.
 
 ## Examples
@@ -27,29 +27,32 @@ is reached and the text still does not fit then the font will be scaled.
 
 Parameters
 :    1. `options {object}` ---`TextView` specific options, also accepts [`View` options](./ui-view.html#new-view-options).
-	     * `text {string}` ---The text to display.
-		 * `size {number} = 12` ---The default font size of the text.
-		 * `lineHeight {number} = 1.2` ---How tall each line should be when wrap is turned on.
-		 * `fontFamily {string} = device.defaultFontFamily` ---Font family to be used by the text in the text view (ex: "Helvetica")
-		 * `fontWeight {string} = 'normal'` ---How thick the characters are. Options: `'normal'`, `'bold'`, or a number weight.
-		 * `color {string} = "blue"` ---The color of the text.  See below for color string format.
-		 * `backgroundColor {string} = "blue"` ---The background color of the text view.  See below for color string format.
-		 * `shadowColor {string} = "blue"` ---Color of the drop shadow behind the text.  See below for color string format.
-		 * `strokeWidth {number} = 2` ---Width of text stroke (outline or shadow).
-		 * `strokeColor {string} = undefined` ---The color of the stroke.
-		 * `padding {number|array} = 0` ---The amount of vertical padding the text exhibits within the text view.
-		 * `verticalAlign: "middle"` ---How the text should be aligned vertically within the text view. Options: `'top'`, `'bottom'`, `'middle'`.
-		 * `horizontalAlign: "center"` ---How the text should be aligned horizontall within the text view. Options: `'left'`, `'right'`, `'center'`, `'justify'`.
-		 * `wrap {boolean} = true` ---Whether or not the text should wrap. A description of the rules of wrapping when wrap is turned on can be found below.
-		 * `autoSize {boolean} = true` ---Fit the text view to text (details below).
-		 * `autoFontSize {boolean} = true` ---Fit text to the text view (details below).
+     * `text {string}` ---The text to display.
+     * `size {number} = 12` ---The default font size of the text.
+     * `lineHeight {number} = 1.2` ---How tall each line should be when wrap is turned on.
+     * `fontFamily {string} = device.defaultFontFamily` ---Font family to be used by the text in the text view (ex: "Helvetica")
+     * `fontWeight {string} = 'normal'` ---How thick the characters are. Options: `'normal'`, `'bold'`, or a number weight.
+     * `color {string} = "blue"` ---The color of the text.  See below for color string format.
+     * `backgroundColor {string} = "blue"` ---The background color of the text view.  See below for color string format.
+     * `shadowColor {string} = "blue"` ---Color of the drop shadow behind the text.  See below for color string format.
+     * `strokeWidth {number} = 2` ---Width of text stroke (outline or shadow).
+     * `strokeColor {string} = undefined` ---The color of the stroke.
+     * `padding {number|array} = 0` ---The amount of vertical padding the text exhibits within the text view.
+     * `verticalAlign: "middle"` ---How the text should be aligned vertically within the text view. Options: `'top'`, `'bottom'`, `'middle'`.
+     * `horizontalAlign: "center"` ---How the text should be aligned horizontall within the text view. Options: `'left'`, `'right'`, `'center'`, `'justify'`.
+     * `wrap {boolean} = true` ---Whether or not the text should wrap. A description of the rules of wrapping when wrap is turned on can be found below.
+     * `autoSize {boolean} = true` ---Fit the text view to text (details below).
+     * `autoFontSize {boolean} = true` ---Fit text to the text view (details below).
+     * `buffer {boolean} = true` ---Buffer this `TextView` instead of rerendering every tick.
 
-Colors can be one of the following values:
-		 * `null` or `undefined` : No color (transparent).
-		 * "blue" : Standard CSS color names.  See [this website](http://www.w3schools.com/cssref/css_colornames.asp) for a complete list.
-		 * "#330033" : Standard HTML Hexadecimal RGB code.  See [this website](http://www.w3schools.com/cssref/css_colors.asp) for a detailed description of this format.
-		 * "rgb(255,0,0)" : Standard HTML RGB code.  See [this website](http://www.w3schools.com/cssref/css_colors.asp) for a detailed description of this format.
-		 * "rgb(255,0,0,0.8)" : Standard HTML RGB code with alpha value between 0 and 1 in the final parameter.
+:    2. Colors (`color`, `backgroundColor`, `shadowColor`, `strokeColor`) can be any of the following values:
+     * `null` or `undefined` : No color (transparent).
+     * `blue` : Standard CSS color names.  See [this website](http://www.w3schools.com/cssref/css_colornames.asp) for a complete list.
+     * `#330033` : Standard HTML Hexadecimal RGB code.  See [this website](http://www.w3schools.com/cssref/css_colors.asp) for a detailed description of this format.
+     * `rgb(255,0,0)` : Standard HTML RGB code.  See [this website](http://www.w3schools.com/cssref/css_colors.asp) for a detailed description of this format.
+     * `rgb(255,0,0,0.8)` : Standard HTML RGB code with alpha value between 0 and 1 in the final parameter.
+
+Buffering greatly improves `TextView` performance, but an unlimited amount of text can't fit in the buffer. Therefore, if you have many `TextView`s in your game, it may make sense to set `buffer` to `false` in some cases -- typically, in scenes without many `TextView`s, where performance isn't an issue.
 
 For fonts to work in the emulator, they must be installed system-wide.  For fonts to work on native Android or iOS, be sure to fill out the manifest.json file.  There are some additional considerations for Android and iOS.  Please see the [manifest.json documentation](../guide/manifest.html).
 
