@@ -45,7 +45,7 @@ Parameters
      * `autoFontSize {boolean} = true` ---Fit text to the text view (details below).
      * `buffer {boolean} = true` ---Buffer this `TextView` instead of rerendering every tick.
 
-:    2. `color` can be any of the following values:
+:    2. Colors (`color`, `backgroundColor`, `shadowColor`, `strokeColor`) can be any of the following values:
      * `null` or `undefined` : No color (transparent).
      * `blue` : Standard CSS color names.  See [this website](http://www.w3schools.com/cssref/css_colornames.asp) for a complete list.
      * `#330033` : Standard HTML Hexadecimal RGB code.  See [this website](http://www.w3schools.com/cssref/css_colors.asp) for a detailed description of this format.
