@@ -478,3 +478,23 @@ NATIVE.onBackButton = function() {
     console.log("someone hit the back button!");
 };
 ~~~
+
+
+# Rotation Events
+
+You can subscribe to rotation events like this:
+
+~~~
+NATIVE.events.registerHandler("rotate", function(e) {
+    console.log(e.orientation);
+});
+~~~
+
+`e.orientation` is one of:
+:    1. `portrait`
+     2. `portraitUpsideDown`
+     3. `landscapeRight`
+     4. `landscapeLeft`
+     5. `unknown`
+     6. `faceUp` -- iOS only
+     7. `faceDown` -- iOS only
