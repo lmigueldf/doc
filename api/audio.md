@@ -11,6 +11,7 @@ the [Creating Audio Assets Guide](../guide/audio-assets.html).
 * [Mute Sound](../example/sound-mute/)
 * [Adjust Volume](../example/sound-volume/)
 * [Adjust Background](../example/sound-background/)
+* [Get and Set Track Position](../example/sound-time/)
 
 ## Methods
 
@@ -217,6 +218,24 @@ Returns
 :    1. `{boolean}`
 
 Check the mute status of the effects sounds.
+
+### setTime (name, time)
+
+Parameters
+:    1. `name {string}`
+     2. `time {number}`
+
+Sets the current time of the specified sound.
+
+### getTime (name)
+
+Parameters
+:    1. `name {string}`
+
+Returns
+:    1. `{number}`
+
+Returns the current time of the specified sound.
 
 ### setPath (path)
 
