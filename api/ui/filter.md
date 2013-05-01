@@ -20,6 +20,8 @@ import ui.filter.Filter as Filter;
 var filter = new Filter();
 ~~~
 
+Filters can be applied to views using [`View.setFilter`](/api/ui-view.html#setfilter-filter) and removed using [`View.removeFilter`](/api/ui-view.html#removefilter).
+
 ### get ()
 
 Returns
@@ -40,13 +42,6 @@ Parameters
 :    1. `options {object}`
 
 Update the filter using the values supplied in the given options.
-
-### setView (view)
-
-Parameters
-:    1. `view {View}`
-
-Set the view for a filter.
 
 ### getColorString ()
 
@@ -97,10 +92,3 @@ Parameters
 ~~~
 import ui.filter.MultiplyFilter as MultiplyFilter;
 ~~~
-
-# View.removeFilter(filter_type)
-
-Parameters
-:    1. `filter_type {string}` ---One of: "LinearAdd", "Multiply"
-
-Remove the filter of type `filter_type` from the view.
