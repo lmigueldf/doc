@@ -469,14 +469,16 @@ Allow the callback chain to be fired again.
 Clears all of the registered callbacks and executes `callback.reset ()`.
 
 
-# NATIVE.onBackButton
+# Back Button
 
-When the back button is pressed on an Android device, `NATIVE.onBackButton` is called. Here's how to use it:
+Want to know when the back button is pressed on an Android device? Here's how:
 
 ~~~
-NATIVE.onBackButton = function() {
+import device;
+
+device.setBackButtonHandler(function() {
     console.log("someone hit the back button!");
-};
+});
 ~~~
 
 
@@ -485,7 +487,9 @@ NATIVE.onBackButton = function() {
 You can subscribe to rotation events like this:
 
 ~~~
-NATIVE.events.registerHandler("rotate", function(e) {
+import device;
+
+device.setRotationHandler(function(e) {
     console.log(e.orientation);
 });
 ~~~
