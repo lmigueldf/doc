@@ -105,13 +105,19 @@ Parameters
 :    1. `name {string}`
 	 2. `options {object}`
 	     * `loop {boolean} = false`
+       * `time {number}`
+       * `duration {number}`
 
 Returns
 :    1. `{boolean}` ---Returns `true` on success, `false` if not.
 
-Play a audiomanager. If it has already been preloaded, it will play
-immediately, otherwise, it will need to load it into memory
-before playing.
+Play a sound. If it has already been preloaded, or is flagged
+as a `background` sound, it will play immediately. Otherwise,
+the AudioManager will load it into memory before playing.
+
+Use the `time` and `duration` options (in seconds) to jump to any point in the track.
+This is particularly useful when you're using a "soundsheet", a single sound file
+containing multiple sound effects.
 
 ~~~
 audiomanager.play('boink', {loop: true});
@@ -145,6 +151,34 @@ from the beginning.
 
 ~~~
 audiomanager.stop('levelmusic');
+~~~
+
+### isPaused (name)
+
+Parameters
+:     1. `name {string}`
+
+Returns
+:     1. `{boolean}` ---Returns `true` or `false`.
+
+Returns whether or not a sound is paused.
+
+~~~
+audiomanager.isPaused('levelmusic');
+~~~
+
+### isPlaying (name)
+
+Parameters
+:     1. `name {string}`
+
+Returns
+:     1. `{boolean}` ---Returns `true` or `false`.
+
+Returns whether or not a sound is playing. This is not the opposite of `isPaused`, because a sound that already played or hasn't started yet is neither paused nor playing.
+
+~~~
+audiomanager.isPlaying('levelmusic');
 ~~~
 
 ### setVolume (name, volume)
