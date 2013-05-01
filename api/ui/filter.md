@@ -20,7 +20,7 @@ import ui.filter.Filter as Filter;
 var filter = new Filter();
 ~~~
 
-Filters can be applied to views using [`View.addFilter`](/api/ui-view.html#addfilter-filter) and removed using [`View.removeFilter`](/api/ui-view.html#removefilter).
+Filters can be applied to views using [`View.setFilter`](/api/ui-view.html#setfilter-filter) and removed using [`View.removeFilter`](/api/ui-view.html#removefilter).
 
 ### get ()
 

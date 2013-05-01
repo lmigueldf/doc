@@ -265,12 +265,12 @@ Returns
 
 Return an array of filters attached to a view.
 
-### addFilter (filter)
+### setFilter (filter)
 
 Parameters
 :    1. `filter {Filter}`
 
-Adds a filter to this view. If this view already has a filter, the old filter is removed. A filter can be applied to multiple views, but no view can have more than one filter.
+Sets the filter on this view. If this view already has a filter, the old filter is removed. A filter can be applied to multiple views, but no view can have more than one filter.
 
 ### removeFilter ()
 
