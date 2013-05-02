@@ -123,6 +123,8 @@ containing multiple sound effects.
 audiomanager.play('boink', {loop: true});
 ~~~
 
+Note that the `time` option is only available for `background` sounds.
+
 ### pause (name)
 
 Parameters
@@ -180,6 +182,8 @@ Returns whether or not a sound is playing. This is not the opposite of `isPaused
 ~~~
 audiomanager.isPlaying('levelmusic');
 ~~~
+
+Note that this function is only available for `background` sounds.
 
 ### setVolume (name, volume)
 
@@ -259,7 +263,8 @@ Parameters
 :    1. `name {string}`
      2. `time {number}`
 
-Sets the current time of the specified sound.
+Sets the current time of the specified sound. Note that
+this function is only available for `background` sounds.
 
 ### getTime (name)
 
@@ -269,7 +274,8 @@ Parameters
 Returns
 :    1. `{number}`
 
-Returns the current time of the specified sound.
+Returns the current time of the specified sound. Note that
+this function is only available for `background` sounds.
 
 ### setPath (path)
 
