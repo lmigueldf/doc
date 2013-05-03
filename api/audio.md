@@ -277,6 +277,17 @@ Returns
 Returns the current time of the specified sound. Note that
 this function is only available for `background` sounds.
 
+### getDuration (name)
+
+Parameters
+:    1. `name {string}`
+
+Returns
+:    1. `{number}`
+
+Returns the duration of the specified sound. Note that
+this function is only available for `background` sounds.
+
 ### setPath (path)
 
 Parameters
