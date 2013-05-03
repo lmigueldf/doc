@@ -41,6 +41,7 @@ Parameters
      * `verticalAlign: "middle"` ---How the text should be aligned vertically within the text view. Options: `'top'`, `'bottom'`, `'middle'`.
      * `horizontalAlign: "center"` ---How the text should be aligned horizontall within the text view. Options: `'left'`, `'right'`, `'center'`, `'justify'`.
      * `wrap {boolean} = true` ---Whether or not the text should wrap. A description of the rules of wrapping when wrap is turned on can be found below.
+     * `hardWrap {boolean}` ---Optional, if true and the text is a single line which is too wide then the string will be split into lines which fit within the given width of the view.
      * `autoSize {boolean} = true` ---Fit the text view to text (details below).
      * `autoFontSize {boolean} = true` ---Fit text to the text view (details below).
      * `buffer {boolean} = true` ---Buffer this `TextView` instead of rerendering every tick.
