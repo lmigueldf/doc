@@ -11,6 +11,7 @@ the [Creating Audio Assets Guide](../guide/audio-assets.html).
 * [Mute Sound](../example/sound-mute/)
 * [Adjust Volume](../example/sound-volume/)
 * [Adjust Background](../example/sound-background/)
+* [Get and Set Track Position](../example/sound-time/)
 
 ## Methods
 
@@ -104,17 +105,25 @@ Parameters
 :    1. `name {string}`
 	 2. `options {object}`
 	     * `loop {boolean} = false`
+       * `time {number}`
+       * `duration {number}`
 
 Returns
 :    1. `{boolean}` ---Returns `true` on success, `false` if not.
 
-Play a audiomanager. If it has already been preloaded, it will play
-immediately, otherwise, it will need to load it into memory
-before playing.
+Play a sound. If it has already been preloaded, or is flagged
+as a `background` sound, it will play immediately. Otherwise,
+the AudioManager will load it into memory before playing.
+
+Use the `time` and `duration` options (in seconds) to jump to any point in the track.
+This is particularly useful when you're using a "soundsheet", a single sound file
+containing multiple sound effects.
 
 ~~~
 audiomanager.play('boink', {loop: true});
 ~~~
+
+Note that the `time` option is only available for `background` sounds.
 
 ### pause (name)
 
@@ -145,6 +154,36 @@ from the beginning.
 ~~~
 audiomanager.stop('levelmusic');
 ~~~
+
+### isPaused (name)
+
+Parameters
+:     1. `name {string}`
+
+Returns
+:     1. `{boolean}` ---Returns `true` or `false`.
+
+Returns whether or not a sound is paused.
+
+~~~
+audiomanager.isPaused('levelmusic');
+~~~
+
+### isPlaying (name)
+
+Parameters
+:     1. `name {string}`
+
+Returns
+:     1. `{boolean}` ---Returns `true` or `false`.
+
+Returns whether or not a sound is playing. This is not the opposite of `isPaused`, because a sound that already played or hasn't started yet is neither paused nor playing.
+
+~~~
+audiomanager.isPlaying('levelmusic');
+~~~
+
+Note that this function is only available for `background` sounds.
 
 ### setVolume (name, volume)
 
@@ -217,6 +256,37 @@ Returns
 :    1. `{boolean}`
 
 Check the mute status of the effects sounds.
+
+### setTime (name, time)
+
+Parameters
+:    1. `name {string}`
+     2. `time {number}`
+
+Sets the current time of the specified sound. Note that
+this function is only available for `background` sounds.
+
+### getTime (name)
+
+Parameters
+:    1. `name {string}`
+
+Returns
+:    1. `{number}`
+
+Returns the current time of the specified sound. Note that
+this function is only available for `background` sounds.
+
+### getDuration (name)
+
+Parameters
+:    1. `name {string}`
+
+Returns
+:    1. `{number}`
+
+Returns the duration of the specified sound. Note that
+this function is only available for `background` sounds.
 
 ### setPath (path)
 
