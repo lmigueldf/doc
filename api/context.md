@@ -38,7 +38,7 @@ Clips rendering outside the given region.
 ### drawImage (img, sx, sy, sw, sh, dx, dy, dw, dh)
 
 Parameters
-:    1. `img {string}` ---Image resource path for source of draw.
+:    1. `img {Image}` ---Image for source of draw.
 :    2. `sx {number}` ---Upper-left position of image draw source.
 :    3. `sy {number}` ---Upper-left position of image draw source.
 :    4. `sw {number}` ---Bounds of draw rectangle from source image.
