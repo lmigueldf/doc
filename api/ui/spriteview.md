@@ -63,6 +63,28 @@ sprite-sheets, however, if you have changed an animation and
 are still seeing the old images, you can delete the
 `build/` directory to ensure it is re-generated on the next build.
 
+### Prebuilt Spritesheets
+
+Normally a SpriteView is initialized with a `url`. In these cases, the SpriteView compiles image resources into animations as described above. Sometimes, however, we don't have individual animation frame images to work with. If we're mocking up a game with free graphics from the internet, for example, it's much more likely that we'll have prebuilt spritesheets. It doesn't make sense to cut them up into individual frames, only for the DevKit to turn them into spritesheets again. Thankfully, the SpriteView knows how to read in prebuilt spritesheets using the `sheetData` option. A valid `sheetData` object looks like this:
+
+~~~
+{
+  url: "resources/images/enemySprites.png", // spritesheet
+  width: 32, // animation frame width
+  height: 64, // animation frame height
+  offsetX: 34, // horizontal space between frame images, including padding
+  offsetY: 66, // vertical space between frame images, including padding
+  startX: 10, // x coordinate of first frame on sheet
+  startY: 0, // y coordinate of first frame on sheet
+  anims: {
+    down:  [ [3, 0], [4, 0], [5, 0] ], // xy indices of each frame in animation on spritesheet
+    left:  [ [3, 1], [4, 1], [5, 1] ],
+    right: [ [3, 2], [4, 2], [5, 2] ],
+    up:    [ [3, 3], [4, 3], [5, 3] ]
+  }
+}
+~~~
+
 
 ## Methods
 
@@ -70,14 +92,15 @@ are still seeing the old images, you can delete the
 
 Parameters
 :    1. `options {object}`
-	     * `url {string}` ---Sprite image file name prefix.
-		 * `defaultAnimation {string}` ---Defaults to the first animation listed in the directory
-		 * `groupID {string} = 'default'` ---Specify a Sprite group
-		 * `frameRate {number} = 15` ---Rate at which the animation will play each frame.
-		 * `emitFrameEvents {boolean} = false` ---Will publish events for an animation and its frame number (`myAnim_40`).
-		 * `autoStart {boolean} = false` ---Animation will start as soon as initialised.
-		 * `loop {boolean} = true` ---Animation will continue to play forever.
-		 * `delay {number} = 0` ---Delay in milliseconds between animation loop iterations.
+       * `url {string}` ---Sprite image file name prefix.
+     * `sheetData {object}` ---Data object for loading animations from a prebuilt spritesheet
+     * `defaultAnimation {string}` ---Defaults to the first animation listed in the directory
+     * `groupID {string} = 'default'` ---Specify a Sprite group
+     * `frameRate {number} = 15` ---Rate at which the animation will play each frame.
+     * `emitFrameEvents {boolean} = false` ---Will publish events for an animation and its frame number (`myAnim_40`).
+     * `autoStart {boolean} = false` ---Animation will start as soon as initialised.
+     * `loop {boolean} = true` ---Animation will continue to play forever.
+     * `delay {number} = 0` ---Delay in milliseconds between animation loop iterations.
 
 ~~~
 import ui.SpriteView as SpriteView;
