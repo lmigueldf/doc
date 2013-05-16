@@ -8,6 +8,7 @@ Inherits from
 ## Examples
 
 * [A Basic SpriteView](../example/ui-spriteview-basic/)
+* [Prebuilt Spritesheets](../example/animation-prebuilt/)
 
 ## Overview
 
