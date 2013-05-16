@@ -77,10 +77,10 @@ Normally a SpriteView is initialized with a `url`. In these cases, the SpriteVie
   startX: 10, // x coordinate of first frame on sheet
   startY: 0, // y coordinate of first frame on sheet
   anims: {
-    down:  [ [3, 0], [4, 0], [5, 0] ], // xy indices of each frame in animation on spritesheet
-    left:  [ [3, 1], [4, 1], [5, 1] ],
-    right: [ [3, 2], [4, 2], [5, 2] ],
-    up:    [ [3, 3], [4, 3], [5, 3] ]
+    down:  [ [3, 0], [4, 0], [5, 0], [4, 0] ], // xy indices of each frame in animation on spritesheet
+    left:  [ [3, 1], [4, 1], [5, 1], [4, 1] ],
+    right: [ [3, 2], [4, 2], [5, 2], [4, 2] ],
+    up:    [ [3, 3], [4, 3], [5, 3], [4, 3] ]
   }
 }
 ~~~
