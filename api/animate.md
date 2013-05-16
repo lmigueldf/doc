@@ -18,6 +18,7 @@ your game loop.
 * [Create a Trail Animation](../example/animation-trail/)
 * [Multiple Animations](../example/animation-multibox/)
 * [Particle Engine](../example/animation-particles/)
+* [Prebuilt Spritesheets](../example/animation-prebuilt/)
 
 ## Methods
 
