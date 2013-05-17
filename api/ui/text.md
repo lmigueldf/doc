@@ -200,6 +200,61 @@ The `Cancel` event is published when the cancel button in
 the dialog is pressed.
 
 
+# Class: ui.ScoreView
+
+Inherits from
+:    1. [ui.View](./ui-view.html)
+     2. [event.Emitter](./event.html#class-event.emitter)
+
+This class is designed for high performance text rendering using images.
+It is ideal for scores or other in-game counters that update often.
+
+## Examples
+
+* [Using a ScoreView](../example/text-scoreview/)
+
+## Methods
+
+### new ScoreView ([options])
+
+Parameters
+:    1. `options {object}`
+     * `characterData {object}` ---The characters to use in this ScoreView. If undefined, you must call setCharacterData before rendering text.
+     * `srcHeight {number}` ---Set height of source images. If undefined, this falls back to actual character image height.
+     * `textAlign {string} = 'center'` ---Text alignment - 'center', 'right', or 'left'.
+     * `spacing {number} = 0` ---How much space to put between each character.
+
+~~~
+import ui.ScoreView as ScoreView;
+var yellowScore = new ScoreView({
+  characterData: {
+    "0": { "image": "resources/images/numbers/yellow_0.png" },
+    "1": { "image": "resources/images/numbers/yellow_1.png" },
+    "2": { "image": "resources/images/numbers/yellow_2.png" },
+    "3": { "image": "resources/images/numbers/yellow_3.png" },
+    "4": { "image": "resources/images/numbers/yellow_4.png" },
+    "5": { "image": "resources/images/numbers/yellow_5.png" },
+    "6": { "image": "resources/images/numbers/yellow_6.png" },
+    "7": { "image": "resources/images/numbers/yellow_7.png" },
+    "8": { "image": "resources/images/numbers/yellow_8.png" },
+    "9": { "image": "resources/images/numbers/yellow_9.png" }
+  }
+});
+~~~
+
+### setCharacterData (data)
+
+Parameters
+:    1. `data {object}` ---The character data to use with this SpriteView. Each character object has the following properties:
+     * `image {string}` ---The image resource of this character (required).
+     * `width {number}` ---If undefined, falls back to actual character width.
+     * `offset {number} = 0` ---Optional value for kerning.
+
+### setText (text)
+
+Parameters
+:    1. `text {string}` ---The text to display in this ScoreView.
+
 <!--
 # Class: ui.TextInputView
 
