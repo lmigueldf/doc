@@ -49,7 +49,7 @@ While log messages are helpful to make development faster, avoid excessive loggi
 
 Manually triggering garbage collection (GC) while waiting for user input or otherwise waiting at a menu or modal screen will prevent GC lag spikes from occurring during gameplay when they are noticeable.
 
-Invoke `NATIVE.gc && NATIVE.gc.runGC();` to force garbage collection.
+Invoke `device.collectGarbage();` to force garbage collection.
 
 ## Allocate fewer objects
 
