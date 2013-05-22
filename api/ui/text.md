@@ -220,7 +220,6 @@ It is ideal for scores or other in-game counters that update often.
 Parameters
 :    1. `options {object}`
      * `characterData {object}` ---The characters to use in this ScoreView. If undefined, you must call setCharacterData before rendering text.
-     * `srcHeight {number}` ---Set height of source images. If undefined, this falls back to actual character image height.
      * `textAlign {string} = 'center'` ---Text alignment - 'center', 'right', or 'left'.
      * `spacing {number} = 0` ---How much space to put between each character.
 
