@@ -26,6 +26,7 @@ is displayed on the screen.
 * [Input Click Event](../example/events-input-click/)
 * [Input Move Event](../example/events-input-move/)
 * [Input Out Event](../example/events-input-out/)
+* [Input Drag Event](../example/events-input-drag/)
 * [Modifying a View's Style](../example/views-style/)
 * [Rotate a View](../example/views-rotate/)
 
@@ -185,15 +186,40 @@ Parameters
 Respond to an input event by dragging the view. This will
 fire drag events so you can make a view follow the drag events.
 
-For example, to listen for a drag on a view and update its
-position to follow:
+The right time to call `startDrag` is inside the `"InputStart"` event:
 
 ~~~
-view.on('Drag', function (startEvt, dragEvt, delta) {
-  this.style.x = dragEvt.pt['1'].x;
-  this.style.y = dragEvt.pt['1'].y;
+view.on("InputStart", function (evt) {
+      view.startDrag({
+        inputStartEvt: evt,
+        radius: 10
+      });
 });
 ~~~
+
+In this example, the drag events will start firing after a 10 pixel drag occurs.
+
+To listen for a drag on a view and update its
+position:
+
+~~~
+view.on('DragStart', function (dragEvt) {
+  view.style.x = dragEvt.srcPt.x;
+  view.style.y = dragEvt.srcPt.y;
+});
+
+view.on('Drag', function (startEvt, dragEvt, delta) {
+  view.style.x = dragEvt.srcPt.x;
+  view.style.y = dragEvt.srcPt.y;
+});
+
+view.on('DragStop', function (startEvt, dragEvt) {
+  view.style.x = dragEvt.srcPt.x;
+  view.style.y = dragEvt.srcPt.y;
+});
+~~~
+
+See the DragStart, Drag, and DragStop documentation for more information about handling these events.
 
 ### isDragging ()
 
@@ -560,48 +586,46 @@ view.on('InputOut', function (over, overCount, atTarget) {
 ### \'DragStart\', callback (dragEvent)
 
 Parameters
-:    1. `dragEvent {InputEvent}`
+:    1. `dragEvt {InputEvent}`
 
-Fired when dragging starts. `dragEvent` represents the event from which dragging started.
+Fired when dragging starts. `dragEvt` represents the event from which dragging started.  `dragEvt.srcPt` contains the point where the drag started.
 
 ~~~
-view.on('DragStart', function (dragEvent, selectEvent) {
-  console.log("Drag started at " + dragEvt.srcPoint);
+view.on('DragStart', function (dragEvt) {
+  console.log("Drag started at (", dragEvt.srcPt.x, ",", dragEvt.srcPt.y, ") screen coordinates" );
 });
 ~~~
 
-### \'Drag\', callback (dragEvent, moveEvent, delta)
+### \'Drag\', callback (startEvt, dragEvt, delta)
 
 Parameters
-:    1. `dragEvent {InputEvent}`
-     2. `moveEvent {InputEvent}`
+:    1. `startEvt {InputEvent}`
+     2. `dragEvt {InputEvent}`
      3. `delta {number}`
 
-Fired during dragging. `dragEvent` represents the event from
-which dragging started. `moveEvent` represents the event
+Fired during dragging. `startEvt` represents the event from
+which dragging started. `dragEvt` represents the event
 occuring from movement on the view. `delta` represents the
-difference between the last `moveEvent` and this one.
+difference between the last `dragEvt` and this one.
 
 ~~~
-view.on('Drag', function (dragEvent, moveEvent, delta) {
-  var dx = moveEvent.srcPoint.x - dragEvt.srcPoint.x;
-  console.log("Moved " + dx + " pixels along the x-axis from where the drag started!");
-  console.log("Moved " + delta.x + "pixels along the x-axis from where the last drag event happened!");
+view.on('Drag', function (startEvt, dragEvt, delta) {
+  console.log("Drag continued at (", dragEvt.srcPt.x, ",", dragEvt.srcPt.y, ") screen coordinates" );
 });
 ~~~
 
-### \'DragStop\', callback (dragEvent, selectEvent)
+### \'DragStop\', callback (dragEvt, selectEvt)
 
 Parameters:
-    1. `dragEvent {InputEvent}`
-    2. `selectEvent {InputEvent}`
+    1. `startEvt {InputEvent}`
+    2. `dragEvt {InputEvent}`
 
-Fired when dragging is stopped.  `dragEvent` represents the
-event from which dragging started.  `selectEvent` represents
+Fired when dragging is stopped.  `startEvt` represents the
+event from which dragging started.  `dragEvt` represents
 the event which occurs when the dragging has stopped.
 
 ~~~
 view.on('DragStop', function (dragEvent, selectEvent) {
-  console.log("Drag started at " + dragEvt.srcPoint + " and ended at " + selectEvent.srcPoint);
+  console.log("Drag ended at (", dragEvt.srcPt.x, ",", dragEvt.srcPt.y, ") screen coordinates" );
 });
 ~~~
