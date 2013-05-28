@@ -86,8 +86,12 @@ var MyCustomClass = Class(ImageView, function(supr) {
     	this.setImage(GC.app.getRandomImage());
     	this.style.x = Math.random() * device.width;
     	this.style.y = Math.random() * device.height;
-        this.style.visible = true;
+    	this.style.visible = true;
     };
+
+	this.onRelease = function() {
+		console.log('view released!');
+	};
 });
 ~~~
 
