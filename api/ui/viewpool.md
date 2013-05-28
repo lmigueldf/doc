@@ -58,16 +58,42 @@ exports = Class(View, function(supr) {
 });
 ~~~
 
-### obtainView ([options])
-
-Parameters
-:    1. `options {object}` ---The options object is used to init or update a view from the pool.
-         * When a view is re-used, the ViewPool calls the view's updateOpts function and passes in the options object.
+### obtainView ()
 
 Returns
 :    1. `{View}` ---Returns a new or recycled instance of the class created by the constructor established when creating the ViewPool.
 
-Obtain a view from the pool, which has updated properties and styles based on the options passed in. This method also sets the view's style.visible property to true. The same view cannot be obtained again until it has first been released via the releaseView method.
+Obtain a view from the pool. The same view cannot be obtained again until it has first been released via the `releaseView` method.
+
+Note that a newly-obtained view has `visible` set to false. This gives you a chance to update the options on the view before displaying it. To change the options on your newly-obtained view, simply pass them into `updateOpts`, like so:
+
+~~~
+var freshView = this.imageViewPool.obtainView();
+freshView.updateOpts({
+    superview: aNewSuperview,
+    image: "resources/images/dot.png",
+    visible: true
+});
+~~~
+
+You can accomplish this with custom views by creating an `onObtain` callback function on the view class you're using with the ViewPool.
+
+~~~
+import device;
+
+var MyCustomClass = Class(ImageView, function(supr) {
+    this.onObtain = function() {
+    	this.setImage(GC.app.getRandomImage());
+    	this.style.x = Math.random() * device.width;
+    	this.style.y = Math.random() * device.height;
+    	this.style.visible = true;
+    };
+
+	this.onRelease = function() {
+		console.log('view released!');
+	};
+});
+~~~
 
 ### releaseView (view)
 
