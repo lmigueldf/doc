@@ -86,6 +86,9 @@ Normally a SpriteView is initialized with a `url`. In these cases, the SpriteVie
 }
 ~~~
 
+Many of these options fall back to defaults, and are therefore not required. The `width` and `height` options default to the width and height of the view itself. Similarly, `offsetX` and `offsetY` fall back to width and height. The `startX` and `startY` options have default values of 0.
+
+Thus, at minimum, the `sheetData` object must contain `url` and `anims`. Whether you provide more options depends on the spritesheet itself and how you're using it in your game.
 
 ## Methods
 
