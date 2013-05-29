@@ -205,6 +205,13 @@ merged();      //=> {x: 1}
 This way you can be assured that the options object contains
 all the properties you intend for it to have.
 
+### CACHE
+
+This is a cache of the JSON files in your project. Use it like this:
+
+~~~
+var price = JSON.parse(CACHE['resources/conf/storeItems.json']).item3.price;
+~~~
 
 # Module: util.ajax
 
