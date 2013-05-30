@@ -89,7 +89,7 @@ Inside your game you can reference the font by one of the names inside the font 
 
 Sometimes Xcode will be unable to communicate with the device.  First attempt to Stop the Xcode process and restart it.  Uninstall your game.  Then restart Xcode and try reinstalling.
 
-If this doesn't help, rebooting the iOS device is sometimes the only option to restore communications.  This mainly seems to happen when breaking connection while using native breakpoints in Xcode.
+If this doesn't help, rebooting the iOS device is sometimes the only option to restore communications.  This mainly seems to happen when breaking connection while using native breakpoints in Xcode.  For particularly bad lockups, holding down the home + top button together for a few seconds will cause the phone to power off.
 
 ## EMFILE Release Build Failures
 
