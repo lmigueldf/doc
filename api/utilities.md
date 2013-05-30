@@ -308,3 +308,58 @@ ajax.post({
   }
 });
 ~~~
+
+# Module: purchase
+
+The Game Closure DevKit provides functions to facilitate in-app purchases. These functions can be found in the `purchase` module.
+
+~~~
+import purchase;
+~~~
+
+## Methods
+
+### buy (productID)
+
+Parameters
+:    1. `productID {string}` ---The product ID of the item to be purchased.
+
+In-app purchases are quite straightforward. To attempt one, simply call `purchase.buy` with the ID of the product you'd like to purchase.
+
+~~~
+purchase.buy('android.test.purchased');
+~~~
+
+### onResult (status, productID, orderID)
+
+Parameters
+:   1. `status {number}` ---A `status` of 0 means your purchase went through.
+    2. `productID {string}` ---The product ID of the item to be purchased.
+    3. `orderID {string}` ---The order ID of the purchase attempt.
+
+To find out whether your purchase succeeded, you'll need to set `purchase.onResult` to a callback function.
+
+~~~
+var ordersProcessed = {};
+purchase.onResult = function (status, productID, orderID) {
+    console.log("purchase result:", status, productID, orderID);
+    if (ordersProcessed[orderID] == 0) {
+        console.log("this order already succeeded");
+        // do nothing
+    } else {
+        if (status == 0) {
+            console.log("order succeeded!");
+            // do something
+        } else {
+            console.log("order failed");
+            // do somethign else
+        }
+        if (orderID) {
+            ordersProcessed[orderID] = status;
+        }
+    }
+    return true;
+};
+~~~
+
+Your `purchase.onResult` callback should always return `true`. If it doesn't, the App Store will think you never processed the result, and spam you. Since `purchase.onResult` can potentially be triggered more than once per order (often with a different status), it helps to keep track of past `orderID`s. Bear in mind, however, that not all App Stores return an `orderID`, so don't always assume it will exist.
