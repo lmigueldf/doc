@@ -343,16 +343,23 @@ To find out whether your purchase succeeded, you'll need to set `purchase.onResu
 var ordersProcessed = {};
 purchase.onResult = function (status, productID, orderID) {
     console.log("purchase result:", status, productID, orderID);
-    if (ordersProcessed[orderID] == 0) {
-        console.log("this order already succeeded");
+    var oldStat = ordersProcessed[orderID];
+    if (oldStat == 0 || oldStat == 1 || oldStat == 2) {
+        console.log("this order has already been processed");
         // do nothing
     } else {
         if (status == 0) {
             console.log("order succeeded!");
             // do something
+        } else if (status == 1) {
+            console.log("order refunded!");
+            // do something
+        } else if (status == 2) {
+            console.log("order cancelled!");
+            // do something
         } else {
             console.log("order failed");
-            // do somethign else
+            // do something else
         }
         if (orderID) {
             ordersProcessed[orderID] = status;
