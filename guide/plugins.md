@@ -16,6 +16,10 @@ The JS Event System is used to send events to JavaScript, and a function is used
 
 To demonstrate the plugin system, take the [GeoLocation Plugin](https://github.com/gameclosure/geoloc) as an example.  It will be referenced throughout the documentation.
 
+To install the Geolocation addon, run `basil install geoloc`.  It will be installed under `devkit/addons/geoloc`.  You can also manually install addons under the `addons` directory.
+
+If you would like to add your plugin to the list of plugins that can be automatically installed with `basil install` please open up a discussion with us.
+
 #### Using plugins from your game
 
 The user of the plugin must include it in the `manifest.json` file under the "addons" section:
