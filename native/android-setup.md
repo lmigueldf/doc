@@ -4,6 +4,8 @@
 
 Testing your game on your cellphone for the first time is an exhilerating affair full of nail-biting anticipation. The process of getting there for Android devices has been stream-lined for you in the Game Closure DevKit.
 
+This guide is mainly for Linux or OSX.  To install on Windows please follow the [Windows install guide](../guide/windows-guide.html) first.
+
 ## Prerequisites
 
 You will need some tools for Android development:
