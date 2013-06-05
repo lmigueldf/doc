@@ -69,7 +69,6 @@ Your plugin class is required to respond to the following selectors in `PluginMa
 @protocol GCPluginProtocol
 @required
 - (void) initializeWithManifest:(NSDictionary *)manifest appDelegate:(TeaLeafAppDelegate *)appDelegate;
-- (void) sendEvent:(NSString *)eventName jsonObject:(NSDictionary *)jsonObject;
 ~~~
 
 And it can optionally respond to these additional selectors for your convenience:
@@ -96,7 +95,7 @@ The GeoLocation plugin header file describes an @interface class that derives fr
 #import "PluginManager.h"
 #import <CoreLocation/CoreLocation.h>
 
-@interface GeoLocPlugin : GCPlugin<CLLocationManagerDelegate>
+@interface GeolocPlugin : GCPlugin<CLLocationManagerDelegate>
 @property (nonatomic, retain) CLLocationManager *locationMgr;
 @property (nonatomic, retain) CLLocation *lastLocation;
 @property (nonatomic, assign) bool requested;
@@ -106,7 +105,7 @@ The GeoLocation plugin header file describes an @interface class that derives fr
 @end
 ~~~
 
-Note also that the GeoLocPlugin derives from GCPlugin and furthermore implements the CLLocationManagerDelegate @protocol so that it can receive GPS updates.
+Note also that the GeolocPlugin derives from GCPlugin and furthermore implements the CLLocationManagerDelegate @protocol so that it can receive GPS updates.
 
 #### Source
 
@@ -119,7 +118,7 @@ Since the header and source files are added as files to the Xcode project, they 
 Then the @implementation for the @interface begins:
 
 ~~~
-@implementation GeoLocPlugin
+@implementation GeolocPlugin
 
 // The plugin must call super dealloc.
 - (void) dealloc {
@@ -177,28 +176,28 @@ var e = {method:"getPosition"};
 NATIVE.plugins.sendEvent("GeolocPlugin", "onRequest", JSON.stringify(e));
 ~~~
 
-The `sendEvent` selector for the GeoLoc plugin demonstrates how to respond to events from JavaScript:
+It is important that the case of the class name matches the case of the event.  So "GeolocPlugin" in the above JavaScript code is the same as the `GeolocPlugin` class name in the native code.
+
+The `onRequest` selector for the GeoLoc plugin demonstrates how to respond to events from JavaScript:
 
 ~~~
-- (void) sendEvent:(NSString *)eventName jsonObject:(NSDictionary *)jsonObject {
-	if ([eventName isEqualToString:@"onRequest"]) {
-		NSString *method = [jsonObject valueForKey:@"method"];
+- (void) onRequest:(NSDictionary *)jsonObject {
+	NSString *method = [jsonObject valueForKey:@"method"];
 
-		if ([method isEqualToString:@"getPosition"]) {
-			NSLOG(@"{geoloc} Got request");
+	if ([method isEqualToString:@"getPosition"]) {
+		NSLOG(@"{geoloc} Got request");
 
-			[[PluginManager get] dispatchJSEvent:[NSDictionary dictionaryWithObjectsAndKeys:
-			@"geoloc",@"name", kCFBooleanTrue, @"failed", nil]];
-		}
+		[[PluginManager get] dispatchJSEvent:[NSDictionary dictionaryWithObjectsAndKeys:
+		@"geoloc",@"name", kCFBooleanTrue, @"failed", nil]];
 	}
 }
 
 @end
 ~~~
 
-This code checks that the `eventName` is the expected name, and reads the `method` string from the JSON request object, and if it is equal to "getPosition", then it will respond by dispatching an event back to the JavaScript code.  It uses `[PluginManager get]` to retrieve the current instance of the `PluginManager`.
+The "onRequest" event name in the JavaScript must match the name of the selector `onRequest:` used to handle it in the native code.
 
-Note that the first argument to `NATIVE.plugins.sendEvent` on the JavaScript side is ignored.  The second argument is the event name and the third is the JSON object, and these are available to your plugin.  For this reason you should try to pick unique names for your events to avoid conflicts with other plugins.
+If you have multiple events, you can handle each one with a different selector.  Or you can multiplex on the JSON object data by providing different `method` strings as above.
 
 ##### Sending JavaScript Events
 
