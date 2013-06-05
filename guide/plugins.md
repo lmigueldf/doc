@@ -12,7 +12,29 @@ The Game Closure DevKit supports a plugin system that enables you to develop uni
 
 The JS Event System is used to send events to JavaScript, and a NATIVE function is used to send events to native code.  This native interface is the same for iOS and Android.
 
-## Native Plugin Example: GeoLocation
+### Using plugins from your game
+
+The user of the plugin must include it in the `manifest.json` file under the "addons" section:
+
+~~~
+	"addons": [
+		"geoloc"
+	],
+~~~
+
+Furthermore at the top of the game's `src/Application.js`:
+
+~~~
+import geoloc;
+~~~
+
+This imports the `geoloc.js` file under `devkit/addons/geoloc/js/`.
+
+There are actually two versions of this file for GeoLocation.
+
+The `js/native/geoloc.js` file is used for native iOS or Android builds.  And the `js/geoloc.js` file is used for web builds.  This distinction is important since web browsers already support geolocation, but on native platforms JavaScript code must be included to interact with the native code.
+
+## Writing Plugins Example: GeoLocation
 
 To demonstrate the plugin system, take the [GeoLocation Plugin](https://github.com/gameclosure/geoloc) as an example.
 
@@ -105,29 +127,6 @@ Please see the [Android Plugin documentation](../native/android-plugin.html) for
 #### ./ios/
 
 Please see the [iOS Plugin documentation](../native/ios-plugin.html) for a description of the files under the `ios` directory.
-
-
-### Using plugins from your game
-
-The user of the plugin must include it in the `manifest.json` file under the "addons" section:
-
-~~~
-	"addons": [
-		"geoloc"
-	],
-~~~
-
-Furthermore at the top of the game's `src/Application.js`:
-
-~~~
-import geoloc;
-~~~
-
-This imports the `geoloc.js` file under `devkit/addons/geoloc/js/`.
-
-There are actually two versions of this file for GeoLocation.
-
-The `js/native/geoloc.js` file is used for native iOS or Android builds.  And the `js/geoloc.js` file is used for web builds.  This distinction is important since web browsers already support geolocation, but on native platforms JavaScript code must be included to interact with the native code.
 
 ### Using the Native Plugin Event system from JavaScript
 
