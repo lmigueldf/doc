@@ -7,14 +7,9 @@ and development. Once everything is installed and ready
 to go, please read the [Hello, World! Guide](../guide/hello-world.html)
 to create your first application.
 
+This guide is mainly for Linux or OSX.  To install on Windows please follow the [Windows install guide](../guide/windows-guide.html) first.
 
 ## Prerequisites
-
-We're only supporting OSX at this time, but we have some
-success running on Linux and [Windows](./windows-guide.html). If you're using an
-unsupported platform, make sure the following prerequisites
-are installed and the symlinks all work, and you may have
-some luck.
 
 Install the following software before installing the Game Closure DevKit:
 
