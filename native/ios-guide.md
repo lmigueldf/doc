@@ -29,3 +29,7 @@ For larger scale group testing, you may consider using TestFlight for coordinati
 ## [Troubleshooting](./ios-troubleshooting.html)
 
 There is a brief troubleshooting guide available [here](./ios-troubleshooting.html).
+
+## [Plugins](./ios-plugin.html)
+
+The iOS native code can be modified in a reusable way by using the provided [plugin system](./ios-plugin.html).
