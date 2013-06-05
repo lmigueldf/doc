@@ -1,3 +1,9 @@
+# Android Plugin System
+
+Writing the Android native code for a DevKit plugin is covered in this guide, which uses the [Geolocation plugin](http://github.com/gameclosure/geoloc) as an example.
+
+For an overview of the plugin system, the requisite directory structure, and how to write the JavaScript component of the plugin, please see the [main plugin development guide](../guide/plugins.html).
+
 ### Android Plugin: android/config.json
 
 Under `addons/geoloc/android/config.json` is the configuration used while building Android targets with the GeoLocation plugin.

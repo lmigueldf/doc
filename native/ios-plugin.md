@@ -1,3 +1,11 @@
+# iOS Plugin System
+
+Writing the iOS native code for a DevKit plugin is covered in this guide, which uses the [Geolocation plugin](http://github.com/gameclosure/geoloc) as an example.
+
+For an overview of the plugin system, the requisite directory structure, and how to write the JavaScript component of the plugin, please see the [main plugin development guide](../guide/plugins.html).
+
+The iOS plugins consist of a `config.json` file, frameworks, and code.
+
 ### iOS Plugin: ios/config.json
 
 Under `addons/geoloc/ios/config.json` is the configuration used while building iOS targets with the GeoLocation plugin.

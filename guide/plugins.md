@@ -1,4 +1,4 @@
-# Developing Reusable Plugins
+# DevKit Native Plugins
 
 The Game Closure DevKit supports a plugin system that enables you to develop unique features for your game in native code and/or JavaScript that will seamlessly interoperate with and persist through upgrades to new versions.
 
@@ -10,9 +10,13 @@ The Game Closure DevKit supports a plugin system that enables you to develop uni
 
 + Native code and JavaScript interact through a message passing interface.
 
-The JS Event System is used to send events to JavaScript, and a NATIVE function is used to send events to native code.  This native interface is the same for iOS and Android.
+The JS Event System is used to send events to JavaScript, and a function is used to deliver events from JavaScript to native code.  This native interface is the same for both iOS and Android.
 
-### Using plugins from your game
+## Plugin Example: GeoLocation
+
+To demonstrate the plugin system, take the [GeoLocation Plugin](https://github.com/gameclosure/geoloc) as an example.  It will be referenced throughout the documentation.
+
+#### Using plugins from your game
 
 The user of the plugin must include it in the `manifest.json` file under the "addons" section:
 
@@ -33,10 +37,6 @@ This imports the `geoloc.js` file under `devkit/addons/geoloc/js/`.
 There are actually two versions of this file for GeoLocation.
 
 The `js/native/geoloc.js` file is used for native iOS or Android builds.  And the `js/geoloc.js` file is used for web builds.  This distinction is important since web browsers already support geolocation, but on native platforms JavaScript code must be included to interact with the native code.
-
-## Writing Plugins Example: GeoLocation
-
-To demonstrate the plugin system, take the [GeoLocation Plugin](https://github.com/gameclosure/geoloc) as an example.
 
 ## Plugin Directory Structure
 
@@ -75,8 +75,6 @@ The index JavaScript file can export several methods that get invoked by `basil`
 + `exports.init(common)` : Called when the addon is upgraded or first installed.
 
 + `exports.load(common)` : Called on all addons when the addon is loaded on `basil` startup before a build begins.
-
-See `devkit/src/common.js` for the functionality available through the `common` object.
 
 ~~~
 exports.init = function (common) {
@@ -128,7 +126,7 @@ Please see the [Android Plugin documentation](../native/android-plugin.html) for
 
 Please see the [iOS Plugin documentation](../native/ios-plugin.html) for a description of the files under the `ios` directory.
 
-### Using the Native Plugin Event system from JavaScript
+### Sending JavaScript Events to Native Code
 
 To communicate with your native code from JavaScript, the `NATIVE.plugins.sendEvent` function is used to send data to the plugin, and the `NATIVE.events.registerHandler` function is used to receive data from the plugin.
 
@@ -139,7 +137,7 @@ var e = {id:1, method:"getPosition", arguments:{}};
 NATIVE.plugins.sendEvent("GeolocPlugin", "onRequest", JSON.stringify(e));
 ~~~
 
-The plugin will choose a string to use for its event name, and the schema for its events, which will be the same for iOS and Android.
+This causes the `onRequest` function in the `GeolocPlugin` native class to be invoked.
 
 And to receive data from the plugin via the Events subsystem:
 
@@ -151,7 +149,11 @@ NATIVE.events.registerHandler('geoloc', function(evt) {
 });
 ~~~
 
-If it is necessary to match a request with the response from the plugin, it is good practice to include an `id` field in the request, which can be provided in the response to match it with the request.  This is not demonstrated here since GeoLocation does not need to match responses with requests.  A JavaScript array keyed with these ids is a good way to remember the callback functions to call when a response arrives.
+##### Matching requests to responses
+
+If it is necessary to match a request with the response from the plugin, it is good practice to include an `id` field in the request, which can be provided in the response to match it with the request.
+
+This is not demonstrated here since GeoLocation does not need to match responses with requests.  A JavaScript array keyed with these ids is a good way to remember the callback functions to call when a response arrives.
 
 ### Android Integration
 

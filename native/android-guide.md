@@ -31,3 +31,7 @@ The integrated [remote JavaScript debugging](./android-remote-debug.html) allows
 ## [Troubleshooting](./android-troubleshooting.html)
 
 There is a brief troubleshooting guide available [here](./android-troubleshooting.html).
+
+## [Plugins](./android-plugin.html)
+
+The Android native code can be modified in a reusable way by using the provided [plugin system](./android-plugin.html).
