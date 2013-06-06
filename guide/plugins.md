@@ -44,7 +44,11 @@ The `js/native/geoloc.js` file is used for native iOS or Android builds.  And th
 
 ## Plugin Directory Structure
 
-The plugin system for iOS consists of several pieces:  There will be a JavaScript wrapper for the native functions.  A configuration file describes what files and dependencies need to be added to the native project before building.  And of course the native source code that interacts with your JavaScript wrapper.
+The plugin file system consists of several pieces:
+
++ There will be a JavaScript wrapper for the native functions.
++ A configuration file describes what files and dependencies need to be added to the native project before building.
++ And of course the native source code that interacts with your JavaScript wrapper.
 
 A normal DevKit plugin has a simple directory structure:
 
