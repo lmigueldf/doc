@@ -28,7 +28,7 @@ is reached and the text still does not fit then the font will be scaled.
 Parameters
 :    1. `options {object}` ---`TextView` specific options, also accepts [`View` options](./ui-view.html#new-view-options).
      * `text {string}` ---The text to display.
-     * `size {number} = 12` ---The default font size of the text.
+     * `size {number} = 128` ---The default font size of the text -- scales down to fit view when autoFontSize is true (default).
      * `lineHeight {number} = 1.2` ---How tall each line should be when wrap is turned on.
      * `fontFamily {string} = device.defaultFontFamily` ---Font family to be used by the text in the text view (ex: "Helvetica")
      * `fontWeight {string} = 'normal'` ---How thick the characters are. Options: `'normal'`, `'bold'`, or a number weight.
@@ -40,9 +40,9 @@ Parameters
      * `padding {number|array} = 0` ---The amount of vertical padding the text exhibits within the text view.
      * `verticalAlign: "middle"` ---How the text should be aligned vertically within the text view. Options: `'top'`, `'bottom'`, `'middle'`.
      * `horizontalAlign: "center"` ---How the text should be aligned horizontall within the text view. Options: `'left'`, `'right'`, `'center'`, `'justify'`.
-     * `wrap {boolean} = true` ---Whether or not the text should wrap. A description of the rules of wrapping when wrap is turned on can be found below.
+     * `wrap {boolean} = false` ---Whether or not the text should wrap. A description of the rules of wrapping when wrap is turned on can be found below.
      * `hardWrap {boolean}` ---Optional, if true and the text is a single line which is too wide then the string will be split into lines which fit within the given width of the view.
-     * `autoSize {boolean} = true` ---Fit the text view to text (details below).
+     * `autoSize {boolean} = false` ---Fit the text view to text (details below).
      * `autoFontSize {boolean} = true` ---Fit text to the text view (details below).
      * `buffer {boolean} = true` ---Buffer this `TextView` instead of rerendering every tick.
 
