@@ -169,7 +169,7 @@ is set then the value is an integer diviseble by the
 increment.
 
 ~~~
-view.on('InputStart', function (evt, point) {
+view.on('Change', function (evt, point) {
   console.log("This view had touch begin on it at: " + point.x + "," + point.y);
 });
 ~~~
