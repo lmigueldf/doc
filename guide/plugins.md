@@ -47,6 +47,7 @@ The plugin system for iOS consists of several pieces:  There will be a JavaScrip
 A normal DevKit plugin has a simple directory structure:
 
 ~~~
+├── README.md
 ├── android
 │   ├── GeolocPlugin.java
 │   ├── config.json
@@ -61,6 +62,8 @@ A normal DevKit plugin has a simple directory structure:
 ├── index.js
 └── package.json
 ~~~
+
+All plugins should have a `README.md` or similar documentation to describe how to install it and platform-specific considerations when using the plugin.
 
 The `index.js` file is used by the addon system to notify the addon of `basil` events.  And the `package.json` file is a nodejs configuration file that specifies npm dependencies for the `index.js` source code.
 
