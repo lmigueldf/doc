@@ -20,7 +20,7 @@ To install the Geolocation addon, run `basil install geoloc`.  It will be instal
 
 If you would like to add your plugin to the list of plugins that can be automatically installed with `basil install` please open up a discussion with us.
 
-#### Using plugins from your game
+## Using plugins from your game
 
 The user of the plugin must include it in the `manifest.json` file under the "addons" section:
 
@@ -33,14 +33,12 @@ The user of the plugin must include it in the `manifest.json` file under the "ad
 Furthermore at the top of the game's `src/Application.js`:
 
 ~~~
-import geoloc;
+import plugins.geoloc.install;
 ~~~
 
-This imports the `geoloc.js` file under `devkit/addons/geoloc/js/`.
+This imports the `install.js` file under `devkit/addons/geoloc/js/`.  This file checks if it is running on native or in the browser, and will add a JS wrapper to the `navigator` object for native.
 
-There are actually two versions of this file for GeoLocation.
-
-The `js/native/geoloc.js` file is used for native iOS or Android builds.  And the `js/geoloc.js` file is used for web builds.  This distinction is important since web browsers already support geolocation, but on native platforms JavaScript code must be included to interact with the native code.
+What to import may vary from plugin to plugin, so please refer to the documentation that is provided with the plugin for usage instructions.
 
 ## Plugin Directory Structure
 
@@ -59,9 +57,7 @@ A normal DevKit plugin has a simple directory structure:
 │   ├── GeoLoc.mm
 │   └── config.json
 ├── js
-│   ├── geoloc.js
-│   └── native
-│       └── geoloc.js
+│   ├── install.js
 ├── index.js
 └── package.json
 ~~~
@@ -70,7 +66,7 @@ The `index.js` file is used by the addon system to notify the addon of `basil` e
 
 The `android` and `ios` directories contain configuration and code for the supported native targets.
 
-The `js` directory contains JavaScript files to include for each of the build targets.
+The `js` directory contains JavaScript files that will be added to the JavaScript include path.
 
 #### ./index.js
 
@@ -93,34 +89,13 @@ exports.load = function (common) {
 }
 ~~~
 
-In practice, native plugins do not need to do anything in the index.js file.
+Usually native plugins do not need to do anything in the index.js file, but the option is there if you need it.
 
 #### ./js/
 
-The JavaScript code can be specialized for each target based on where it is placed under this directory.  iOS, Android, and browser builds can all use different versions of your JS code.
+The `js` directory contains JavaScript files that will be added to the JavaScript include path under `import plugins.addonName.*`.  In the case of geoloc, this is `import plugins.geoloc.install;` to import the `install.js` file.
 
-During **iOS** builds, the order of JavaScript imports is:
-
-+ `./js/ios/`
-+ `./js/native/`
-+ `./js/`
-
-During **Android** builds, the order of JavaScript imports is:
-
-+ `./js/android/`
-+ `./js/native/`
-+ `./js/`
-
-During **browser** builds, the order of JavaScript imports is:
-
-+ `./js/browser/`
-+ `./js/`
-
-Going with the geoloc example: When the Geolocation plugin is used in a game, it is imported with the line `import geoloc;`.  Where the `geoloc.js` file is read from follows the rules above.
-
-For instance for an iOS build, the `./js/native/` directory will be added into the js.io compile path, meaning that JavaScript source files under `./js/native/` can be imported.
-
-For the Geolocation plugin, the `./js/native/geoloc.js` file is imported by `import geoloc;` for iOS builds, which contains the JavaScript wrapper for the native code.  For browser builds, since the `./js/browser` directory is missing, the `./js/geoloc.js` file would be used, which does not contain the native wrapper code.
+You do not need to add a plugin to your manifest file to use JavaScript that it provides.
 
 #### ./android/
 
