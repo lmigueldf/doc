@@ -6,6 +6,30 @@ For an overview of the plugin system, the requisite directory structure, and how
 
 The iOS plugins consist of a `config.json` file, frameworks, and code.
 
+### Usage
+
+The iOS Test App *does not* work with native plugins at this time.  You will see warnings that look like:
+
+~~~
+{plugins} WARNING: Event could not be delivered for plugin: GeolocPlugin
+~~~
+
+To test plugins you will want to add the required plugins to your game's manifest.json file:
+
+~~~
+"addons": [
+	"geoloc"
+],
+~~~
+
+And do a full build:
+
+~~~
+basil debug native-ios --clean
+~~~
+
+This will add the required frameworks and code for the plugin to the native stack so that it will be present during runtime.
+
 ### iOS Plugin: ios/config.json
 
 Under `addons/geoloc/ios/config.json` is the configuration used while building iOS targets with the GeoLocation plugin.
