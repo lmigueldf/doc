@@ -4,6 +4,30 @@ Writing the Android native code for a DevKit plugin is covered in this guide, wh
 
 For an overview of the plugin system, the requisite directory structure, and how to write the JavaScript component of the plugin, please see the [main plugin development guide](../guide/plugins.html).
 
+### Usage
+
+The Android Test App *does not* work with native plugins at this time.  You will see warnings that look like:
+
+~~~
+{plugins} WARNING: Event could not be delivered for plugin: GeolocPlugin
+~~~
+
+To test plugins you will want to add the required plugins to your game's manifest.json file:
+
+~~~
+"addons": [
+	"geoloc"
+],
+~~~
+
+And do a full build:
+
+~~~
+basil debug native-android --clean --open
+~~~
+
+This will add the required libraries and code for the plugin to the native stack so that it will be present during runtime.
+
 ### Android Plugin: android/config.json
 
 Under `addons/geoloc/android/config.json` is the configuration used while building Android targets with the GeoLocation plugin.
