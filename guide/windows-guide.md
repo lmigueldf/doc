@@ -18,6 +18,7 @@ Download the following projects and refer to the sections below for configuratio
 * [msysgit](http://msysgit.github.com/) (> 1.7.10)
 	* The full installer should be used since it contains the `git bash` command prompt that is needed to run `basil` and the commands below. THe default options during the installation process will work with the GC Devkit.
 * [Node.js](http://nodejs.org) (> 0.8)
+* [npm](https://npmjs.org/package/windows)
 * [Java JDK](http://www.oracle.com/technetwork/java/javase/downloads/)
 * [Chrome](http://www.google.com/chrome)
 	* The Chrome web browser is the preferred development
@@ -43,19 +44,20 @@ Once the above dependencies are downloaded and installed, it is important that t
 
 **Web and Native Development**
 
-* **{java install location}**\jdk1.7.0_13\bin
+* **{npm install location}**
+* **{java install location}**\\jdk1.7.0_13\\bin
 
 **Android Development**
 
-* **{android-ndk install location}**\android-ndk-r8e\prebuilt\windows\bin
-* **{android-ndk install location}**\android-ndk-r8e
-* **{ant install location}**\apache-ant-1.8.4\bin
-* **{android-sdk install location}**\android-sdk\tools
-* **{android-sdk install location}**\android-sdk\platform-tools
+* **{android-ndk install location}**\\android-ndk-r8e\\prebuilt\\windows\\bin
+* **{android-ndk install location}**\\android-ndk-r8e
+* **{ant install location}**\\apache-ant-1.8.4\\bin
+* **{android-sdk install location}**\\android-sdk\\tools
+* **{android-sdk install location}**\\android-sdk\\platform-tools
 
 Depending on your version of Windows, the full path to the NDK bin directory may look like this instead:
 
-* **{android-ndk install location}**\android-ndk-r8e\prebuilt\windows-x86_64\bin
+* **{android-ndk install location}**\\android-ndk-r8e\\prebuilt\\windows-x86_64\\bin
 
 If you need assistance configuring the path refer to this [document](http://docs.oracle.com/javase/tutorial/essential/environment/paths.html) which describes how to configure the java environment variables.
 
