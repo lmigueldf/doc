@@ -281,11 +281,11 @@ type can be one of the following enumerable values:
 from event.input.dispatch import eventTypes;
 ~~~
 
-* `eventTypes.START {number} = 0` ---Event input has started.
-* `eventTypes.MOVE {number} = 1` ---Event input has moved.
-* `eventTypes.SELECT {number} = 2` ---A view has been selected by input.
-* `eventTypes.SCROLL {number} = 3` ---A view has been scrolled.
-* `eventTypes.CLEAR {number} = 4` ---An event is no longer over the active input.
+* `eventTypes.START {number} = 1` ---Event input has started.
+* `eventTypes.MOVE {number} = 2` ---Event input has moved.
+* `eventTypes.SELECT {number} = 3` ---A view has been selected by input.
+* `eventTypes.SCROLL {number} = 4` ---A view has been scrolled.
+* `eventTypes.CLEAR {number} = 5` ---An event is no longer over the active input.
 
 ### srcPoint `{Point}`
 
