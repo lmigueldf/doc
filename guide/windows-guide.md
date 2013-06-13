@@ -49,23 +49,23 @@ Once the above dependencies are downloaded and installed, it is important that t
 
 **Android Development**
 
-* **{android-ndk install location}**\\android-ndk-r8e\\prebuilt\\windows\\bin
-* **{android-ndk install location}**\\android-ndk-r8e
+* **{android-ndk install location}**\\android-ndk-r8d\\prebuilt\\windows\\bin
+* **{android-ndk install location}**\\android-ndk-r8d
 * **{ant install location}**\\apache-ant-1.8.4\\bin
 * **{android-sdk install location}**\\android-sdk\\tools
 * **{android-sdk install location}**\\android-sdk\\platform-tools
 
 Depending on your version of Windows, the full path to the NDK bin directory may look like this instead:
 
-* **{android-ndk install location}**\\android-ndk-r8e\\prebuilt\\windows-x86_64\\bin
+* **{android-ndk install location}**\\android-ndk-r8d\\prebuilt\\windows-x86_64\\bin
 
 If you need assistance configuring the path refer to this [document](http://docs.oracle.com/javase/tutorial/essential/environment/paths.html) which describes how to configure the java environment variables.
 
 For example, your path may contain the following after adding everything. Note that some of the paths below are added automatically by installers and Windows. Also be aware that these paths will be different based on the location where you installed the dependencies.
 
 ```
-C:\android-ndk-r8e\prebuilt\windows\bin;
-C:\android-ndk-r8e;
+C:\android-ndk-r8d\prebuilt\windows\bin;
+C:\android-ndk-r8d;
 C:\Program Files\Java\jdk1.7.0_13\bin;
 C:\apache-ant-1.8.4\bin;
 C:\Users\gc\AppData\Local\Android\android-sdk\tools;

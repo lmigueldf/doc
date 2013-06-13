@@ -17,6 +17,8 @@ You will need some tools for Android development:
 + [Command Line Tools for Xcode](https://developer.apple.com/downloads) or [Xcode](https://itunes.apple.com/us/app/xcode/id497799835)
 + Game Closure DevKit (basil)
 
+Note that we require Android NDK r8d, _not_ the newer r8e, which is broken.
+
 For a guide on installing the Game Closure DevKit [please see this documentation](../guide/install.html).
 
 ### Supported Mobile Devices
