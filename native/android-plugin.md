@@ -93,7 +93,7 @@ Additionally, any game `manifest.json` "Android" subkeys you would like to have 
 
 ##### injectionXSL
 
-If you need to use XSLT parsing to modify the AndroidManifest.xml then you can provide a `manifest.xsl` that get passed through xslt during the build.
+If you need to use XSLT parsing to modify the AndroidManifest.xml then you can provide a `manifest.xsl` that gets passed through xslt during the build.
 
 This is the method you may use to access `manifest.json` keys.  In the following example, "TapJoyAppID" is routed from `android:TapJoyAppId` in `manifest.json` to a key that is accessible from the Java code:
 
