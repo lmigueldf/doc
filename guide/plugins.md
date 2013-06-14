@@ -58,7 +58,7 @@ A normal DevKit plugin has a simple directory structure:
 │   ├── GeoLoc.mm
 │   └── config.json
 ├── js
-│   ├── install.js
+│   └── install.js
 ├── index.js
 └── package.json
 ~~~
