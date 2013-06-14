@@ -1,6 +1,6 @@
 # DevKit Native Plugins
 
-The Game Closure DevKit supports a plugin system that enables you to develop unique features for your game in native code and/or JavaScript that will seamlessly interoperate with and persist through upgrades to new versions.
+The Game Closure DevKit supports a plugin system that enables you to develop unique features for your game in native code and JavaScript that will seamlessly interoperate with and persist through upgrades to new versions.
 
 + These plugins can be easily shared privately with your internal development team or shared back to Game Closure to benefit the rest of the HTML5 game development community.
 
@@ -38,11 +38,11 @@ import plugins.geoloc.install;
 
 This imports the `install.js` file under `devkit/addons/geoloc/js/`.  This file checks if it is running on native or in the browser, and will add a JS wrapper to the `navigator` object for native.
 
-What to import may vary from plugin to plugin, so please refer to the documentation that is provided with the plugin for usage instructions.
+What to import may vary from plugin to plugin, so please refer to the documentation that is provided with the plugin for usage instructions.  Plugin developers should provide documentation in a README.md file so that users know how to set it up.
 
 ## Plugin Directory Structure
 
-The plugin system for iOS consists of several pieces:  There will be a JavaScript wrapper for the native functions.  A configuration file describes what files and dependencies need to be added to the native project before building.  And of course the native source code that interacts with your JavaScript wrapper.
+The plugin system for iOS consists of several pieces:  There will be a JavaScript wrapper for the native functions.  A configuration file describes what files and dependencies need to be added to the native project before building.  And of course there is the native source code that interacts with your JavaScript wrapper.
 
 A normal DevKit plugin has a simple directory structure:
 
@@ -58,7 +58,7 @@ A normal DevKit plugin has a simple directory structure:
 │   ├── GeoLoc.mm
 │   └── config.json
 ├── js
-│   ├── install.js
+│   └── install.js
 ├── index.js
 └── package.json
 ~~~
@@ -69,7 +69,7 @@ The `index.js` file is used by the addon system to notify the addon of `basil` e
 
 The `android` and `ios` directories contain configuration and code for the supported native targets.
 
-The `js` directory contains JavaScript files that will be added to the JavaScript include path.
+The `js` directory contains JavaScript files that will be added to the JavaScript include path under the `plugins.myAddonName` namespace.
 
 #### ./index.js
 
@@ -92,13 +92,13 @@ exports.load = function (common) {
 }
 ~~~
 
-Usually native plugins do not need to do anything in the index.js file, but the option is there if you need it.
+Usually native plugins do not need to do anything in the index.js file, but the option is there if you need it.  Furthermore, you can leave out the index.js and package.json files entirely without causing any problems.
 
 #### ./js/
 
 The `js` directory contains JavaScript files that will be added to the JavaScript include path under `import plugins.addonName.*`.  In the case of geoloc, this is `import plugins.geoloc.install;` to import the `install.js` file.
 
-You do not need to add a plugin to your manifest file to use JavaScript that it provides.
+You do not need to add a plugin to a game's `manifest.json` "addons" section to use JavaScript imports that it provides.
 
 #### ./android/
 
@@ -130,6 +130,8 @@ NATIVE.events.registerHandler('geoloc', function(evt) {
 	}
 });
 ~~~
+
+See the relevant documentation under the native guides for the rest of the story.
 
 ##### Matching requests to responses
 
