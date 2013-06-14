@@ -8,10 +8,10 @@ The iOS plugins consist of a `config.json` file, frameworks, and code.
 
 ### Usage
 
-The iOS Test App *does not* work with native plugins at this time.  You will see warnings that look like:
+First install the plugin with `basil install [plugin name]`.  For example:
 
 ~~~
-{plugins} WARNING: Event could not be delivered for plugin: GeolocPlugin
+basil install geoloc
 ~~~
 
 To test plugins you will want to add the required plugins to your game's manifest.json file:
@@ -29,6 +29,14 @@ basil debug native-ios --clean
 ~~~
 
 This will add the required frameworks and code for the plugin to the native stack so that it will be present during runtime.
+
+Some plugins require additional configuration.  Please read the README.md file that comes with the plugin to see what additional steps you should take to use it.
+
+The iOS Test App *does not* work with native plugins at this time.  You will see warnings that look like:
+
+~~~
+{plugins} WARNING: Event could not be delivered for plugin: GeolocPlugin
+~~~
 
 ### iOS Plugin: ios/config.json
 
@@ -208,7 +216,7 @@ var e = {method:"getPosition"};
 NATIVE.plugins.sendEvent("GeolocPlugin", "onRequest", JSON.stringify(e));
 ~~~
 
-It is important that the case of the class name matches the case of the event.  So "GeolocPlugin" in the above JavaScript code is the same as the `GeolocPlugin` class name in the native code.
+It is important that the case of the class name matches the case of the event.  And it should be the same class name used for the Android version.  So "GeolocPlugin" in the above JavaScript code is the same as the `GeolocPlugin` class name in the native code.
 
 The `onRequest` selector for the GeoLoc plugin demonstrates how to respond to events from JavaScript:
 
@@ -233,9 +241,14 @@ If you have multiple events, you can handle each one with a different selector. 
 
 ##### Sending JavaScript Events
 
-The `PluginManger` singleton has a `dispatchJSEvent` selector you can use to send NSDictionary objects back to JavaScript.  The `name` field will be the event name that the JavaScript code must register to listen for.  Any other data in the returned NSDictionary object will also be visible to JavaScript.
+The `PluginManger` singleton has a `dispatchJSEvent` selector you can use to send NSDictionary objects back to JavaScript.  The `name` field will be the event name that the JavaScript code must register to listen for.  Any other data in the returned NSDictionary object will also be visible to JavaScript.  You may invoke it like this:
 
-In this case the object will look like:
+~~~
+	[[PluginManager get] dispatchJSEvent:[NSDictionary dictionaryWithObjectsAndKeys:
+	@"geoloc",@"name", kCFBooleanTrue, @"failed", nil]];
+~~~
+
+The PluginManager will serialize the event for you into a string that can be read from JavaScript in the NATIVE event handler.  In this case the object will look like:
 
 ~~~
 {
@@ -244,13 +257,16 @@ In this case the object will look like:
 }
 ~~~
 
+The name of the event must be included and should be unique to your plugin.  It should match the event name chosen for the Android version of your plugin.
+
 And the JavaScript wrapper will listen for this event by registering for it:
 
 ~~~
-NATIVE.events.registerHandler('geoloc', function(evt) {
-	if (evt.failed) {
-	} else {
+NATIVE.events.registerHandler('geoloc', function(e) {
+	if (!e.failed) {
+		logger.log("{geoloc} Got response:", e.longitude, e.latitude);
 	}
 });
 ~~~
 
+It is a good idea to wrap this message passing code inside your JavaScript wrapper so that the user of your plugin does not need to call any NATIVE functions directly.
