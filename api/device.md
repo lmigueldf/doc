@@ -38,6 +38,9 @@ Returns the screen dimensions of the device. The default
 size is given in portrait-mode, but it can be returned in
 landscape-mode by passing a `true` argument.
 
+### collectGarbage ()
+
+Triggers garbage collection on the device. Does nothing in the browser.
 
 ## Properties
 
@@ -78,29 +81,33 @@ and `browserChrome` may not be available.
 
 Test if the device's screen is able to resize.
 
-### isMobile `{boolean}`
+### isSimulator `{boolean}`
 
-Test if the device is a mobile browser.
+Property is `true` when run in the simulator, otherwise `false`.
 
 ### isIOS `{boolean}`
 
-Property is `true` when run on iOS, otherwise `undefined`.
+Property is `true` when run on iOS, otherwise `false`.
 
 ### isAndroid `{boolean}`
 
-Property is `true` when run on Android, otherwise `undefined`.
+Property is `true` when run on Android, otherwise `false`.
 
-### isSafari `{boolean}`
+### isMobileNative `{boolean}`
 
-Property is `true` when run in a Safari web browser, otherwise `undefined`.
+Property is `true` when run on a mobile device, otherwise `false`.
 
 ### isMobileBrowser `{boolean}`
 
-Property is `true` when run in a mobile web browser, otherwise `undefined`.
+Property is `true` when run in a mobile web browser, otherwise `false`.
+
+### isSafari `{boolean}`
+
+Property is `true` when run in a Safari web browser, otherwise `false`.
 
 ### isUIWebView `{boolean}`
 
-Property is `true` when run in a WebView, otherwise `undefined`.
+Property is `true` when run in a WebView, otherwise `false`.
 
 ### isUnknown `{boolean}`
 
