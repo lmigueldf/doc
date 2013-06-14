@@ -235,7 +235,7 @@ The Event name is chosen in the constructor.  It should be somewhat unique to pr
 To pass the event to JavaScript, create a new instance of your Event class and push it onto the `EventQueue`:
 
 ~~~
-EventQueue.pushEvent(new GeolocEvent(83.2106, -10.1984);
+EventQueue.pushEvent(new GeolocEvent(83.2106, -10.1984));
 ~~~
 
 The EventQueue will serialize the event for you into a string that can be read from JavaScript in the NATIVE event handler.
