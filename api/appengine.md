@@ -100,6 +100,7 @@ Parameters
 		 * `continuousInputCheck {boolean} = true` ---Continually triggers the most recent `input:move` event on each tick. This allows for more responsive input. On a browser this defaults to `true`, and `false` on a mobile device.
 		 * `repaintOnEvent {boolean} = true` ---Redraw the screen when a user event occurs, such as touch or click.
 		 * `mergeMoveEvents {boolean} = false` ---Multiple move events in an animation frame are merged together by taking the last event.
+		 * `noReflow {boolean} = false` ---Disable the reflow manager, can be done to improve performance if the application does not use layout properties like `flex`.
 
 To tweak any of these parameters from your `Application.js` file, simply define `this._settings` as an object with one or more of these options.
 
