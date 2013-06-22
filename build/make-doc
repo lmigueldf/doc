@@ -141,6 +141,11 @@ cp -a "$PLUGINS_ROOT/assets" "$OUT_ROOT/plugins/assets"
 # download the latest plugins docs
 wget --tries=10 https://raw.github.com/gameclosure/billing/master/README.md -O ./plugins/billing.md
 wget --tries=10 https://raw.github.com/gameclosure/geoloc/master/README.md -O ./plugins/geoloc.md
+wget --tries=10 https://raw.github.com/gameclosure/tapjoy/master/README.md -O ./plugins/tapjoy.md
+wget --tries=10 https://raw.github.com/gameclosure/amplitude/master/README.md -O ./plugins/amplitude.md
+wget --tries=10 https://raw.github.com/gameclosure/appflood/master/README.md -O ./plugins/appflood.md
+wget --tries=10 https://raw.github.com/gameclosure/flurry/master/README.md -O ./plugins/flurry.md
+wget --tries=10 https://raw.github.com/gameclosure/leadbolt/master/README.md -O ./plugins/leadbolt.md
 
 # and off we go ...
 
