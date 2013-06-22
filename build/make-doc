@@ -5,6 +5,7 @@ DOC_ROOT=$(cd -P $(dirname "$0") && cd .. && pwd)
 API_ROOT="$DOC_ROOT/api"
 GUIDE_ROOT="$DOC_ROOT/guide"
 NATIVE_ROOT="$DOC_ROOT/native"
+PLUGINS_ROOT="$DOC_ROOT/plugins"
 ASSETS_ROOT="$DOC_ROOT/build/assets"
 OUT_ROOT="$DOC_ROOT/html"
 DOC_TEMPLATE="$DOC_ROOT/build/template.html"
@@ -78,6 +79,14 @@ function convert_native_source {
 		done < <(find "$NATIVE_ROOT" -type f -name '*.md' | grep -v -i 'readme')
 }
 
+# convert plugin files
+function convert_plugins {
+		while read path; do
+				local name=$(basename "$path" '.md' | tr '[:upper:]' '[:lower]' | tr ' ' '-')
+				convert_file "$path" "plugins/$name.html" "$DOC_TEMPLATE" "$name"
+		done < <(find "$PLUGINS_ROOT" -type f -name '*.md' | grep -v -i 'readme')
+}
+
 # main
 
 while getopts "o:h" opt; do
@@ -114,14 +123,24 @@ if [ -d "$OUT_ROOT/native" ]; then
 		rm -rf "$OUT_ROOT/native"
 fi
 
+if [ -d "$OUT_ROOT/plugins" ]; then
+		rm -rf "$OUT_ROOT/plugins"
+fi
+
 mkdir -p "$OUT_ROOT/api"
 mkdir -p "$OUT_ROOT/guide"
 mkdir -p "$OUT_ROOT/native"
+mkdir -p "$OUT_ROOT/plugins"
 
 # copy assets
 cp -a "$API_ROOT/assets" "$OUT_ROOT/api/assets"
 cp -a "$GUIDE_ROOT/assets" "$OUT_ROOT/guide/assets"
 cp -a "$NATIVE_ROOT/assets" "$OUT_ROOT/native/assets"
+cp -a "$PLUGINS_ROOT/assets" "$OUT_ROOT/plugins/assets"
+
+# download the latest plugins docs
+wget --tries=10 https://raw.github.com/gameclosure/billing/master/README.md -O ./plugins/billing.md
+wget --tries=10 https://raw.github.com/gameclosure/geoloc/master/README.md -O ./plugins/geoloc.md
 
 # and off we go ...
 
@@ -131,6 +150,8 @@ echo "  Generating guide docs ..."
 convert_guide_source
 echo "  Generating native docs ..."
 convert_native_source
+echo "  Generating plugin docs ..."
+convert_plugins
 
 echo "  Generating Cache.Manifest ..."
 echo "CACHE MANIFEST" > $OUT_ROOT/cache.manifest
