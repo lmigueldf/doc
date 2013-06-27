@@ -1209,6 +1209,40 @@ all set up when we create our sounds with `new AudioManager(...)`
 in `./src/soundcontroller.js`.
 
 
+### Where To Go From Here?
+
+Before we set you loose, we have a few suggestions for how to avoid some common pitfalls when writing JavaScript games.  First off you'll want to use the Chrome debugging tools.  Secondly: Be sure not to try to delete Views after you create them since it is easy to make mistakes.  Finally, consider using the `blockEvents` property to improve performance.
+
+
+#### Debugging Tools
+
+With the Chrome browser you already have a great set of JavaScript debugging tools when you're using the web simulator.  Check out the Google Developers page [for Chrome Developer Tools](https://developers.google.com/chrome-developer-tools/) to get more information on how to make the most of the toolset.
+
+You are able to set breakpoints, step, and inspect any of your JS variables.  Chrome also has the best heap and CPU profiling tools available in our opinion and makes finding performance hotspots easy.
+
+
+#### Reuse Views: Avoiding JavaScript Memory Leaks
+
+JavaScript memory leaks can cause headaches down the road when you start running your game on the memory constrained devices.  The most common symptom is that the game will "freeze" on the device and never recover.
+
+Through making many games we have found that the most common way to leak memory is by trying to remove and recreate View objects.  It would be a bad idea, in our experience, to create a View in response to a button press.  The easy solution to avoid JavaScript memory leaks is to never attempt to remove or recreate a View.
+
+The menu system for your game should be created once near the start of the game and then just referenced later when you return to the menus rather than creating it again each time it is needed.
+
+All View objects for your game should be created before they are needed rather than directly in response to user input.  For instance it would be slow to create a new Enemy object every time you needed one in-game.  Instead you should have a ViewPool of Enemy objects that stay allocated and get reused as needed.
+
+For examples using ViewPools, see the official [ViewPools example](http://doc.gameclosure.com/example/views-pools/) or the Isometric game engine's [GridLayerView](https://github.com/gameclosure/isometric/blob/master/views/GridLayerView.js).
+
+
+#### Lots of Views: Using the blockEvents property
+
+If you are allocating many Views for e.g. a tile-based map or particle-intensive simulation it would be a good idea to initialize the parent view with `blockEvents: true`.  This prevents the input code from interrogating all the subviews about input events, which is a huge performance improvement.
+
+A good parent View to use is the GestureView.  See the [GestureView example](http://doc.gameclosure.com/example/events-input-gesture/) for how to subscribe to Rotation, Pinch, Swipe, DragSingle, and FingerUp events.
+
+The `canHandleEvents: false` property is similarly useful.  The difference is that `canHandleEvents` will still pass events to its children, so it is mainly used for making a view transparent to input.
+
+
 ## Conclusion
 
 *Whack-that-Mole!*, while relatively simple, is an
