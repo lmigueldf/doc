@@ -40,8 +40,8 @@ The GestureView emits events.
 The GestureView emits a `Swipe` event whenever a drag exceeds `swipeMagnitude` in less than `swipeTime`.
 
 ~~~
-gestureView.on('Swipe', function(direction, numberOfFingers) {
-	console.log('You swiped', direction, 'with', numberOfFingers, 'fingers');
+gestureView.on('Swipe', function(angle, direction, numberOfFingers) {
+	console.log('You swiped', direction, '(' + angle, 'degrees) with', numberOfFingers, 'fingers');
 });
 ~~~
 
