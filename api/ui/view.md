@@ -36,12 +36,13 @@ is displayed on the screen.
 
 Parameters
 :    1. `options {object}` ---Optional.
-	     * `superview {View}` ---Parent or Super view to place this view.
-		 * `id {string}` ---Unique identifier.
-		 * `tag {string}` ---Human readable tag for the UI Inspector.
-		 * `filters {Filter}` ---Filter object.
-		 * `infinite {boolean} = false` ---Infinite width and height generally for maps or backgrounds.
-		 * `canHandleEvents {boolean} = true` ---Input events can pass through if `false`.
+     * `superview {View}` ---Parent or Super view to place this view.
+     * `id {string}` ---Unique identifier.
+     * `tag {string}` ---Human readable tag for the UI Inspector.
+     * `filters {Filter}` ---Filter object.
+     * `infinite {boolean} = false` ---Infinite width and height generally for maps or backgrounds.
+     * `canHandleEvents {boolean} = true` ---Input events can pass through if `false`.
+     * `dragRadius {number}` ---If defined, how far the pointer must move to trigger a drag.
 
 The constructor used to create an instance of a `ui.View`
 object. In addition to the options listed here,
