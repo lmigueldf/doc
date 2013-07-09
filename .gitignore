@@ -6,9 +6,11 @@ html/api/
 html/guide/
 html/example/
 html/native/
+html/plugins/
 html/include/style.css
 html/cache.manifest
 example/*/*/build/
 example/*/*/sdk
 examples/out/
 examples/*/*/sdk/
+plugins/*
