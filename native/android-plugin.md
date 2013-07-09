@@ -184,6 +184,9 @@ If the keys were routed using the `manifest.xsl` method shown above, then the ke
 	}
 ~~~
 
+Note here that we are doing `meta.get(k).toString()`, where `k` is a manifest.json key under the "Android" section.  It is a mistake to do `meta.toString(k)` because this will cause an exception when the manifest.json key contains integer-like data such as "1234567".
+
+
 ##### Handling JavaScript Events
 
 It is important that the JavaScript code specifies the exact plugin class name and method to call.  Note that the above class matches the JavaScript name:
