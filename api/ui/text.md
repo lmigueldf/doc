@@ -51,7 +51,7 @@ Parameters
      * `blue` : Standard CSS color names.  See [this website](http://www.w3schools.com/cssref/css_colornames.asp) for a complete list.
      * `#330033` : Standard HTML Hexadecimal RGB code.  See [this website](http://www.w3schools.com/cssref/css_colors.asp) for a detailed description of this format.
      * `rgb(255,0,0)` : Standard HTML RGB code.  See [this website](http://www.w3schools.com/cssref/css_colors.asp) for a detailed description of this format.
-     * `rgb(255,0,0,0.8)` : Standard HTML RGB code with alpha value between 0 and 1 in the final parameter.
+     * `rgba(255,0,0,0.8)` : Standard HTML RGBA code with alpha value between 0 and 1 in the final parameter.
 
 Buffering greatly improves `TextView` performance, but an unlimited amount of text can't fit in the buffer. Therefore, if you have many `TextView`s in your game, it may make sense to set `buffer` to `false` in some cases -- typically, in scenes without many `TextView`s, where performance isn't an issue.
 
