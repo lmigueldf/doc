@@ -19,10 +19,6 @@ trivially scales to fit any screen resolution with the same
 aspect ratio.  By trivially we mean that it fills the screen
 entirely without clipping any content.
 
-[diagram of a screen stretching to fit a matching aspect ratio]
-
-[diagram of a screen stretching to a different aspect ratio]
-
 Two different screen resolutions can have the same aspect
 ratio.  For example, the squares `100x100` and `200x200`
 have the same aspect ratio, `1:1`, while the HD 1080p
@@ -64,10 +60,6 @@ aspect ratio:
    advantage, in which case another scaling method might
    make more sense.
 
-	[diagram of an image that's stretched and squished]
-
-	[diagram of a covered screen showing clipping]
-
 2. _contain_: The notion of containing a screen means that
    all pixels in the original design are visible. We scale
    the screen as large as we can without clipping any
@@ -75,8 +67,6 @@ aspect ratio:
    leads to bars on the side. We can ignore these, resulting
    in black bars, or fill them with some repeating pattern
    or texture.
-
-    [diagram of a contained screen showing black bars]
 
 3. Hybrid: UI designers may implement a combination of cover
    and contain.  Usually, this is done by prefering _cover
@@ -206,10 +196,8 @@ meet both constraints (overriding any preset `height`).
 Similarly, if both `left` and `right` are set, the `width`
 is ignored.
 
-     [diagram of a stretched view]
 
-
-### LayoutWidth and layoutHeightPercentage width and height
+### Percentage width and height: layoutWidth and layoutHeight
 
 **Note: the following also applies to `height` and `layoutHeight`.**
 
@@ -217,8 +205,6 @@ You can apply constraints to the `width` of a view using
 `layoutWidth`.  Setting `layoutWidth` of a view to a
 percentage value, e.g. `"80%"`, will constrain the view to
 80% of the superview's width.
-
-[diagram of a view with dimensions set as percentages of parent]
 
 You can also assign the constant `"wrapContent"` to
 `layoutWidth`, which fits the width of the view to the sum
@@ -403,8 +389,6 @@ to one of the following:
 * `space`: Space is distributed evenly between all gaps in subviews.
 * `space-outside`: Space is distributed evenly between all
   gaps in subviews as well as at the start and end of the line.
-
-[diagram of justifyContent]
 
 <style>
 .justifyCentered { background: none; position: relative; top: 20px; }
