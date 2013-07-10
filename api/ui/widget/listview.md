@@ -89,17 +89,18 @@ frequent item modifications.
 
 Parameters
 :    1. `options {object}`
-	     * `autoSize {boolean} = false` ---If `true`, automatically set the height of the `ListView` to the sum of its cell heights, disabling scrolling.
-		 * `dataSource {GCDataSource}` ---The data model. The [GCDataSource](#class-gcdatasource) provides the data for each item in the list, tracking adds, removes, and updates.
-		 * `getCell {function(listItem, itemResource)}` ---A function that returns a `CellView` instance given an item from the list.
-		 * `listItem {object}` ---An object representing the current list item.
-		 * `itemResource {object}` ---The resource object for the current list item.
-		 * `isFixedSize {boolean} = true` ---If `true`, enable optimizations based on the assumption that all cells have the same size. Set to `false` to allow variable sizes for list cells (hurts rendering performance).
-		 * `maxSelections {number} = 1` ---Maximum number of selectable items at a time.
-		 * `recycle {boolean} = true` ---If `true`, reuses `CellView` objects when scrolling rather than creating a new `CellView` for each item in the list. Has no affect if `isFixedSize` is `false`. (optimization flag)
-		 * `renderMargin {number} = 0` ---The vertical margin between list items.
-		 * `selectable {string} = null` ---If `single`, make a single item selectable, if `multi` allow multiple items to be selectable.
-		 * `sorter {function(listItem)}` ---A function that returns a cardinal value (number or string) for the current item to use as the sort key.
+     * `autoSize {boolean} = false` ---If `true`, automatically set the height of the `ListView` to the sum of its cell heights, disabling scrolling.
+     * `dataSource {GCDataSource}` ---The data model. The [GCDataSource](#class-gcdatasource) provides the data for each item in the list, tracking adds, removes, and updates.
+     * `getCell {function(listItem, itemResource)}` ---A function that returns a `CellView` instance given an item from the list.
+     * `listItem {object}` ---An object representing the current list item.
+     * `itemResource {object}` ---The resource object for the current list item.
+     * `isFixedSize {boolean} = true` ---If `true`, enable optimizations based on the assumption that all cells have the same size. Set to `false` to allow variable sizes for list cells (hurts rendering performance).
+     * `maxSelections {number} = 1` ---Maximum number of selectable items at a time.
+     * `recycle {boolean} = true` ---If `true`, reuses `CellView` objects when scrolling rather than creating a new `CellView` for each item in the list. Has no affect if `isFixedSize` is `false`. (optimization flag)
+     * `renderMargin {number} = 0` ---The vertical margin between list items.
+     * `selectable {string} = null` ---If `single`, make a single item selectable, if `multi` allow multiple items to be selectable.
+     * `selections {array} = null` ---If defined, select cells identified by keys in array.
+     * `sorter {function(listItem)}` ---A function that returns a cardinal value (number or string) for the current item to use as the sort key.
 
 ~~~
 import ui.widget.ListView as ListView;
