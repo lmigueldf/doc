@@ -98,7 +98,7 @@ Parameters
 		 * `maxSelections {number} = 1` ---Maximum number of selectable items at a time.
 		 * `recycle {boolean} = true` ---If `true`, reuses `CellView` objects when scrolling rather than creating a new `CellView` for each item in the list. Has no affect if `isFixedSize` is `false`. (optimization flag)
 		 * `renderMargin {number} = 0` ---The vertical margin between list items.
-		 * `selectable {boolean} = false` ---If `true`, make items selectable (toggled).
+		 * `selectable {string} = null` ---If `single`, make a single item selectable, if `mutli` allow multiple items to be selectable.
 		 * `sorter {function(listItem)}` ---A function that returns a cardinal value (number or string) for the current item to use as the sort key.
 
 ~~~
