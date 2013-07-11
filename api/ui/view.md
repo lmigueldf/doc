@@ -43,8 +43,8 @@ Parameters
      * `infinite {boolean} = false` ---Infinite width and height generally for maps or backgrounds.
      * `canHandleEvents {boolean} = true` ---Input events can pass through if `false`.
      * `dragRadius {number}` ---If defined, how far the pointer must move to trigger a drag.
-     * `unboundDrag {boolean} = false` ---Whether the view can be dragged outside of its superview (parent is larger than view).
-     * `coverDrag {boolean} = false` ---Whether the superview must always be covered by the view (parent is smaller than view).
+     * `unboundDrag {boolean} = false` ---Whether the view can be dragged outside of its superview (superview is larger than view).
+     * `coverDrag {boolean} = false` ---Whether the superview must always be covered by the view (superview is smaller than view).
 
 The constructor used to create an instance of a `ui.View`
 object. In addition to the options listed here,
