@@ -469,17 +469,42 @@ Allow the callback chain to be fired again.
 Clears all of the registered callbacks and executes `callback.reset ()`.
 
 
-# Back Button
+# Drag Events: event.input.drag
 
-Want to know when the back button is pressed on an Android device? Here's how:
+You can make any `View` instance draggable like so:
 
 ~~~
-import device;
+import ui.ImageView; // any View subclass will work
+import event.input.drag as drag;
 
-device.setBackButtonHandler(function() {
-    console.log("someone hit the back button!");
+// ...
+
+var imageView = new ImageView({
+    superview: someSuperView,
+    image: 'resources/images/someImage.png',
+    autoSize: true
 });
+
+drag.makeDraggable(imageView);
 ~~~
+
+And viola, your `ImageView` is draggable. You can make any instance of a `View` or `View` subclass draggable with `drag.makeDraggable`.
+
+## event.input.drag.makeDraggable (view, opts)
+
+Parameters
+:    1. `view {view}` ---A View instance.
+     2. `opts {object}` ---Optional arguments to modify the drag behavior of the view.
+     * `radius {number} = 10` ---How far the pointer must move to trigger a drag.
+     * `unbound {boolean} = false` ---Whether the view can be dragged outside of its superview (superview is larger than view).
+     * `cover {boolean} = false` ---Whether the superview must always be covered by the view (superview is smaller than view).
+
+Returns
+:    1. `{view}`
+
+## Example
+
+* [Draggable views](../example/events-input-drag/)
 
 
 # Rotation Events
@@ -502,3 +527,16 @@ device.setRotationHandler(function(e) {
      5. `unknown`
      6. `faceUp` -- iOS only
      7. `faceDown` -- iOS only
+
+
+# Back Button
+
+Want to know when the back button is pressed on an Android device? Here's how:
+
+~~~
+import device;
+
+device.setBackButtonHandler(function() {
+    console.log("someone hit the back button!");
+});
+~~~
