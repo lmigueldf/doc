@@ -190,7 +190,6 @@ Present the input dialog to the user.
 Parameters
 :    1. `value {string}` ---The updated value of the `TextPromptView`.
 
-
 The `Change` event is published when the text in the dialog
 is changed and ok is pressed.
 
@@ -198,6 +197,63 @@ is changed and ok is pressed.
 
 The `Cancel` event is published when the cancel button in
 the dialog is pressed.
+
+
+# Class ui.TextEditView
+
+Inherits from
+:    1. [ui.ImageScaleView](./ui-images.html#class-ui.imagescaleview)
+     2. [ui.View](./ui-view.html)
+     3. [event.Emitter](./event.html#class-event.emitter)
+
+This class provides a text input field. Note that currently the `TextEditView` falls back to the `TextPromptView` on iOS and in the simulator.
+
+## Examples
+
+* [Getting Text Input](../example/text-input/)
+
+## Methods
+
+### new TextEditView ([options])
+
+Parameters
+:    1. `options {object}`
+     * `hint {text} = ''` ---The message shown in the text field.
+     * `color {string} = 'black'` ---Color of input text.
+     * `paddingLeft {number}` ---Padding around embedded TextView.
+     * `paddingRight {number}` ---Padding around embedded TextView.
+     * `paddingUp {number}` ---Padding around embedded TextView.
+     * `paddingDown {number}` ---Padding around embedded TextView.
+
+~~~
+import ui.TextEditView as TextEditView;
+
+var namefield = new TextEditView({
+  hint: 'Please enter your name'
+});
+~~~
+
+### getText ()
+
+Returns contents of text input field.
+
+### setText (text)
+
+Sets input field value to `text`. If `text` is null, sets input field value to hint text.
+
+### registerTextFilter (fn)
+
+Registers `fn` with the `TextEditView`. `fn` is a transformation function that takes one string argument and returns a string. This can be used to process text entered into the input field.
+
+
+## Events
+
+### \'Change\', callback (value)
+
+Parameters
+:    1. `value {string}` ---The updated value of the `TextEditView`.
+
+The `Change` event is published when the text in the input field is changed.
 
 
 # Class: ui.ScoreView
