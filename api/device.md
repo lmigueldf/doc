@@ -85,6 +85,14 @@ Test if the device's screen is able to resize.
 
 Property is `true` when run in the simulator, otherwise `false`.
 
+### isIOSSimulator `{boolean}`
+
+Property is `true` when simulating an IOS device, otherwise `false`.
+
+### isAndroidSimulator `{boolean}`
+
+Property is `true` when simulating an Android device, otherwise `false`.
+
 ### isIOS `{boolean}`
 
 Property is `true` when run on iOS, otherwise `false`.
