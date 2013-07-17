@@ -101,6 +101,7 @@ Parameters
 		 * `repaintOnEvent {boolean} = true` ---Redraw the screen when a user event occurs, such as touch or click.
 		 * `mergeMoveEvents {boolean} = false` ---Multiple move events in an animation frame are merged together by taking the last event.
 		 * `noReflow {boolean} = false` ---Disable the reflow manager, can be done to improve performance if the application does not use layout properties like `flex`.
+		 * `scaleUI {boolean} = false` ---If `true`, scale root view to 576x1024. If `scaleUI` is an array of two numbers, scale to these dimensions instead.
 
 To tweak any of these parameters from your `Application.js` file, simply define `this._settings` as an object with one or more of these options.
 
