@@ -220,6 +220,7 @@ Parameters
 :    1. `options {object}`
      * `hint {text} = ''` ---The message shown in the text field.
      * `color {string} = 'black'` ---Color of input text.
+     * `hintColor {string} = '#979797'` ---Color of hint text.
      * `paddingLeft {number}` ---Padding around embedded TextView.
      * `paddingRight {number}` ---Padding around embedded TextView.
      * `paddingUp {number}` ---Padding around embedded TextView.
