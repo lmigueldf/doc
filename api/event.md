@@ -488,7 +488,7 @@ var imageView = new ImageView({
 drag.makeDraggable(imageView);
 ~~~
 
-And viola, your `ImageView` is draggable. You can make any instance of a `View` or `View` subclass draggable with `drag.makeDraggable`.
+And voila, your `ImageView` is draggable. You can make any instance of a `View` or `View` subclass draggable with `drag.makeDraggable`.
 
 ## event.input.drag.makeDraggable (view, opts)
 
