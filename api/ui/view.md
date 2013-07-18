@@ -502,6 +502,9 @@ GC.app.engine.on('Tick', function (dt) {
 });
 ~~~
 
+
+## Input Events
+
 ### \'InputStart\', callback (event, point)
 
 Parameters
