@@ -7,7 +7,7 @@
 
 ## Basic Input
 
-The most basic input handling of all consists of capturing click events. Here's now:
+The most basic input handling of all consists of capturing click events. Here's how:
 
 ~~~
 view.on('InputSelect', function() {
@@ -21,7 +21,7 @@ view.on('InputSelect', function() {
 
 ### Drag Events
 
-Drag input can be detected using the `'DragStart'`, `'Drag'`, and `'DragStop'` events. Invoke the `'startDrag'` function on `'InputStart'` to access these events, as in [this example](/api/ui-view.html#startdrag-options).
+Drag input can be detected using the `'DragStart'`, `'Drag'`, and `'DragStop'` events. Invoke the `startDrag` function on `'InputStart'` to access these events, as in [this example](/api/ui-view.html#startdrag-options).
 
 ### Simple Dragging
 
@@ -48,10 +48,33 @@ If you're interested in more events, such as `'Swipe'`, `'Pinch'`, `'Rotate'`, `
 
 ## Blocking Input
 
-As we mentioned [above](/guide/input.html#advanced-input), a common optimization is to move all your input handling into a single layer (see discussion [here](/guide/game-walkthrough.html#where-to-go-from-here)). This is easily accomplished with two properties: `canHandleEvents` and `blockEvents`.
+As we mentioned [above](/guide/input.html#advanced-input), a common optimization is to move all your input handling into a single layer. This is easily accomplished with two properties: `canHandleEvents` and `blockEvents`.
 
 
 ### canHandleEvents
 
+The `canHandleEvents` property controls whether a view receives input events. It can be set in the initialization options passed into the view constructor:
+
+~~~
+var view = new View({
+	canHandleEvents: false
+});
+~~~
+
+It can also be switched on or off with the `canHandleEvents` function:
+
+~~~
+view.canHandleEvents(false);
+~~~
 
 ### blockEvents
+
+The `blockEvents` property, if set to `true`, prevents input events from bubbling into subviews. This is very useful for cutting large branches of the view hierarchy out of the view traversal that occurs in response to input. It can be set in the initialization options passed into the view constructor:
+
+~~~
+var view = new View({
+	blockEvents: true
+});
+~~~
+
+With `blockEvents`, you can implement the sort of solution described [here](/guide/game-walkthrough.html#where-to-go-from-here). Namely, put a `GestureView` with `blockEvents: true` at the root of your view hierarchy, and handle all input there.
