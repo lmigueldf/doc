@@ -67,6 +67,8 @@ It can also be switched on or off with the `canHandleEvents` function:
 view.canHandleEvents(false);
 ~~~
 
+A view with `canHandleEvents` set to `false` will still pass events to subviews. If you want to prevent this, you'll need to use the `blockEvents` property.
+
 ### blockEvents
 
 The `blockEvents` property, if set to `true`, prevents input events from bubbling into subviews. This is very useful for cutting large branches of the view hierarchy out of the view traversal that occurs in response to input. It can be set in the initialization options passed into the view constructor:
@@ -78,3 +80,7 @@ var view = new View({
 ~~~
 
 With `blockEvents`, you can implement the sort of solution described [here](/guide/game-walkthrough.html#where-to-go-from-here). Namely, put a `GestureView` with `blockEvents: true` at the root of your view hierarchy, and handle all input there.
+
+### Why Block
+
+It should be noted that input blocking and a separate input layer are typically only necessary on a game screen, and can probably be skipped where performance is less crucial. Menu screens should generally use regular input events in conjunction with `ButtonView`s and other UI elements to keep things simple.
