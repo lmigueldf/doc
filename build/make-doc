@@ -139,13 +139,22 @@ cp -a "$NATIVE_ROOT/assets" "$OUT_ROOT/native/assets"
 cp -a "$PLUGINS_ROOT/assets" "$OUT_ROOT/plugins/assets"
 
 # download the latest plugins docs
-wget --tries=10 https://raw.github.com/gameclosure/billing/master/README.md -O ./plugins/billing.md
-wget --tries=10 https://raw.github.com/gameclosure/geoloc/master/README.md -O ./plugins/geoloc.md
-wget --tries=10 https://raw.github.com/gameclosure/tapjoy/master/README.md -O ./plugins/tapjoy.md
+wget --tries=10 https://raw.github.com/gameclosure/airpush/master/README.md -O ./plugins/airpush.md
 wget --tries=10 https://raw.github.com/gameclosure/amplitude/master/README.md -O ./plugins/amplitude.md
 wget --tries=10 https://raw.github.com/gameclosure/appflood/master/README.md -O ./plugins/appflood.md
+wget --tries=10 https://raw.github.com/gameclosure/appnext/master/README.md -O ./plugins/appnext.md
+wget --tries=10 https://raw.github.com/gameclosure/billing/master/README.md -O ./plugins/billing.md
+wget --tries=10 https://raw.github.com/gameclosure/chartboost/master/README.md -O ./plugins/chartboost.md
 wget --tries=10 https://raw.github.com/gameclosure/flurry/master/README.md -O ./plugins/flurry.md
+wget --tries=10 https://raw.github.com/gameclosure/geoloc/master/README.md -O ./plugins/geoloc.md
+wget --tries=10 https://raw.github.com/gameclosure/googleanalytics/master/README.md -O ./plugins/googleanalytics.md
+wget --tries=10 https://raw.github.com/gameclosure/inmobi/master/README.md -O ./plugins/inmobi.md
+wget --tries=10 https://raw.github.com/gameclosure/jumptap/master/README.md -O ./plugins/jumptap.md
 wget --tries=10 https://raw.github.com/gameclosure/leadbolt/master/README.md -O ./plugins/leadbolt.md
+wget --tries=10 https://raw.github.com/gameclosure/mopub/master/README.md -O ./plugins/mopub.md
+wget --tries=10 https://raw.github.com/gameclosure/tapfortap/master/README.md -O ./plugins/tapfortap.md
+wget --tries=10 https://raw.github.com/gameclosure/tapjoy/master/README.md -O ./plugins/tapjoy.md
+wget --tries=10 https://raw.github.com/gameclosure/trademob/master/README.md -O ./plugins/trademob.md
 
 # and off we go ...
 
