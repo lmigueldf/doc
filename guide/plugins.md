@@ -100,6 +100,41 @@ The `js` directory contains JavaScript files that will be added to the JavaScrip
 
 You do not need to add a plugin to a game's `manifest.json` "addons" section to use JavaScript imports that it provides.
 
+
+##### Plugin JavaScript Design Recommendations
+
+Note that the `geoloc` plugin is a special case that breaks out of the normal js.io class system to add features to the global `navigator` object.  The preferred way to develop addon JavaScript is by using the normal js.io class system.
+
+For example, for the [MoPub](https://github.com/gameclosure/mopub/) plugin there is a `js/moPub.js` file:
+
+~~~
+var MoPub = Class(function () {
+	this.showInterstitial = function () {
+		logger.log("{moPub} Showing interstitial");
+
+		if (NATIVE && NATIVE.plugins && NATIVE.plugins.sendEvent) {
+			NATIVE.plugins.sendEvent("MoPubPlugin", "showInterstitial",
+				JSON.stringify({}));
+		}
+	};
+});
+
+exports = new MoPub();
+~~~
+
+The JS object is imported in games that use it with:
+
+~~~
+import plugins.mopub.moPub as moPub;
+~~~
+
+And then games can use the `showInterstitial` method:
+
+~~~
+moPub.showInterstitial();
+~~~
+
+
 #### ./android/
 
 Please see the [Android Plugin documentation](../native/android-plugin.html) for a description of the files under the `android` directory.
