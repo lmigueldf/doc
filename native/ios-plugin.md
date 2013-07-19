@@ -81,12 +81,27 @@ The supported file types are:
 + System frameworks: No extension.
 + Static libraries: ".a"
 + Custom frameworks: ".framework"
++ Custom bundles: ".bundle"
++ Custom XIB: ".xib"
++ System dylib: ".dylib"
 
 The extension determines the type of linkage desired:
 
+###### Frameworks: System frameworks
+
 Pass in unqualified names such as `CoreLocation` (not `CoreLocation.framework`) for system frameworks.  Be sure to include the header in your plugin code (`#import <CoreLocation/CoreLocation.h>`).
 
-For static libraries, pass in a file path relative to the `ios` directory containing the `config.json` file for iOS.  As an example you may add a new static library under `addons/geoloc/gcif_reader.a`  And in this case the `ios/config.json` file would contain
+~~~
+...
+	"frameworks": [
+		"CoreLocation"
+	]
+...
+~~~
+
+###### Frameworks: Static libraries ".a"
+
+For static libraries, pass in a file path relative to the `ios` directory containing the `config.json` file for iOS.  As an example you may add a new static library under `addons/geoloc/gcif_reader.a`  And in this case the `ios/config.json` file would contain:
 
 ~~~
 ...
@@ -97,7 +112,63 @@ For static libraries, pass in a file path relative to the `ios` directory contai
 ...
 ~~~
 
-For custom frameworks, use `MyFramework.framework` with a `.framework` extension.
+###### Frameworks: Custom frameworks ".framework"
+
+For custom frameworks, add `MyFramework.framework` to the "frameworks" list, with a `.framework` extension.
+
+Place the framework file in the `ios` subdirectory of your plugin.
+
+~~~
+...
+	"frameworks": [
+		"CoreLocation",
+		"FacebookSDK.framework"
+	]
+...
+~~~
+
+###### Frameworks: Custom bundles ".bundle"
+
+For custom bundles, add `MyBundle.bundle` to the "frameworks" list, with a `.bundle` extension.
+
+Place the bundle file in the `ios` subdirectory of your plugin.
+
+~~~
+...
+	"frameworks": [
+		"CoreLocation",
+		"./MoPubSDK/Resources/MRAID.bundle"
+	]
+...
+~~~
+
+###### Frameworks: Custom XIB ".xib"
+
+For custom XIB files, add `MyBundle.xib` to the "frameworks" list, with a `.xib` extension.
+
+Place the XIB file in the `ios` subdirectory of your plugin.
+
+~~~
+...
+	"frameworks": [
+		"CoreLocation",
+		"./MoPubSDK/Internal/Common/MPAdBrowserController.xib"
+	]
+...
+~~~
+
+###### Frameworks: System dylib ".dylib"
+
+For system dylib files, add `libsqlite3.dylib` to the "frameworks" list, with a `.dylib` extension.
+
+~~~
+...
+	"frameworks": [
+		"Security",
+		"libsqlite3.dylib"
+	]
+...
+~~~
 
 ### iOS Plugin: Code
 

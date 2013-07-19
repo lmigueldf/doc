@@ -44,17 +44,35 @@ It specifies Java code, libraries, JARs, and manifest changes required to build 
 
 ~~~
 {
+		"copyGameFiles": [
+			"leadbolt.jar"
+		],
 		"copyFiles": [
 			"GeolocPlugin.java"
 		],
 		"libraries": [
 		],
 		"jars": [
+			"leadbolt.jar"
 		],
 		"injectionXML": "manifest.xml",
-		"injectionXSL": "manifest.xsl"
+		"injectionXSL": "manifest.xsl",
+		"injectionSource": [
+			{
+				"regex": "LEADBOLT_PACKAGE",
+				"keyForReplace": "leadBoltPackage"
+			}
+		]
 }
 ~~~
+
+##### copyGameFiles
+
+Sometimes it's required to copy a file from the user's game directory into the final build product.  You can accomplish this by adding a string to the "copyGameFiles" array.
+
+This will copy the given files from the game folder, relative to the game's `manifest.json` root directory, into the addon folder's `/android/` before performing any of the other build steps.
+
+For example you can allow each game to specify a `leadbolt.jar` file that then gets used during building by also adding the .jar file to the "copyGameFiles" and "jars" array.
 
 ##### copyFiles
 
@@ -83,28 +101,28 @@ For example to add permissions for the GeoLocation plugin, the ACCESS_FINE_LOCAT
 		<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 	<!--END_PLUGINS_MANIFEST-->
 	<!--START_PLUGINS_APPLICATION-->
-		<meta-data android:name="TapJoyAppID" android:value="" />
+		<meta-data android:name="tapjoyAppID" android:value="" />
 	<!--END_PLUGINS_APPLICATION-->
 ~~~
 
-Permissions should be added to the plugins manifest section.  Application section changes will go in the plugins application section as shown above.
+Permissions should be added to the `PLUGINS_MANIFEST` section.  Application section changes will go in the `PLUGINS_APPLICATION` section as shown above.
 
-Additionally, any game `manifest.json` "Android" subkeys you would like to have available in your Java code should be added as values under the plugins application section as shown above for "TapJoyAppID."
+Additionally, any game `manifest.json` "Android" subkeys you would like to have available in your Java code should be added as values under the plugins application section as shown above for "tapjoyAppID."
 
 ##### injectionXSL
 
 If you need to use XSLT parsing to modify the AndroidManifest.xml then you can provide a `manifest.xsl` that gets passed through xslt during the build.
 
-This is the method you may use to access `manifest.json` keys.  In the following example, "TapJoyAppID" is routed from `android:TapJoyAppId` in `manifest.json` to a key that is accessible from the Java code:
+This is the method you may use to access `manifest.json` keys.  In the following example, "tapjoyAppID" is routed from `android:tapjoyAppId` in `manifest.json` to a key that is accessible from the Java code:
 
 ~~~
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:android="http://schemas.android.com/apk/res/android">
 
-	<xsl:param name="TapJoyAppID"></xsl:param>
+	<xsl:param name="tapjoyAppID"></xsl:param>
 
-	<xsl:template match="meta-data[@android:name='TapJoyAppID']">
-		<meta-data android:name="TapJoyAppID" android:value="{$TapJoyAppID}"/>
+	<xsl:template match="meta-data[@android:name='tapjoyAppID']">
+		<meta-data android:name="tapjoyAppID" android:value="{$tapjoyAppID}"/>
 	</xsl:template>
 
 	<!--	<xsl:strip-space elements="*" />-->
@@ -119,6 +137,39 @@ This is the method you may use to access `manifest.json` keys.  In the following
 	</xsl:template>
 
 </xsl:stylesheet>
+~~~
+
+Note that `manifest.json` keys typically follow the convention that the first character is lower-case and word breaks are camel-cased.
+
+##### injectionSource
+
+The "injectionSource" key is an array of JSON objects with the format:
+
+~~~
+	{
+		"regex": "LEADBOLT_PACKAGE",
+		"keyForReplace": "leadBoltPackage"
+	}
+~~~
+
+It allows you to replace strings in the plugin Java code before building with strings from the game's `manifest.json` file.  In the example above, Java code like this:
+
+~~~
+private String leadBoltPackage = "LEADBOLT_PACKAGE";
+~~~
+
+Will be replaced with this before building:
+
+~~~
+private String leadBoltPackage = "com.mypackage";
+~~~
+
+Assuming that the game's `manifest.json` contains the key:
+
+~~~
+	"android": {
+		"leadBoltPackage": "com.mypackage"
+	}
 ~~~
 
 ### Android Plugin: Code
@@ -167,7 +218,7 @@ If the keys were routed using the `manifest.xsl` method shown above, then the ke
 
 	public void onCreate(Activity activity, Bundle savedInstanceState) {
 		PackageManager manager = activity.getBaseContext().getPackageManager();
-		String[] keys = {"TapJoyAppID", "OtherKey"};
+		String[] keys = {"tapjoyAppID", "OtherKey"};
 		try {
 			Bundle meta = manager.getApplicationInfo(activity.getApplicationContext().getPackageName(),
 					PackageManager.GET_META_DATA).metaData;
@@ -180,7 +231,7 @@ If the keys were routed using the `manifest.xsl` method shown above, then the ke
 			logger.log("Exception while loading manifest keys:", e);
 		}
 
-		String TapJoyAppID = manifestKeyMap.get("TapJoyAppID");
+		String tapjoyAppID = manifestKeyMap.get("tapjoyAppID");
 	}
 ~~~
 
