@@ -134,6 +134,25 @@ And then games can use the `showInterstitial` method:
 moPub.showInterstitial();
 ~~~
 
+##### Convenient wrapper for NATIVE.plugins.sendEvent
+
+Another way to improve the readability of your code is to split the `NATIVE.plugins.sendEvent` call into a convenient wrapper.  In the following example from the Facebook plugin, `pluginSend("login");` can be used instead of the long-hand form above:
+
+~~~
+function pluginSend(evt, params) {
+	NATIVE && NATIVE.plugins && NATIVE.plugins.sendEvent &&
+		NATIVE.plugins.sendEvent("FacebookPlugin", evt,
+				JSON.stringify(params || {}));
+}
+
+var Facebook = Class(function () {
+	this.login = function() {
+		pluginSend("login");
+	};
+});
+
+exports = new Facebook();
+~~~
 
 #### ./android/
 
