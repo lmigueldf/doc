@@ -50,6 +50,10 @@ It specifies the code and frameworks needed to build the iOS plugin:
 		"GeoLoc.h",
 		"GeoLoc.mm"
 	],
+	"plist": {
+		"FacebookAppID": "facebookAppID",
+		"FacebookDisplayName": "facebookDisplayName"
+	},
 	"frameworks": [
 		"CoreLocation"
 	]
@@ -71,6 +75,25 @@ Source files are automatically added to the build files in the Xcode project.  T
 Inside the `code` files you can `#import` any file in the TeaLeaf Xcode project by the base file name without being concerned by the absolute path.  For instance, the `GeoLoc.mm` file can include the header that is added with `#import "GeoLoc.h"`.  It can also access any other existing files in the project.
 
 Furthermore these files are referenced instead of being copied.  The generated Xcode project contains references back to the addon files, and any changes to these files in Xcode will be preserved in the file system between `basil` builds.  This accelerates plugin development since you can iterate quickly to test new code.
+
+##### PList
+
+The `plist` map is useful for injecting top-level PList keys into the `TeaLeafIOS-Info.plist` file used for configuration in the built application.
+
+The key in the `plist` map is the key that will be added to the PList.  This is the "raw" key rather than the one displayed in the Xcode interface, so be sure to look at the file in a text editor to discover the raw key.
+
+The value in the `plist` map for each key is the game `manifest.json` key under the `ios` section that should be used to source the value to write into the PList.
+
+See for example the following `config.json` section:
+
+~~~
+	"plist": {
+		"FacebookAppID": "facebookAppID",
+		"FacebookDisplayName": "facebookDisplayName"
+	},
+~~~
+
+In this case the key "FacebookAppID" will be added to the `Info.Plist` file during building.  The string value for the key will be taken from `ios:facebookAppID`.
 
 ##### Frameworks
 
