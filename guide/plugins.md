@@ -100,60 +100,6 @@ The `js` directory contains JavaScript files that will be added to the JavaScrip
 
 You do not need to add a plugin to a game's `manifest.json` "addons" section to use JavaScript imports that it provides.
 
-
-##### Plugin JavaScript Design Recommendations
-
-Note that the `geoloc` plugin is a special case that breaks out of the normal js.io class system to add features to the global `navigator` object.  The preferred way to develop addon JavaScript is by using the normal js.io class system.
-
-For example, for the [MoPub](https://github.com/gameclosure/mopub/) plugin there is a `js/moPub.js` file:
-
-~~~
-var MoPub = Class(function () {
-	this.showInterstitial = function () {
-		logger.log("{moPub} Showing interstitial");
-
-		if (NATIVE && NATIVE.plugins && NATIVE.plugins.sendEvent) {
-			NATIVE.plugins.sendEvent("MoPubPlugin", "showInterstitial",
-				JSON.stringify({}));
-		}
-	};
-});
-
-exports = new MoPub();
-~~~
-
-The JS object is imported in games that use it with:
-
-~~~
-import plugins.mopub.moPub as moPub;
-~~~
-
-And then games can use the `showInterstitial` method:
-
-~~~
-moPub.showInterstitial();
-~~~
-
-##### Convenient wrapper for NATIVE.plugins.sendEvent
-
-Another way to improve the readability of your code is to split the `NATIVE.plugins.sendEvent` call into a convenient wrapper.  In the following example from the Facebook plugin, `pluginSend("login");` can be used instead of the long-hand form above:
-
-~~~
-function pluginSend(evt, params) {
-	NATIVE && NATIVE.plugins && NATIVE.plugins.sendEvent &&
-		NATIVE.plugins.sendEvent("FacebookPlugin", evt,
-				JSON.stringify(params || {}));
-}
-
-var Facebook = Class(function () {
-	this.login = function() {
-		pluginSend("login");
-	};
-});
-
-exports = new Facebook();
-~~~
-
 #### ./android/
 
 Please see the [Android Plugin documentation](../native/android-plugin.html) for a description of the files under the `android` directory.
@@ -175,7 +121,26 @@ NATIVE.plugins.sendEvent("GeolocPlugin", "onRequest", JSON.stringify(e));
 
 This causes the `onRequest` function in the `GeolocPlugin` native class to be invoked.
 
-And to receive data from the plugin via the Events subsystem:
+Another way to improve the readability of your code is to split the `NATIVE.plugins.sendEvent` call into a convenient wrapper.  In the following example from the [Facebook plugin](http://github.com/gameclosure/facebook/), `pluginSend("login");` can be used instead of the long-hand form above:
+
+~~~
+function pluginSend(evt, params) {
+	NATIVE && NATIVE.plugins.sendEvent("FacebookPlugin", evt,
+				JSON.stringify(params || {}));
+}
+
+var Facebook = Class(function () {
+	this.login = function() {
+		pluginSend("login");
+	};
+});
+
+exports = new Facebook();
+~~~
+
+### Receiving JavaScript Events from Native Code
+
+To receive data from the plugin via the Events subsystem:
 
 ~~~
 NATIVE.events.registerHandler('geoloc', function(evt) {
@@ -185,13 +150,92 @@ NATIVE.events.registerHandler('geoloc', function(evt) {
 });
 ~~~
 
-See the relevant documentation under the native guides for the rest of the story.
+The following `pluginOn` and `invokeCallbacks` functions are helpful wrappers from the [Facebook plugin](http://github.com/gameclosure/facebook/) you can drop into your own plugin to easily handle callbacks from native code:
+
+~~~
+function pluginOn(evt, next) {
+	NATIVE && NATIVE.events.registerHandler(evt, next);
+}
+
+function invokeCallbacks(list, clear) {
+	// Pop off the first two arguments and keep the rest
+	var args = Array.prototype.slice.call(arguments);
+	args.shift();
+	args.shift();
+
+	// For each callback,
+	for (var ii = 0; ii < list.length; ++ii) {
+		var next = list[ii];
+
+		// If callback was actually specified,
+		if (next) {
+			// Run it
+			next.apply(null, args);
+		}
+	}
+
+	// If asked to clear the list too,
+	if (clear) {
+		list.length = 0;
+	}
+}
+
+var Facebook = Class(function () {
+	var loginCB = [];
+
+	this.init = function(opts) {
+		pluginOn("facebookState", function(evt) {
+			invokeCallbacks(loginCB, true, evt.state === "open");
+		});
+	}
+
+	this.login = function(next) {
+		loginCB.push(next);
+
+		pluginSend("login");
+	};
+});
+
+exports = new Facebook();
+~~~
 
 ##### Matching requests to responses
 
 If it is necessary to match a request with the response from the plugin, it is good practice to include an `id` field in the request, which can be provided in the response to match it with the request.
 
 This is not demonstrated here since GeoLocation does not need to match responses with requests.  A JavaScript array keyed with these ids is a good way to remember the callback functions to call when a response arrives.
+
+### Plugin JavaScript Design Recommendations
+
+Note that the `geoloc` plugin is a special case that breaks out of the normal js.io class system to add features to the global `navigator` object.  The preferred way to develop addon JavaScript is by using the normal js.io class system.
+
+For example, for the [MoPub](https://github.com/gameclosure/mopub/) plugin there is a `js/moPub.js` file:
+
+~~~
+var MoPub = Class(function () {
+	this.showInterstitial = function () {
+		logger.log("{moPub} Showing interstitial");
+
+		NATIVE && NATIVE.plugins.sendEvent("MoPubPlugin", "showInterstitial",
+				JSON.stringify({}));
+		}
+	};
+});
+
+exports = new MoPub();
+~~~
+
+The JS object is imported in games that use it with:
+
+~~~
+import plugins.mopub.moPub as moPub;
+~~~
+
+And then games can use the `showInterstitial` method:
+
+~~~
+moPub.showInterstitial();
+~~~
 
 ### Android Integration
 
