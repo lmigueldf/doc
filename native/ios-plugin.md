@@ -46,6 +46,9 @@ It specifies the code and frameworks needed to build the iOS plugin:
 
 ~~~
 {
+	"resources": [
+		"libphonenumber.plist"
+	],
 	"code": [
 		"GeoLoc.h",
 		"GeoLoc.mm"
@@ -59,6 +62,12 @@ It specifies the code and frameworks needed to build the iOS plugin:
 	]
 }
 ~~~
+
+
+##### Resources
+
+Adding files under the "resources" key will cause them to be copied into the `resources.bundle` alongside the `native.js.mp3` file containing the JS code for your game.  This is an advanced feature for plugins that require extra configuration files present in the resources bundle.  As an example, it is useful for using the [iOS port of libPhoneNumber](https://github.com/me2day/libPhoneNumber-iOS) since it requires external configuration files like "NBPhoneNumberMetadata.plist" in the resources bundle.
+
 
 ##### Code
 
