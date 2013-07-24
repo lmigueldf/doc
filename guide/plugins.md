@@ -125,8 +125,7 @@ Another way to improve the readability of your code is to split the `NATIVE.plug
 
 ~~~
 function pluginSend(evt, params) {
-	NATIVE && NATIVE.plugins && NATIVE.plugins.sendEvent &&
-		NATIVE.plugins.sendEvent("FacebookPlugin", evt,
+	NATIVE && NATIVE.plugins.sendEvent("FacebookPlugin", evt,
 				JSON.stringify(params || {}));
 }
 
@@ -155,8 +154,7 @@ The following `pluginOn` and `invokeCallbacks` functions are helpful wrappers fr
 
 ~~~
 function pluginOn(evt, next) {
-	NATIVE && NATIVE.events && NATIVE.events.registerHandler &&
-		NATIVE.events.registerHandler(evt, next);
+	NATIVE && NATIVE.events.registerHandler(evt, next);
 }
 
 function invokeCallbacks(list, clear) {
@@ -218,8 +216,7 @@ var MoPub = Class(function () {
 	this.showInterstitial = function () {
 		logger.log("{moPub} Showing interstitial");
 
-		if (NATIVE && NATIVE.plugins && NATIVE.plugins.sendEvent) {
-			NATIVE.plugins.sendEvent("MoPubPlugin", "showInterstitial",
+		NATIVE && NATIVE.plugins.sendEvent("MoPubPlugin", "showInterstitial",
 				JSON.stringify({}));
 		}
 	};
