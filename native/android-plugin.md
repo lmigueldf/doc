@@ -48,7 +48,8 @@ It specifies Java code, libraries, JARs, and manifest changes required to build 
 			"leadbolt.jar"
 		],
 		"copyFiles": [
-			"GeolocPlugin.java"
+			"GeolocPlugin.java",
+			"res/layout/airpush_notify.xml"
 		],
 		"libraries": [
 		],
@@ -76,11 +77,46 @@ For example you can allow each game to specify a `leadbolt.jar` file that then g
 
 ##### copyFiles
 
+###### copyFiles: Java Code
+
 This key should list any Java source code files in the `addons/geoloc/android/` directory that will be incorporated into the Android build.  This includes any .IADL files.  The `basil` build scripts will pull the package name out of the Java files.
 
 The TeaLeaf Java source code will be built first, and then the Activity for your game will be built.  It is in this second build step where your plugin code is built.
 
 If your package is under `com.tealeaf.plugin.plugins`, then the file will be copied into the destination build directory under `src/com/tealeaf/plugin/plugins` and the `ant` build will incorporate them.
+
+###### copyFiles: Resources
+
+The `copyFiles` key can also be used to copy .xml and other resources into the `res/` directory for the Android build.  The way to do this is to create a new "res" directory under your plugin's "android" directory.  Then create subdirectories under "res" for any resources you want to include.  For each resource, add it to the `copyFiles` key.
+
+For example, the [Airpush plugin](http://github.com/gameclosure/airpush) includes an XML layout file.  Here is the plugin directory structure:
+
+~~~
+.
+├── README.md
+├── android
+│   ├── AirpushPlugin.java
+│   ├── airpush.jar
+│   ├── config.json
+│   ├── manifest.xml
+│   ├── manifest.xsl
+│   └── res
+│       └── layout
+│           └── airpush_notify.xml   <-- note this file location
+├── index.js
+├── ios
+│   └── config.json
+└── js
+    └── airpush.js
+~~~
+
+And the android/config.json file has this resource listed under the `copyFiles` section:
+
+~~~
+	"copyFiles": [
+		"res/layout/airpush_notify.xml"
+	],
+~~~
 
 ##### libraries
 
