@@ -53,9 +53,14 @@ It specifies the code and frameworks needed to build the iOS plugin:
 		"GeoLoc.h",
 		"GeoLoc.mm"
 	],
+	"userDefined": [
+		"facebookAppID",
+		"facebookDisplayName"
+	],
 	"plist": {
-		"FacebookAppID": "facebookAppID",
-		"FacebookDisplayName": "facebookDisplayName"
+		"FacebookAppID": "$(facebookAppID)",
+		"FacebookDisplayName": "$(facebookDisplayName)",
+		"CFBundleURLTypes.CFBundleURLSchemes": "fb$(facebookAppID)"
 	},
 	"frameworks": [
 		"CoreLocation"
@@ -85,24 +90,48 @@ Inside the `code` files you can `#import` any file in the TeaLeaf Xcode project 
 
 Furthermore these files are referenced instead of being copied.  The generated Xcode project contains references back to the addon files, and any changes to these files in Xcode will be preserved in the file system between `basil` builds.  This accelerates plugin development since you can iterate quickly to test new code.
 
-##### PList
+##### UserDefined
 
-The `plist` map is useful for injecting top-level PList keys into the `TeaLeafIOS-Info.plist` file used for configuration in the built application.
+The `userDefined` array specifies a list of keys under the "ios" section of the game's manifest.json that get set as user-defined keys in the Xcode project generated during iOS builds.
 
-The key in the `plist` map is the key that will be added to the PList.  This is the "raw" key rather than the one displayed in the Xcode interface, so be sure to look at the file in a text editor to discover the raw key.
-
-The value in the `plist` map for each key is the game `manifest.json` key under the `ios` section that should be used to source the value to write into the PList.
+These user-defined keys are useful for defining `plist` key values based on data from a game's manifest.json.
 
 See for example the following `config.json` section:
 
 ~~~
-	"plist": {
-		"FacebookAppID": "facebookAppID",
-		"FacebookDisplayName": "facebookDisplayName"
-	},
+	"userDefined": [
+		"facebookAppID",
+		"facebookDisplayName"
+	],
 ~~~
 
-In this case the key "FacebookAppID" will be added to the `Info.Plist` file during building.  The string value for the key will be taken from `ios:facebookAppID`.
+In this example the value of the "android:facebookAppID" key from manifest.json will be stored in an injected `$(facebookAppID)` user-defined Xcode variable.  For the Facebook plugin this is used to set the FacebookAppID Info.plist key to the correct value.
+
+##### PList
+
+The `plist` map is useful for injecting or modifying PList keys nearly anywhere in the `TeaLeafIOS-Info.plist` XML tree used for configuration in the generated Xcode project.
+
+The key in the `plist` map is the key that will be added to the PList.  This is the "raw" key rather than the one displayed in the Xcode interface, so be sure to look at the file in a text editor to discover the raw key.
+
+The value is a literal string that can also contain user-defined keys from the game's manifest.json by referencing them with $(userDefinedKeyName).  See the section above on `userDefined`.
+
+Take for example the following `config.json` section:
+
+~~~
+	"userDefined": [
+		"facebookAppID",
+		"facebookDisplayName"
+	],
+	"plist": {
+		"FacebookAppID": "$(facebookAppID)",
+		"FacebookDisplayName": "$(facebookDisplayName)",
+		"CFBundleURLTypes.CFBundleURLSchemes": "fb$(facebookAppID)"
+	}
+~~~
+
+In this case the key "FacebookAppID" will be added to the `Info.Plist` file during building.  The string value for the key will be taken from `ios:facebookAppID` in the game's manifest.json since the `userDefined` section lists "facebookAppID" as a user-defined key.
+
+Also note that `CFBundleURLTypes.CFBundleURLSchemes` references a key that is two-deep in the XML structure of the plist file.  By separating the keys with dots, you are able to inject anywhere in the hierarchy.  When the final subkey after the last dot is found to be an array, the given string will be added to the array.  If the subkey is not found, it will be injected with the given string.
 
 ##### Frameworks
 
@@ -176,7 +205,7 @@ Place the bundle file in the `ios` subdirectory of your plugin.
 
 ###### Frameworks: Custom XIB ".xib"
 
-For custom XIB files, add `MyBundle.xib` to the "frameworks" list, with a `.xib` extension.
+For custom XIB files, add `MyXIB.xib` to the "frameworks" list, with a `.xib` extension.
 
 Place the XIB file in the `ios` subdirectory of your plugin.
 
