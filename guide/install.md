@@ -32,6 +32,19 @@ If you're using OSX and building for native devices, you'll need to install the 
 * XCode Command Line tools (November 2012 or newer)
 * XCode (4.4 or newer)
 
+## Recommended Code Editor
+
+On MacOSX, we recommend editing your game's JavaScript code with [Sublime Text 3 Beta](http://www.sublimetext.com/3) with the [NBSP plugin](https://github.com/possan/sublime_unicode_nbsp) installed.
+
+The NBSP plugin allows you to easily catch extended ASCII multi-character codes like NBSP that tend to find their way into JavaScript files.  This leads to hard-to-debug problems where the code looks fine in the editor, but a browser like Chrome will choke when your code is evaluated.  Usually the error will be something like "Unexpected token {".  This can also happen in JSON files you edit.
+
+Once you have Sublime Text 3 installed, to install the NBSP plugin:
+
++ Open "Sublime Text" application.
++ In the "Sublime Text" menu in the upper left, select "Preferences" => "Browse Packages…"
++ Your User folder should open in Finder.
++ Drag the "sublime_unicode_nbsp.py" file from the plugin into your User folder.
+
 ## Install DevKit
 
 With the prerequisites installed, we're ready to set up the
