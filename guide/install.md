@@ -45,6 +45,8 @@ Once you have Sublime Text 3 installed, to install the NBSP plugin:
 + Your User folder should open in Finder.
 + Drag the "sublime_unicode_nbsp.py" file from the plugin into your User folder.
 
+Now problematic characters like NBSP will be highlighted in red and you can delete them and replace them with normal spaces.
+
 ## Install DevKit
 
 With the prerequisites installed, we're ready to set up the
