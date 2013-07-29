@@ -36,6 +36,51 @@ Normally you will want to pair `adb logcat` with the standard `grep` tool to cut
 
 You may then pipe the output to a file with `$ adb logcat | grep JS > mylog.txt`.  Hit CTRL+C to terminate the log capture, and open it with `open mylog.txt`.
 
+## Unable to Debug Android Device with ADB
+
+Often times you will need to follow device-specific instructions to enable a USB debug mode in the device settings.
+
+Another common problem is that some of the Android devices out there are not registered with Android's default Vendor list.  For example the Xiaomi Mi 2[S] phones or the Ouya game console.
+
+To get them to work with ADB (and the DevKit) on MacOSX you have to go into "About This Mac", select "More Info" => "System Report", select USB on the left so you can see the attached USB devices.  On other platforms it is a similar process.  Select the device from the list.
+
+You will see something like this:
+
+~~~
+MI 2:
+
+  Product ID:    0x9039
+  Vendor ID:    0x2717
+  Version:     2.28
+  Serial Number:    a5629fa
+  Speed:    Up to 480 Mb/sec
+  Manufacturer:    Xiaomi
+  Location ID:    0xfa120000 / 5
+  Current Available (mA):    500
+  Current Required (mA):    500
+  Capacity:    47.9 MB (47,876,096 bytes)
+  Removable Media:    Yes
+  Detachable Drive:    Yes
+  BSD Name:    disk2
+  Partition Map Type:    Unknown
+  S.M.A.R.T. status:    Not Supported
+~~~
+
+The Vendor ID is what we need.  Add it to the end of your "~/.android/adb_usb.ini" file like this:
+
+~~~
+# ANDROID 3RD PARTY USB VENDOR ID LIST -- DO NOT EDIT.
+# USE 'android update adb' TO GENERATE.
+# 1 USB VENDOR ID PER LINE.
+0x2717
+~~~
+
+Now run `adb kill-server` and `adb start-server` to restart ADB.
+
+If you type `adb devices` you should now see your device in the list.  Also check the screen of the device and accept any access prompts that show up.
+
+*Avoid running the `android update adb` command as it will erase your changes.*
+
 ## JavaScript Freezes
 
 If your JavaScript game freezes up, it can be due to either an Exception, or a Memory Leak.  To figure out which problem it is, follow instructions above to watch the JavaScript logs.
