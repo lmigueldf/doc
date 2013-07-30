@@ -13,11 +13,11 @@ You will need some tools for Android development:
 + Mac OS X 10.6 (or newer) computer
 + USB sync cable for your cellphone
 + Android SDK 15
-+ Android NDK r8d
++ Android NDK r9
 + [Command Line Tools for Xcode](https://developer.apple.com/downloads) or [Xcode](https://itunes.apple.com/us/app/xcode/id497799835)
 + Game Closure DevKit (basil)
 
-Note that we require Android NDK r8d, _not_ the newer r8e, which unfortunately has a serious bug. For more information, see [Ingo Muschenetz's explanation and patch](http://developer.appcelerator.com/blog/2013/03/correcting-a-bug-in-the-latest-google-ndk-r8e.html).
+Note that we require Android NDK r9. Beware r8e, which has a serious bug. For more information, see [Ingo Muschenetz's explanation and patch](http://developer.appcelerator.com/blog/2013/03/correcting-a-bug-in-the-latest-google-ndk-r8e.html).
 
 For a guide on installing the Game Closure DevKit [please see this documentation](../guide/install.html).
 
