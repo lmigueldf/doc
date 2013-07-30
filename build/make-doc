@@ -157,6 +157,7 @@ wget --tries=10 https://raw.github.com/gameclosure/tapjoy/master/README.md -O ./
 wget --tries=10 https://raw.github.com/gameclosure/trademob/master/README.md -O ./plugins/trademob.md
 wget --tries=10 https://raw.github.com/gameclosure/sponsorpay/master/README.md -O ./plugins/sponsorpay.md
 wget --tries=10 https://raw.github.com/gameclosure/facebook/master/README.md -O ./plugins/facebook.md
+wget --tries=10 https://raw.github.com/gameclosure/metaps/master/README.md -O ./plugins/metaps.md
 
 # and off we go ...
 
