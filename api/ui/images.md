@@ -11,6 +11,7 @@ Display an image within a `View`.
 * [A Basic Image](../example/images-basic/)
 * [9-Slice Scaling](../example/images-nine-slice/)
 * [9-Slice Animation](../example/images-nine-slice-animation/)
+* [6-Slice Scaling](../example/images-six-slice/)
 * [3-Slice Scaling](../example/images-three-slice/)
 * [2-Slice Scaling](../example/images-two-slice/)
 
@@ -116,8 +117,7 @@ Inherits from
 :    1. [ui.widget.View](./ui-view.html)
      2. [event.Emitter](./event.html#class-event.emitter)
 
-A specialized `ImageView` for advanced scaling techniques,
-including 9-Slice.
+A specialized `ImageView` for advanced scaling techniques, including 9-Slice.
 
 ## Methods
 
@@ -127,9 +127,9 @@ Parameters
 :    1. `options {object}`
 	     * `image {string|ui.resource.Image} = false` ---Source image. Just like `ImageView`, specify a string path or an instance of `ui.resource.Image`.
 		 * `autoSize {boolean} = false` ---Stretch the image to the view dimensions if `false`. Use the image dimensions if `true`.
-		 * `scaleMethod {string} = 'stretch'` ---Valid options are `'none'`, `'stretch'`, `'cover'`, `'contain'`, `'9slice'`, `'3slice'` and `'2slice'`.
-		 * `debug {boolean} = false` ---Display 9-slice scaling measurements.
-		 * `sourceSlices {object}` ---9-slice source slices. See below for details.
+		 * `scaleMethod {string} = 'stretch'` ---Valid options are `'none'`, `'stretch'`, `'cover'`, `'contain'`, `'9slice'`, `'6slice'`, `'3slice'` and `'2slice'`.
+		 * `debug {boolean} = false` ---Display scaling measurements.
+		 * `sourceSlices {object}` ---source slices. See below for details.
 		     * `horizontal {object}`
 			     * `left {number}`
 				 * `center {number}`
@@ -138,7 +138,7 @@ Parameters
 				 * `top {number}`
 				 * `middle {number}`
 				 * `bottom {number}`
-		 * `destSlices {object}` ---9-slice destination slices. Setting these values to 0 can create 3-slice scaling.
+		 * `destSlices {object}` ---destination slices. Setting these values to 0 can create 3- and 6-slice scaling.
 		     * `horizontal {object}`
 				 * `left {number}`
 				 * `right {number}`
@@ -180,7 +180,7 @@ be applied and the `left` and `right` values will be scaled
 back to the maximum available size of 20 pixels for each
 side.
 
-<!--## Using 6-Slice
+## Using 6-Slice
 
 For horizontal slices you must pass the following properties:
 
@@ -230,7 +230,7 @@ For vertical slices you must pass the following properties:
 <img src="./assets/ui-imageview/6slice-v.png" class="diagram" />
 <figcaption>Vertical 6-slice.</figcaption>
 </figure>
-</div-->
+</div>
 
 ## Using 3-Slice
 
