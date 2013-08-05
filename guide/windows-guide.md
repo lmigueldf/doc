@@ -135,18 +135,14 @@ $ basil update
 
 The update command is also able to check out older versions of the DevKit or different channels of DevKit versions.  Read the help menu with `basil update --help` for more information on this flexible tool.
 
-## Install the Examples
+## Play With Examples
 
 Once `basil` is installed you're ready to check out a few
 example projects. First, take a look at the [Hello, World! Guide](../guide/hello-world.html)
 to see how to create a new project. After that, you should
 be ready to browse some more complicated projects. There are
-a bunch contained within the *examples addon*, you can
-install this by running:
-
-~~~
-$ basil install examples
-~~~
+a bunch contained within the *examples addon*, which comes with
+a fresh DevKit install.
 
 This addon installs a collection of projects that demonstrate
 some game development techniques using the Game Closure
