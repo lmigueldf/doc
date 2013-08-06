@@ -129,7 +129,7 @@ Enter key password for <bearded bobs>
 
 You will want to copy your keystore to a convenient location and then reference it in the `config.json` file in the root of your Game Closure DevKit folder.
 
-An example "android" section in Basil's `config.json` file:
+An example "android" section in DevKit's `config.json` file:
 
 ~~~
 	"android": {
@@ -140,6 +140,8 @@ An example "android" section in Basil's `config.json` file:
 		"keypass": "fuzzyfiggin"
 	}
 ~~~
+
+Note this is not in the `manifest.json` file in your game folder but in the `config.json` file in your devkit folder.
 
 The `storepass` is the keystore password you typed initially.  And `keypass` is the key password, which will be the same as the keystore password if you opted not to enter one.
 

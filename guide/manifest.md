@@ -209,6 +209,7 @@ device to pinpoint where in the stack an error is occurring.
     	* `48 {string}` ---Path to medium game app icon, size: 48x48px.
 	    * `72 {string}` ---Path to large game app icon, size: 72x72px.
     	* `96 {string}` ---Path to extra-large game app icon, size: 96x96px.
+    	* `144 {string}` ---Path to Nexus 10 game app icon, size: 144x144px.
 
 Device specific settings for Android phones and tablets.  The Google Play store version code can be set here, and app icon paths are set in this section.
 
@@ -226,7 +227,8 @@ In the `manifest.json` file, include the icon images like this:
     "36": "resources/icons/android36.png",
     "48": "resources/icons/android48.png",
     "72": "resources/icons/android72.png",
-    "96": "resources/icons/android96.png"
+    "96": "resources/icons/android96.png",
+    "144": "resources/icons/android144.png"
   }
 }
 ~~~
