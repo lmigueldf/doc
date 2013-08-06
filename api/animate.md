@@ -217,6 +217,8 @@ animate(view).now({x: 10}).then(function(){
 });
 ~~~
 
+You can also specify a duration after the callback.  This will execute the given function multiple times once per tick until the duration ends.  Note this will execute the given function multiple times and not just once after the duration ends; use `wait` (above) to achieve this.
+
 ### debug ()
 
 Returns
