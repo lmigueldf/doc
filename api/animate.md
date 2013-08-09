@@ -219,6 +219,21 @@ animate(view).now({x: 10}).then(function(){
 
 You can also specify a duration after the callback.  This will execute the given function multiple times once per tick until the duration ends.  Note this will execute the given function multiple times and not just once after the duration ends; use `wait` (above) to achieve this.
 
+### setTarget (view)
+
+Parameters
+:    1. `view {View}` ---The new target view.
+
+Returns
+:    1. `{this}`
+
+Changes the target `view` to be animated.
+
+~~~
+animate(view1).now({x: 10}).then({y: 200})
+  .setTarget(view2).then({r: 2});
+~~~
+
 ### debug ()
 
 Returns
