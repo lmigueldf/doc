@@ -72,11 +72,11 @@ Parameters
 Returns
 :    1. `{View}` ---Same as the provided view object.
 
-Add a view to the `StackView` collection, since it is now on
-top of the stack it will be visible. The x and y coordinates
-of the added view will be relative to the top-left corner of
-the `StackView`. The `height` and `width` of the added view
-will be scaled up to fit the dimensions of the stack view.
+Add a view to the `StackView` collection. Since it is now on
+top of the stack it will be visible. The `height` and `width`
+of the added view will be scaled up to fit the dimensions of
+the `StackView`. Additionally, the new view's `y` value is
+forced to zero so that the new view perfectly fills the `StackView`.
 
 By default, when a view is pushed to the top of a
 `StackView`, it will animate in from right to left. When
@@ -85,12 +85,8 @@ in, and will simply appear on top. If `reverse` is set to
 `true`, the view will animate in from the left to right.
 
 ~~~
-var view = new ui.View({
-  x: 0, //relative to the top-left corner of stackview
-  y: 0,
-  width: 100, //automatically scaled to the dimensions of stackview
-  height: 100
-});
+// x, y, width, and height are all set by the StackView
+var view = new ui.View({});
 
 stackview.push(view);
 ~~~
