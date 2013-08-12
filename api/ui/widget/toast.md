@@ -21,7 +21,7 @@ Parameters
 		 * `images {object} = {}` ---What does your toast look like? Only define what you need.
 		 * `debug {boolean} = false` ---If true, your toast gets a red background.
 
-You can make a `Toast` with any of the following values for `position`: 'top', 'topright', 'bottomright', 'bottom', 'bottomleft', 'topleft'. These are also the keys of the `image` object.
+You can make a `Toast` with any of the following values for `position`: 'top', 'topright', 'bottomright', 'bottom', 'bottomleft', 'topleft'. These are also the keys of the `images` object.
 
 ~~~
 import ui.widget.Toast as Toast;
