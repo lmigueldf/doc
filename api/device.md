@@ -42,6 +42,13 @@ landscape-mode by passing a `true` argument.
 
 Triggers garbage collection on the device. Does nothing in the browser.
 
+### stayAwake (enable)
+
+Parameters
+:    1. `enable {boolean} = false` ---Enable stay-awake feature?
+
+Instructs the native (e.g. iOS/Android) device to not dim the screen or go to sleep while your app is in the foreground.
+
 ## Properties
 
 ### name `{string}`
