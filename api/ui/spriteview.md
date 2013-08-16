@@ -105,6 +105,9 @@ Parameters
      * `autoStart {boolean} = false` ---Animation will start as soon as initialised.
      * `loop {boolean} = true` ---Animation will continue to play forever.
      * `delay {number} = 0` ---Delay in milliseconds between animation loop iterations.
+     * `onScreen {boolean} = true` ---Whether to call `setImage` with every frame update.
+
+The `onScreen` property is one way to optimize your game. If you don't touch it, the `SpriteView` will behave as expected. If you want to squeeze some extra performance out of your game screen, you can set `onScreen` to `false` whenever active sprites are offscreen, and back to `true` when they enter the visible frame.
 
 ~~~
 import ui.SpriteView as SpriteView;
@@ -248,6 +251,10 @@ enemies.pause();
 ### SpriteView.allAnimations `{object}`
 
 Object of all animations found in the resources directory.
+
+## SpriteView tick
+
+It's very common to subclass `SpriteView`. When doing this, it's important not to override the `tick` function. This function is handled internally by the class, and replacing it will break things. Beware!
 
 
 # Class: Sprite Groups
