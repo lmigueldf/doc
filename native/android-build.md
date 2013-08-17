@@ -76,6 +76,7 @@ General build options:
 + `--no-compress` : Do not compress JavaScript during build
 + `--install` : Install after build
 + `--open` : Install and open after build
++ `--logging` : Print logs in release mode (debug mode always prints logs)
 
 ### Appendix: Example Usage
 
