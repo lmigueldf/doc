@@ -74,6 +74,8 @@ General build options:
 + `--no-clean` : Do not clean before compile
 + `--compress` : Compress JavaScript during build (Default)
 + `--no-compress` : Do not compress JavaScript during build
++ `--install` : Install after build
++ `--open` : Install and open after build
 
 ### Appendix: Example Usage
 
