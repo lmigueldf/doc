@@ -136,12 +136,20 @@ For example to add permissions for the GeoLocation plugin, the ACCESS_FINE_LOCAT
 	<!--START_PLUGINS_MANIFEST-->
 		<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 	<!--END_PLUGINS_MANIFEST-->
+	<!--START_PLUGINS_ACTIVITY-->
+		<intent-filter>
+			<action android:name="globosocial.intent.action.LAUNCH" />
+			<category android:name="android.intent.category.DEFAULT" />
+		</intent-filter>
+	<!--END_PLUGINS_ACTIVITY-->
 	<!--START_PLUGINS_APPLICATION-->
 		<meta-data android:name="tapjoyAppID" android:value="" />
 	<!--END_PLUGINS_APPLICATION-->
 ~~~
 
 Permissions should be added to the `PLUGINS_MANIFEST` section.  Application section changes will go in the `PLUGINS_APPLICATION` section as shown above.
+
+The `PLUGINS_ACTIVITY` section can be used to add intents that the main activity will respond to, which allows third party apps to launch your game.
 
 Additionally, any game `manifest.json` "Android" subkeys you would like to have available in your Java code should be added as values under the plugins application section as shown above for "tapjoyAppID."
 
