@@ -34,7 +34,7 @@ Parameters
 			 * `maxX {number}` ---Maximum X position.
 			 * `maxY {number}` ---Maximum Y position.
 		 * `snapPixels {number} = 1` ---Snap to certain pixel increments. This value will represent the grid size to snap to.
-		 * `useLayoutBounds {boolean} = true` ---Automatically set scroll bounds when using linear layout.
+		 * `useLayoutBounds {boolean} = true` ---Automatically set scroll bounds when using layout system.
 
 ~~~
 import ui.ScrollView as ScrollView;
