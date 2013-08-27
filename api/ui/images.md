@@ -14,6 +14,7 @@ Display an image within a `View`.
 * [6-Slice Scaling](../example/images-six-slice/)
 * [3-Slice Scaling](../example/images-three-slice/)
 * [2-Slice Scaling](../example/images-two-slice/)
+* [Cover/Contain Scaling](../example/images-cover-contain/)
 
 ## Methods
 
