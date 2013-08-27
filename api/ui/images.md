@@ -14,6 +14,7 @@ Display an image within a `View`.
 * [6-Slice Scaling](../example/images-six-slice/)
 * [3-Slice Scaling](../example/images-three-slice/)
 * [2-Slice Scaling](../example/images-two-slice/)
+* [Cover/Contain Scaling](../example/images-cover-contain/)
 
 ## Methods
 
@@ -129,6 +130,7 @@ Parameters
 		 * `autoSize {boolean} = false` ---Stretch the image to the view dimensions if `false`. Use the image dimensions if `true`.
 		 * `scaleMethod {string} = 'stretch'` ---Valid options are `'none'`, `'stretch'`, `'cover'`, `'contain'`, `'9slice'`, `'6slice'`, `'3slice'` and `'2slice'`.
 		 * `debug {boolean} = false` ---Display scaling measurements.
+		 * `renderCenter {boolean} = true` ---Render the center of a 9-slice. Make this `false` if you want your `ImageScaleView` to be a frame.
 		 * `sourceSlices {object}` ---source slices. See below for details.
 		     * `horizontal {object}`
 			     * `left {number}`
