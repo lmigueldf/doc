@@ -531,7 +531,7 @@ device.setRotationHandler(function(e) {
 
 # Back Button
 
-Want to know when the back button is pressed on an Android device? Here's how:
+Want to know when the back button is pressed on an Android device? Here's how to find out:
 
 ~~~
 import device;
@@ -540,3 +540,5 @@ device.setBackButtonHandler(function() {
     console.log("someone hit the back button!");
 });
 ~~~
+
+If your handler returns `false`, the code will background your application.
