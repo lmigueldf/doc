@@ -49,6 +49,47 @@ Parameters
 
 Instructs the native (e.g. iOS/Android) device to not dim the screen or go to sleep while your app is in the foreground.
 
+### setRotationHandler (handler)
+
+Parameters
+:    1. `handler {function} = null` ---handler function for rotation events
+
+You can subscribe to rotation events like this:
+
+~~~
+import device;
+
+device.setRotationHandler(function(e) {
+    console.log(e.orientation);
+});
+~~~
+
+`e.orientation` is one of:
+:    1. `portrait`
+     2. `portraitUpsideDown`
+     3. `landscapeRight`
+     4. `landscapeLeft`
+     5. `unknown`
+     6. `faceUp` -- iOS only
+     7. `faceDown` -- iOS only
+
+### setBackButtonHandler (handler)
+
+Parameters
+:    1. `handler {function} = null` ---handler function for back button events
+
+You can handle back button presses like this:
+
+~~~
+import device;
+
+device.setBackButtonHandler(function() {
+    console.log("someone hit the back button!");
+});
+~~~
+
+If your handler returns `false`, the code will background your application.
+
 ## Properties
 
 ### name `{string}`
