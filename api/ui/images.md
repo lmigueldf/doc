@@ -15,6 +15,7 @@ Display an image within a `View`.
 * [3-Slice Scaling](../example/images-three-slice/)
 * [2-Slice Scaling](../example/images-two-slice/)
 * [Cover/Contain Scaling](../example/images-cover-contain/)
+* [Tiling](../example/images-tiled/)
 
 ## Methods
 
@@ -128,8 +129,10 @@ Parameters
 :    1. `options {object}`
 	     * `image {string|ui.resource.Image} = false` ---Source image. Just like `ImageView`, specify a string path or an instance of `ui.resource.Image`.
 		 * `autoSize {boolean} = false` ---Stretch the image to the view dimensions if `false`. Use the image dimensions if `true`.
-		 * `scaleMethod {string} = 'stretch'` ---Valid options are `'none'`, `'stretch'`, `'cover'`, `'contain'`, `'9slice'`, `'6slice'`, `'3slice'` and `'2slice'`.
+		 * `scaleMethod {string} = 'stretch'` ---Valid options are `'none'`, `'stretch'`, `'cover'`, `'contain'`, `'tile'`, `'9slice'`, `'6slice'`, `'3slice'` and `'2slice'`.
 		 * `debug {boolean} = false` ---Display scaling measurements.
+		 * `rows {number} = undefined` ---Number of rows when `scaleMethod` is `'tile'`.
+		 * `columns {number} = undefined` ---Number of columns when `scaleMethod` is `'tile'`.
 		 * `renderCenter {boolean} = true` ---Render the center of a 9-slice. Make this `false` if you want your `ImageScaleView` to be a frame.
 		 * `sourceSlices {object}` ---source slices. See below for details.
 		     * `horizontal {object}`
@@ -147,6 +150,20 @@ Parameters
 			 * `vertical {object}`
 				 * `top {number}`
 				 * `bottom {number}`
+
+## Tile Options
+
+When `scaleMethod` is `'tile'`, you must define either `rows` or `columns` (_not_ both). For example:
+
+~~~
+new ui.ImageScaleView({
+	superview: this,
+	image: 'resources/images/flower.png',
+	layout: 'box',
+	scaleMethod: 'tile',
+	columns: 5
+});
+~~~
 
 ## 9-Slice Options
 
