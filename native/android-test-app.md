@@ -12,21 +12,13 @@ Turn on WiFi and connect your mobile device to the same LAN as your computer.
 
 ## Running
 
-An instance of the DevKit basil server must be running to serve games for the test app.  To start a new basil server enter this command at a console:
-
-~~~
-$ basil serve
-~~~
-
-This will start hosting the Test App Server on your LAN.
-
-To run the Android Test App on your mobile device, connect it to your computer via a USB data cable, and enter the following command at a console different from the one you started `basil serve`:
+To run the Android Test App on your mobile device, connect it to your computer via a USB data cable, and enter the following command at a console:
 
 ~~~
 $ basil testapp native-android
 ~~~
 
-It will build and attempt to install the Test App on your device.
+It will build and attempt to install the Test App on your device and start the basil server.
 
 After installation you will be able to launch the Test App from the applications list on your Android device:
 
