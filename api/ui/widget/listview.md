@@ -126,6 +126,11 @@ listview.updateOpts({
 });
 ~~~
 
+### getCells ()
+
+Returns
+:    1. `{array}` ---Cell instances which are contained in the list.
+
 ### getSelection ()
 
 Returns
@@ -139,10 +144,9 @@ with the keys being the selected items unique ids.
 Returns
 :    1. `{number}` ---Returns the number of selected items.
 
-### getCells ()
+### deselectAll ()
 
-Returns
-:    1. `{array}` ---Cell instances which are contained in the list.
+Deselect all cells in the list.
 
 
 # Class: ui.widget.CellView
