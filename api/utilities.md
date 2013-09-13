@@ -308,3 +308,5 @@ ajax.post({
   }
 });
 ~~~
+
+Note that iOS devices commonly split POST requests into separate packets for the header and body. This is proper HTTP. Just make sure your server reads the request in using Content-Length instead of stopping at packet boundaries, which are arbitrary. For more information, see [this discussion of the BSD socket layer](http://lists.apple.com/archives/macnetworkprog/2004/May/msg00042.html).
