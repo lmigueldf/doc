@@ -45,7 +45,7 @@ Parameters
 
 The constructor used to create an instance of a `ui.View`
 object. In addition to the options listed here,
-[style definition properties](#styles) can also be
+[style definition properties](#properties) can also be
 passed in this object.
 
 ~~~
@@ -362,6 +362,8 @@ The `style` object contains the following properties:
 * `widthPercentage {number}`
 * `heightPercentage {number}`
 * `scale {number} = 1` ---Increase or decrease the size of the view.
+* `scaleX {number} = 1` ---Increase or decrease the size of the view in the X direction.
+* `scaleY {number} = 1` ---Increase or decrease the size of the view in the Y direction.
 * `r {number} = 0` ---The rotation of a view in radians.
 * `visible {boolean} = true` ---If the view is shown or hidden. The view will not accept input events while hidden.
 * `opacity {number} = 1` ---The transparency of a view from 0.0 to 1.0. The view accepts input events even when fully transparent.
