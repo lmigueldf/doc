@@ -39,12 +39,13 @@ Parameters
      * `fontWeight {string} = 'normal'` ---How thick the characters are. Options: `'normal'`, `'bold'`, or a number weight.
      * `color {string} = "blue"` ---The color of the text.  See below for color string format.
      * `backgroundColor {string} = "blue"` ---The background color of the text view.  See below for color string format.
-     * `shadowColor {string} = "blue"` ---Color of the drop shadow behind the text.  See below for color string format.
-     * `strokeWidth {number} = 2` ---Width of text stroke (outline or shadow).
-     * `strokeColor {string} = undefined` ---The color of the stroke.
+     * `strokeColor {string} = undefined` ---The color of the stroke.  See below for color string format.
+     * `shadowColor {string} = undefined` ---Color of the drop shadow behind the text.  See below for color string format.
+     * `strokeWidth {number} = 2` ---Width of text stroke.
+     * `shadowWidth {number} = 2` ---Width of drop shadow.
      * `padding {number|array} = 0` ---The amount of vertical padding the text exhibits within the text view.
      * `verticalAlign: "middle"` ---How the text should be aligned vertically within the text view. Options: `'top'`, `'bottom'`, `'middle'`.
-     * `horizontalAlign: "center"` ---How the text should be aligned horizontall within the text view. Options: `'left'`, `'right'`, `'center'`, `'justify'`.
+     * `horizontalAlign: "center"` ---How the text should be aligned horizontally within the text view. Options: `'left'`, `'right'`, `'center'`, `'justify'`.
      * `wrap {boolean} = false` ---Whether or not the text should wrap. A description of the rules of wrapping when wrap is turned on can be found below.
      * `hardWrap {boolean}` ---Optional, if true and the text is a single line which is too wide then the string will be split into lines which fit within the given width of the view.
      * `autoSize {boolean} = false` ---Fit the text view to text (details below).
