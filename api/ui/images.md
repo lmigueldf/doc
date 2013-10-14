@@ -116,7 +116,7 @@ is executed with the `ImageView` instance as the context.
 # Class: ui.ImageScaleView
 
 Inherits from
-:    1. [ui.widget.View](./ui-view.html)
+:    1. [ui.View](./ui-view.html)
      2. [event.Emitter](./event.html#class-event.emitter)
 
 A specialized `ImageView` for advanced scaling techniques, including 9-Slice.
