@@ -160,6 +160,8 @@ wget --tries=10 https://raw.github.com/gameclosure/facebook/master/README.md -O 
 wget --tries=10 https://raw.github.com/gameclosure/metaps/master/README.md -O ./plugins/metaps.md
 wget --tries=10 https://raw.github.com/gameclosure/ouya/master/README.md -O ./plugins/ouya.md
 wget --tries=10 https://raw.github.com/gameclosure/localnotify/master/README.md -O ./plugins/localnotify.md
+wget --tries=10 https://raw.github.com/gameclosure/appsflyer/master/README.md -O ./plugins/appsflyer.md
+wget --tries=10 https://raw.github.com/gameclosure/accelerometer/master/README.md -O ./plugins/accelerometer.md
 
 # and off we go ...
 
