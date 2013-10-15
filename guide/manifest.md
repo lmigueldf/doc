@@ -242,8 +242,11 @@ In the `manifest.json` file, include the icon images like this:
     	* `renderGloss {boolean}` ---Specify `true` to have Xcode render gloss over your icon images.
 	    * `57 {string}` ---Path to iPhone/iPod Touch game app icon, size: 57x57px.
 	    * `72 {string}` ---Path to iPad game app icon, size: 72x72px.
+	    * `76 {string}` ---Path to iOS 7 iPad non-retina game app icon, size: 76x76px.
 	    * `114 {string}` ---Path to retina iPhone/iPod Touch game app icon, size: 114x114px.
+	    * `120 {string}` ---Path to iOS 7 retina iPhone game app icon, size: 120x120px.
 	    * `144 {string}` ---Path to retina iPad game app icon, size: 144x144px.
+	    * `152 {string}` ---Path to iOS 7 retina iPad game app icon, size: 152x152px.
 
 Device specific settings for iOS phones and tablets.  In this section you can copy settings from iTunes Connect to have your game hooked up properly for in-app purchases.  You should also specify icon images in this section.
 
@@ -262,11 +265,16 @@ In the `manifest.json` file, include the icon images like this:
     "renderGloss": false,
     "57": "resources/icons/ios57.png",
     "72": "resources/icons/ios72.png",
+    "76": "resources/icons/ios76.png",
     "114": "resources/icons/ios114.png",
-    "144": "resources/icons/ios144.png"
+    "120": "resources/icons/ios120.png",
+    "144": "resources/icons/ios144.png",
+    "152": "resources/icons/ios152.png"
   }
 }
 ~~~
+
+Note that your app will be rejected from the iOS App Store if any of these images are missing.
 
 ### TrueType Fonts (TTF)
 

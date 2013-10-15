@@ -89,8 +89,11 @@ The icons for iOS are listed below.  Be sure to include at least this set of ico
     "renderGloss": false,
     "57": "resources/icons/ios57.png",
     "72": "resources/icons/ios72.png",
+    "76": "resources/icons/ios76.png",
     "114": "resources/icons/ios114.png",
-    "144": "resources/icons/ios144.png"
+    "120": "resources/icons/ios120.png",
+    "144": "resources/icons/ios144.png",
+    "152": "resources/icons/ios152.png"
   }
 }
 ~~~
