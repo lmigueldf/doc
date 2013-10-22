@@ -34,19 +34,20 @@ util.interpolate(0,10,0.5); //=> 5
 util.interpolate(0,10,1);   //=> 10
 ~~~
 
-### random (a, b [, seed])
+### random (a, b [, generator])
 
 Parameters
 :    1. `a {number}`
      2. `b {number}`
-	 3. `seed {number} = Math.random()`
+	 3. `generator {function} = Math.random`
 
 Returns
 :    1. `{number}`
 
 Generate and return a random integer between `a` to `b`
 (excluding `b`). Note that `a` and `b` should be integer
-values. Optionally, a random seed can be given.
+values. Optionally, a random generator function can be
+provided with the same signature as Math.random().
 
 ~~~
 util.random(0,2);  //=> 0 
