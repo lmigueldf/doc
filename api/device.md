@@ -100,6 +100,10 @@ The name of the runtime platform, e.g. `'tealeaf'` or `'browser'`.
 
 The default font used by the device.
 
+### defaultFontWeight `{string} = ''`
+
+The default font weight (such as 'bold') used by the device.
+
 ### width `{number}`
 
 The screen width of the device.
