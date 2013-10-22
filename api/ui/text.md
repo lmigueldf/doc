@@ -283,7 +283,8 @@ It is ideal for scores or other in-game counters that update often.
 Parameters
 :    1. `options {object}`
      * `characterData {object}` ---The characters to use in this ScoreView. If undefined, you must call setCharacterData before rendering text.
-     * `textAlign {string} = 'center'` ---Text alignment - 'center', 'right', or 'left'.
+     * `horizontalAlign {string} = 'center'` ---Text alignment - 'center', 'right', or 'left'.
+     * `verticalAlign {string} = 'middle'` ---Text alignment - 'middle', 'top', or 'bottom'.
      * `spacing {number} = 0` ---How much space to put between each character.
 
 ~~~
