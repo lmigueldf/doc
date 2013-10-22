@@ -25,9 +25,10 @@ Parameters
 		 * `scrollY {boolean} = true` ---Allow scrolling along the Y axis.
 		 * `clip {boolean} = true` ---Hide any subview content that is outside of the view boundary.
 		 * `bounce {boolean} = true` ---Bounce effect when scrolling past the scroll bounds.
+		 * `bounceRadius {number} = 50` ---Radius of bounce. If bounceRadius is 'bounds', infer bounce radius from scroll bounds.
 		 * `drag {boolean} = true` ---Allow the user to drag the view around.
-		 * `inertia {boolean} = true` ---Inertia effect when scrolling.
 		 * `dragRadius {number} = 10` ---Radius between dragging start and move.
+		 * `inertia {boolean} = true` ---Inertia effect when scrolling.
 		 * `scrollBounds {object}` ---Boundary of scroll.
 		     * `minX {number}` ---Minimum X position.
 			 * `minY {number}` ---Minimum Y position.
