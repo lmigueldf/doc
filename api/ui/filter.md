@@ -14,8 +14,12 @@ Parameters
 
 A generic class that specialized filters inherit from.
 
+Rather than using the Filter class directly, you should use either the LinearAddFilter or the MultiplyFilter (see below).
+
+There are several other filters available not described here, which are implemented on native and in the browser, though they are not often used because they are slow.
+
 ~~~
-import ui.filter.Filter as Filter;
+from ui.filter import Filter;
 
 var filter = new Filter();
 ~~~
@@ -66,7 +70,7 @@ Parameters
 :    1. `options {object}`
 
 ~~~
-import ui.filter.LinearAddFilter as LinearAddFilter;
+from ui.filter import LinearAddFilter;
 ~~~
 
 
@@ -75,12 +79,11 @@ import ui.filter.LinearAddFilter as LinearAddFilter;
 Inherits from
 :    1. [ui.filter.Filter](#class-ui.filter.filter)
 
-Filter a view by multiplying pixels by the given rgb values
-with the given strength. This filter has it's best use in
-the case of having a grayscaled image and "colorizing"
+Filter a view by multiplying pixels by the given RGB values
+with the given strength. This filter has its best use in
+the case of having a grayscale image and "colorizing"
 it. (Such as using a single grayscaled image for a marble,
-and coloring it with a multiply filter so as to reduce
-assets).
+and coloring it with a multiply filter to save texture memory).
 
 Multiply filter.
 
@@ -90,5 +93,5 @@ Parameters
 :    1. `options {object}`
 
 ~~~
-import ui.filter.MultiplyFilter as MultiplyFilter;
+from ui.filter import MultiplyFilter;
 ~~~
