@@ -163,6 +163,7 @@ wget --tries=10 https://raw.github.com/gameclosure/localnotify/master/README.md 
 wget --tries=10 https://raw.github.com/gameclosure/appsflyer/master/README.md -O ./plugins/appsflyer.md
 wget --tries=10 https://raw.github.com/gameclosure/accelerometer/master/README.md -O ./plugins/accelerometer.md
 wget --tries=10 https://raw.github.com/gameclosure/apsalar/master/README.md -O ./plugins/apsalar.md
+wget --tries=10 https://raw.github.com/gameclosure/mixpanel/master/README.md -O ./plugins/mixpanel.md
 
 # and off we go ...
 
