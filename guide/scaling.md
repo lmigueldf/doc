@@ -106,7 +106,7 @@ For portrait mode, here's how to calculate our base
 rectangle dimensions and scale:
 
 ~~~
-var baseWidth = bounds_width; //576
+var baseWidth = boundsWidth; //576
 var baseHeight =  device.screen.height * (boundsWidth / device.screen.width); //864
 var scale = device.screen.width / baseWidth; //1
 ~~~
@@ -191,7 +191,7 @@ import ui.SpriteView as SpriteView;
 
 var boundsWidth = 576;
 var boundsHeight = 1024;
-var baseWidth = bounds_width;
+var baseWidth = boundsWidth;
 var baseHeight = device.screen.height * (boundsWidth / device.screen.width); //864
 var scale = device.screen.width / baseWidth;
 var rightBoundary = baseWidth; //right boundary for screen wrapping
