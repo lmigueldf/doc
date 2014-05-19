@@ -367,7 +367,7 @@ Creates an Image.
 ~~~
 import ui.resource.Image as Image;
 
-var image = new Image({url: 'resources/images/example.png'};
+var image = new Image({url: 'resources/images/example.png'});
 ~~~
 
 ### isReady ()
