@@ -1,38 +1,31 @@
 # 2. Quick Start: Hello, World!
 
-This example is automatically installed when you run
-`basil install examples` from the command line. The
-annotated file can also be [viewed online](../example/basics-helloworld/).
-
 ## Create your first project
 
-With [basil installed](../guide/install.html), you're ready
+With [devkit installed](../guide/install.html), you're ready
 to create a new project! Open up a terminal and navigate to
-the projects directory inside your devkit folder. Initialize
-a game in a new project directory by running:
-
-~~~
-$ basil init hello-world
+the directory where you would like to start your project and
+run `devkit init hello-world`
 ~~~
 
 This creates the `./hello-world/` directory at the current
 working path, and generates a new application that inherits
-from the "empty" template. Now you can switch to the new
-project directory and serve the application:
+from the "empty" template. Now you can start the devkit
+simulator, which should show your new 'hello-world' application
+on the left.
 
 ~~~
-$ cd ./hello-world
-$ basil serve
+$ devkit serve
 ~~~
 
-By default, basil starts a server on your machine at the
+By default, devkit starts a server on your machine at the
 address `http://localhost:9200`. To access the interface for the
 project, simply direct your web browser to this url. If you'd
 like to specify an alternative port for your application
 server, just pass it as a `-p` option:
 
 ~~~
-$ basil serve -p 8080
+$ devkit serve -p 8080
 ~~~
 
 So in this case, the web interface can be accessed at the
@@ -42,10 +35,13 @@ url `http://localhost:8080`.
 primarily supporting the [Chrome web browser](http://www.google.com/chrome).
 So for the remainder of this guide we'll assume you are using that.
 
+
 With the server running and loaded in your web browser,
-click the tab named **Projects** on the left, and select
-your newly created game, labeled **New Project** in the
-project list. To change the title of your project, edit the
+you should see all your registered devkit projects. Select
+your newly created game, click it, and you will see the current
+information for your project, including the list of dependencies.
+
+To change the title of your project, edit the
 `manifest.json` file located in the root of your project
 directory---you can find a complete list of project settings
 in the [Manifest Options Guide](../guide/manifest.html).
@@ -53,53 +49,52 @@ in the [Manifest Options Guide](../guide/manifest.html).
 <img src="./assets/getting-started/hello-project.png" alt="project selector screenshot" class="screenshot">
 
 With the project loaded, launch the simulator for it by
-clicking the **Simulate** button located in the upper-left corner.
+clicking the **Simulate** button located in the upper-right corner.
 
 <img src="./assets/getting-started/hello-world.png" alt="hello, world screenshot" class="screenshot">
 
 Here is your first application running in the browser! Pretty cool, right?
 
-The simulator is a approximation of how your game will behave when
+The simulator is an approximation of how your game will behave when
 running on a mobile device. But, we're
 still in a web browser, which means we can interact with it,
-debug it, and use all the great web development tools we've
+debug it, and use all the great web development tools we're
 used to when creating the game. Hey, guess what, we can do those on native too!
 
 *Note*: If you're working on a project that wasn't created with
-`basil init` (maybe you've downloaded it from elsewhere),
-you must register the project before it's available in your
-web interface. To do this, use the `basil register` command
+`devkit init` (maybe you've downloaded it from elsewhere),
+you must install devkit in the project before it's available in your
+web interface. To do this, use the `devkit install` command
 in the root folder of your project:
 
 ~~~
 $ cd ./anotherproject
-$ basil register
+$ devkit install
 ~~~
 
-After registering your project, if you run `basil serve` you'll
-see the new project in the web interface. A list of registered projects is
+A list of registered projects is
 maintained in the `config.json` file located in the root of
-your basil install and can be edited directly.
+your devkit install and can be edited directly.
 
-### Basil Help
+### Devkit Help
 
-The `basil` tool has a number of commands to help you in
+The `devkit` tool has a number of commands to help you in
 creating, building, and deploying your game. For a list of
-available commands, run `basil help` or `basil -h` in your
+available commands, run `devkit help` or `devkit -h` in your
 terminal.
 
-In addition, each basil command may have its own options.
+In addition, each devkit command may have its own options.
 You can append the `-h` flag to a command to see the help
 available for it:
 
 ~~~
-$ basil init -h
+$ devkit init -h
 ~~~
 
 
 ## Project Structure
 
-When you initialize a new game, a basil project is created
+When you initialize a new game, a devkit project is created
 using the following directory structure:
 
 ~~~
@@ -107,7 +102,8 @@ project/
 .
 ├── manifest.json (project settings)
 ├── sdk/ -> /path/to/devkit/sdk (symlink to game engine libraries)
-├── build/ (auto-generated by basil)
+├── build/ (auto-generated by devkit)
+├── modules/ (auto-generated by devkit - this is where devkit-core lives, plus any addons)
 ├── resources/ (game assets)
 │   └── fonts/
 └── src/
@@ -120,20 +116,23 @@ for your game will be stored in here. There is one required
 file in here, `./src/Application.js`, which is the starting
 point for your game.
 
-When you create a new project using `basil init` the
+When you create a new project using `devkit init` the
 `./src/Application.js` file looks like this:
 
 ~~~
 import ui.TextView as TextView;
 
-exports = Class(GC.Application, function() {
+exports = Class(GC.Application, function () {
 
-  this.initUI = function() {
+  this.initUI = function () {
     var textview = new TextView({
       superview: this.view,
-      layout: "box",
       text: "Hello, world!",
-      color: "white"
+      color: "white",
+      x: 0,
+      y: 100,
+      width: this.view.style.width,
+      height: 100
     });
   };
 
@@ -220,23 +219,6 @@ access to game elements in the inspector and console makes
 for a very powerful development environment. But, if you
 want to persist these change in your application, you'll
 still need to edit your source file.
-
-
-## Install the Examples
-
-Now that you've seen how a basic example is created, it's
-time to look through some more complicated projects! You can
-install the *examples addon* and download a bunch of sample
-code to run and look through:
-
-~~~
-$ basil install examples
-~~~
-
-This addon installs a collection of projects that demonstrate
-some game development techniques using the Game Closure
-DevKit. When you run basil you'll be able to browse and run the
-projects, and also see the annotated source for each.
 
 To see a more complete game in action, check out the
 [Game Walk-Through Guide](../guide/game-walkthrough.html).
