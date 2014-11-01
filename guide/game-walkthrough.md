@@ -37,8 +37,8 @@ and you're greeted with the following screen:
 <img src="./assets/game-walkthrough/basil-start.png" alt="basil start screenshot" class="screenshot">
 
 
-First, we need to select our project: click on the
-**Projects** link in the left nav and select the **Whack-that-Mole!** game:
+First, we need to select our project: select the **Whack-that-Mole!** game from
+the list on the left.
 
 <img src="./assets/game-walkthrough/basil-projects.png" alt="basil project select screenshot" class="screenshot">
 
