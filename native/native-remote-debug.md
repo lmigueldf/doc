@@ -50,10 +50,6 @@ Try the following steps in order of increasing severity:
 
 ## Installation
 
-This is a part of the [Game Closure DevKit project](http://docs.gameclosure.com), and does not require configuration when used in conjunction with the normal DevKit installation process.
-
-To install the software for stand-alone use and set it up:
-
 ~~~
 $ git clone https://github.com/gameclosure/NativeInspector
 $ cd NativeInspector
@@ -65,10 +61,6 @@ Note that this requires `npm` to install.  This tool is available as part of the
 The front-end is only confirmed to work with Google Chrome so you may also want to install Chrome.
 
 ## Usage
-
-This is a part of the [Game Closure DevKit project](http://docs.gameclosure.com), and is part of the Game Closure DevKit web interface under `Remote Debug`.
-
-To manually run the software:
 
 ~~~
 $ node NativeInspector
