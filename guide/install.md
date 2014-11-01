@@ -51,25 +51,12 @@ Now problematic characters like NBSP will be highlighted in red and you can dele
 
 With the prerequisites installed, we're ready to set up the
 Game Closure DevKit. The library and tools are open source and
-hosted in our [GitHub repository](https://github.com/gameclosure/devkit).
-We'll be using the `git` tool to keep our software updated,
-and there is [lots of help](https://help.github.com)
-available for how to use `git`.
+hosted in our [GitHub repository](https://github.com/gameclosure/devkit2).
 
-To download the Game Closure DevKit, issue the following
-commands at the terminal:
+You can install devkit using a current version of npm.
 
 ~~~
-$ git clone https://github.com/gameclosure/devkit2
-~~~
-
-This downloads the DevKit in to the `./devkit2` directory located
-in your current working path.  A good place to put it would be in your
-home directory.  Switch to that directory and run the install script:
-
-~~~
-$ cd devkit2
-$ npm install
+$ npm install -g devkit
 ~~~
 
 This installs the command-line program `devkit`, which is used to
@@ -95,17 +82,6 @@ $ devkit help init
 
 Some commands can also take a `-h` argument to show help.
 
-## Update the DevKit
-
-To keep your copy of the DevKit up to date, run the update command:
-
-~~~
-$ devkit update
-~~~
-
-The update command is also able to check out older versions of the DevKit or
-different channels of DevKit versions.  Read the help menu with `devkit update
---help` for more information on this flexible tool.
 
 ## Hello, World!
 
