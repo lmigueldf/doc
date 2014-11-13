@@ -2,21 +2,55 @@
 
 ## Overview
 
-On a mobile Android device it is possible to watch console logs, inspect JavaScript objects, set breakpoints in running JavaScript code, break on exceptions, and do CPU or heap profiling with the Game Closure DevKit.  This feature is called Remote JavaScript Debugging and is available in any debug-mode game built with the Game Closure DevKit.
+On a mobile Android device it is possible to watch console logs, inspect
+JavaScript objects, set breakpoints in running JavaScript code, break on
+exceptions, and do CPU or heap profiling with the Game Closure DevKit.  This
+feature is called Remote JavaScript Debugging and is available in any
+debug-mode game built with the Game Closure DevKit.
 
-When your JavaScript code throws an exception running on the native device but not the browser, normally you would be out of luck.  A typical way to debug these issues would be to laborously sprinkle log statements throughout your code to hopefully gain enough visibility into what it is doing.
+When your JavaScript code throws an exception running on the native device but
+not the browser, normally you would be out of luck.  A typical way to debug
+these issues would be to laborously sprinkle log statements throughout your
+code to hopefully gain enough visibility into what it is doing.
 
-A more direct approach would be to break on the exception and inspect the JavaScript objects leading to the exception, or set a breakpoint on code leading up to the problem and watch it develop.  Remote JavaScript Debugging hooks you directly into the code execution and allows you to fully and transparently analyze the problem.
+A more direct approach would be to break on the exception and inspect the
+JavaScript objects leading to the exception, or set a breakpoint on code
+leading up to the problem and watch it develop.  Remote JavaScript Debugging
+hooks you directly into the code execution and allows you to fully and
+transparently analyze the problem.
 
 ## Setup
 
-Run `basil serve` and launch a Chrome web browser.  Navigate to the Game Closure DevKit webapp at `http://localhost:9200` in the web browser.  Select "Remote Debug" from the left-hand navigation pane.  After a moment you will see a web inspector app in the right-hand pane.
+Install the [Native Inspector](https://github.com/gameclosure/nativeinspector)
+using the directions in the readme.
 
-Remote JavaScript debugging is only available for Android devices connected via a USB cable, running a game built with the --debug and --no-compress flags.  See the [Android build documentation](./android-build.html) for more information on the build process.
+Start the Native Inspector by navigating to the Native Inspector directory
+and running:
+
+`node NativeInspector.js`
+
+
+This will start the native inspector server, which by listens on port 9220
+by default.
+~~~
+Inspect: Listening for browsers
+Inspect: Listening for controllers on port 9320
+Inspect: Debug client started for localhost : 9222
+Inspect: Lurking at http://0.0.0.0:9220
+~~~
+
+Open your Chrome browser and go to localhost:9220.
+
+Remote JavaScript debugging is only available for Android devices connected via
+a USB cable, running a game built with the --debug and --no-compress flags.
+See the [Android build documentation](./android-build.html) for more
+information on the build process.
 
 ## Console Usage
 
-When the Test App on the mobile device loads a game, the remote debugger will connect to the mobile device.  The web inspector pane will display the console output from your game.
+When you open a debug build on the mobile device loads a game, the remote
+debugger will connect to the mobile device. The web inspector pane will
+display the console output from your game.
 
 <div class="figure-wrapper">
 <figure>
@@ -25,11 +59,18 @@ When the Test App on the mobile device loads a game, the remote debugger will co
 </figure>
 </div>
 
-At the console you are able to run JavaScript commands that are evaluated in the JavaScript context of the mobile device.  Furthermore, while execution is paused you may execute JavaScript in the scope of the current function.  The console will display log messages you would normally see at the Xcode console.  It will also show when scripts are loaded and other useful information for analyzing the execution of your game.
+At the console you are able to run JavaScript commands that are evaluated in
+the JavaScript context of the mobile device.  Furthermore, while execution is
+paused you may execute JavaScript in the scope of the current function.  The
+console will display log messages you would normally see at the Xcode console.
+It will also show when scripts are loaded and other useful information for
+analyzing the execution of your game.
 
 ## Sources Usage
 
-Click over to the Sources tab to view game source code and interact with the web inspector as you would with a familiar web inspector session in the browser.  The most useful debugging features will work remotely.
+Click over to the Sources tab to view game source code and interact with the
+web inspector as you would with a familiar web inspector session in the
+browser.  The most useful debugging features will work remotely.
 
 <div class="figure-wrapper">
 <figure>
@@ -38,11 +79,17 @@ Click over to the Sources tab to view game source code and interact with the web
 </figure>
 </div>
 
-There are two tabs for scripts on the left.  The left tab contains your game source code, and the right tab entitled "Content Scripts" contains the DevKit JavaScript source code.
+There are two tabs for scripts on the left.  The left tab contains your game
+source code, and the right tab entitled "Content Scripts" contains the DevKit
+JavaScript source code.
 
-To break on exceptions, start the debugging session before the exception occurs, and click on the (") pause button in the lower left until it displays blue.  In this state, when an exception occurs in JavaScript, the remote debugger will break on the exception line.
+To break on exceptions, start the debugging session before the exception
+occurs, and click on the (") pause button in the lower left until it displays
+blue.  In this state, when an exception occurs in JavaScript, the remote
+debugger will break on the exception line.
 
-While at a breakpoint you can mouse-over or enter a variable name in the console to inspect its value.
+While at a breakpoint you can mouse-over or enter a variable name in the
+console to inspect its value.
 
 ### Sources Tools: Lower-Left Toolbar
 
@@ -78,7 +125,11 @@ From left to right:
 
 ## CPU Profiler
 
-With the CPU Profiler you can identify code hotspots with ease, and instantly determine where code optimization efforts should be focused if performance needs to be improved.  Try starting and stopping the profiling to cover only critical parts of gameplay to finely focus on the functions that are most helpful to optimize for better game performance.
+With the CPU Profiler you can identify code hotspots with ease, and instantly
+determine where code optimization efforts should be focused if performance
+needs to be improved.  Try starting and stopping the profiling to cover only
+critical parts of gameplay to finely focus on the functions that are most
+helpful to optimize for better game performance.
 
 <div class="figure-wrapper">
 <figure>
@@ -87,11 +138,14 @@ With the CPU Profiler you can identify code hotspots with ease, and instantly de
 </figure>
 </div>
 
-In the image above, a breakpoint was used to artificially inflate the time spent at Molehill.js line 52.  In practice, this may mean that code around that line should be refactored.
+In the image above, a breakpoint was used to artificially inflate the time
+spent at Molehill.js line 52.  In practice, this may mean that code around that
+line should be refactored.
 
 ## Heap Profiler
 
-By using the Heap Profiler you can quickly get a feel for how much memory is being used by different objects in your game.
+By using the Heap Profiler you can quickly get a feel for how much memory is
+being used by different objects in your game.
 
 <div class="figure-wrapper">
 <figure>
@@ -100,8 +154,10 @@ By using the Heap Profiler you can quickly get a feel for how much memory is bei
 </figure>
 </div>
 
-By taking two snapshots and enabling Comparison mode you can identify the types and number of objects that are being created or destroyed.
+By taking two snapshots and enabling Comparison mode you can identify the types
+and number of objects that are being created or destroyed.
 
 ## Troubleshooting Issues
 
-If the debugger becomes unresponsive, attempt to refresh the browser window.  If that doesn't work, force-quit your game and restart it also.
+If the debugger becomes unresponsive, attempt to refresh the browser window.
+If that doesn't work, force-quit your game and restart it also.

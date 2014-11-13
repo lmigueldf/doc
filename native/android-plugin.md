@@ -1,95 +1,111 @@
 # Android Plugin System
 
-Writing the Android native code for a DevKit plugin is covered in this guide, which uses the [Geolocation plugin](http://github.com/gameclosure/geoloc) as an example.
+Writing the Android native code for a DevKit plugin is covered in this guide,
+which uses the
+[Accelerometer plugin](http://github.com/gameclosure/accelerometer),
+the [GeoLoc plugin](http://github.com/gameclosure/geoloc), the
+[Airpush plugin](http://github.com/gameclosure/airpush), and the
+[TapJoy plugin](https://github.com/gameclosure/tapjoy) as examples.
 
-For an overview of the plugin system, the requisite directory structure, and how to write the JavaScript component of the plugin, please see the [main plugin development guide](../guide/plugins.html).
+For an overview of the plugin system, the requisite directory structure, and
+how to write the JavaScript component of the plugin, please see the [main
+plugin development guide](../guide/plugins.html).
 
 ### Usage
 
-First install the plugin with `basil install [plugin name]`.  For example:
+First install the plugin with `devkit install [plugin repository path]` while
+in the root of your application folder.
+For example:
 
 ~~~
-basil install geoloc
+devkit install https://github.com/gameclosure/accelerometer
 ~~~
 
-To test plugins you will want to add the required plugins to your game's manifest.json file:
+This will install the accelerometer plugin in your modules folder and will
+add the installed tag to the dependencies list in your manifest.json.
 
-~~~
-"addons": [
-	"geoloc"
-],
-~~~
 
 And do a full build:
 
 ~~~
-basil debug native-android --clean --open
+devkit debug native-android --clean --open
 ~~~
 
-This will add the required libraries and code for the plugin to the native stack so that it will be present during runtime.
+This will add the required libraries and code for the plugin to the native
+stack so that it will be present during runtime.
 
-Some plugins require additional configuration.  Please read the README.md file that comes with the plugin to see what additional steps you should take to use it.
+Some plugins require additional configuration.  Please read the README.md file
+that comes with the plugin to see what additional steps you should take to use
+it.
 
-The Android Test App *does not* work with native plugins at this time.  You will see warnings that look like:
+The Android Test App *does not* work with native plugins at this time.  You
+will see warnings that look like:
 
 ~~~
-{plugins} WARNING: Event could not be delivered for plugin: GeolocPlugin
+{plugins} WARNING: Event could not be delivered for plugin: AccelerometerPlugin
 ~~~
 
 ### Android Plugin: android/config.json
 
-Under `addons/geoloc/android/config.json` is the configuration used while building Android targets with the GeoLocation plugin.
+Under `modules/accelerometer/android/config.json` is the configuration used
+while building Android targets with the Accelerometer plugin.
 
-It specifies Java code, libraries, JARs, and manifest changes required to build the Android plugin:
+It specifies Java code, libraries, JARs, and manifest changes required to build
+the Android plugin:
 
 ~~~
 {
-		"copyGameFiles": [
-			"leadbolt.jar"
-		],
-		"copyFiles": [
-			"GeolocPlugin.java",
-			"res/layout/airpush_notify.xml"
-		],
-		"libraries": [
-		],
-		"jars": [
-			"leadbolt.jar"
-		],
-		"injectionXML": "manifest.xml",
-		"injectionXSL": "manifest.xsl",
-		"injectionSource": [
-			{
-				"regex": "LEADBOLT_PACKAGE",
-				"keyForReplace": "leadBoltPackage"
-			}
-		]
+    "copyFiles": [
+        "AccelerometerPlugin.java"
+    ],
+    "injectionXML": "manifest.xml",
+    "injectionXSL": "manifest.xsl",
+    "jars": [],
+    "libraries": []
 }
 ~~~
 
 ##### copyGameFiles
 
-Sometimes it's required to copy a file from the user's game directory into the final build product.  You can accomplish this by adding a string to the "copyGameFiles" array.
+Sometimes it's required to copy a file from the user's game directory into the
+final build product.  You can accomplish this by adding a string to the
+"copyGameFiles" array.
 
-This will copy the given files from the game folder, relative to the game's `manifest.json` root directory, into the addon folder's `/android/` before performing any of the other build steps.
+This will copy the given files from the game folder, relative to the game's
+`manifest.json` root directory, into the addon folder's `/android/` before
+performing any of the other build steps.
 
-For example you can allow each game to specify a `leadbolt.jar` file that then gets used during building by also adding the .jar file to the "copyGameFiles" and "jars" array.
+For example you can allow each game to specify a `leadbolt.jar` file that then
+gets used during building by also adding the .jar file to the "copyGameFiles"
+and "jars" array. See the GeoLoc plugin for more details.
 
 ##### copyFiles
 
 ###### copyFiles: Java Code
 
-This key should list any Java source code files in the `addons/geoloc/android/` directory that will be incorporated into the Android build.  This includes any .IADL files.  The `basil` build scripts will pull the package name out of the Java files.
+This key should list any Java source code files in the
+`modules/accelerometer/android/` directory that will be incorporated into the
+Android build.  This includes any .IADL files.  The `devit` build scripts will
+pull the package name out of the Java files.
 
-The TeaLeaf Java source code will be built first, and then the Activity for your game will be built.  It is in this second build step where your plugin code is built.
+The TeaLeaf Java source code will be built first, and then the Activity for
+your game will be built.  It is in this second build step where your plugin
+code is built.
 
-If your package is under `com.tealeaf.plugin.plugins`, then the file will be copied into the destination build directory under `src/com/tealeaf/plugin/plugins` and the `ant` build will incorporate them.
+If your package is under `com.tealeaf.plugin.plugins`, then the file will be
+copied into the destination build directory under
+`src/com/tealeaf/plugin/plugins` and the `ant` build will incorporate them.
 
 ###### copyFiles: Resources
 
-The `copyFiles` key can also be used to copy .xml and other resources into the `res/` directory for the Android build.  The way to do this is to create a new "res" directory under your plugin's "android" directory.  Then create subdirectories under "res" for any resources you want to include.  For each resource, add it to the `copyFiles` key.
+The `copyFiles` key can also be used to copy .xml and other resources into the
+`res/` directory for the Android build.  The way to do this is to create a new
+"res" directory under your plugin's "android" directory.  Then create
+subdirectories under "res" for any resources you want to include.  For each
+resource, add it to the `copyFiles` key.
 
-For example, the [Airpush plugin](http://github.com/gameclosure/airpush) includes an XML layout file.  Here is the plugin directory structure:
+For example, the [Airpush plugin](http://github.com/gameclosure/airpush)
+includes an XML layout file.  Here is the plugin directory structure:
 
 ~~~
 .
@@ -110,7 +126,8 @@ For example, the [Airpush plugin](http://github.com/gameclosure/airpush) include
     └── airpush.js
 ~~~
 
-And the android/config.json file has this resource listed under the `copyFiles` section:
+And the android/config.json file has this resource listed under the `copyFiles`
+section:
 
 ~~~
 	"copyFiles": [
@@ -120,17 +137,20 @@ And the android/config.json file has this resource listed under the `copyFiles` 
 
 ##### libraries
 
-A list of .a static library files in the `addons/geoloc/android/` directory.
+A list of .a static library files in the `addons/accelerometer/android/`
+directory.
 
 ##### jars
 
-A list of .jar files in the `addons/geoloc/android/` directory.
+A list of .jar files in the `addons/accelerometer/android/` directory.
 
 ##### injectionXML
 
-To add permissions and other AndroidManifest.xml keys, you can edit the `manifest.xml`.
+To add permissions and other AndroidManifest.xml keys, you can edit the
+`manifest.xml`.
 
-For example to add permissions for the GeoLocation plugin, the ACCESS_FINE_LOCATION permission was added:
+For example to add permissions for the GeoLocation plugin, the
+ACCESS_FINE_LOCATION permission was added:
 
 ~~~
 	<!--START_PLUGINS_MANIFEST-->
@@ -147,17 +167,24 @@ For example to add permissions for the GeoLocation plugin, the ACCESS_FINE_LOCAT
 	<!--END_PLUGINS_APPLICATION-->
 ~~~
 
-Permissions should be added to the `PLUGINS_MANIFEST` section.  Application section changes will go in the `PLUGINS_APPLICATION` section as shown above.
+Permissions should be added to the `PLUGINS_MANIFEST` section.  Application
+section changes will go in the `PLUGINS_APPLICATION` section as shown above.
 
-The `PLUGINS_ACTIVITY` section can be used to add intents that the main activity will respond to, which allows third party apps to launch your game.
+The `PLUGINS_ACTIVITY` section can be used to add intents that the main
+activity will respond to, which allows third party apps to launch your game.
 
-Additionally, any game `manifest.json` "Android" subkeys you would like to have available in your Java code should be added as values under the plugins application section as shown above for "tapjoyAppID."
+Additionally, any game `manifest.json` "Android" subkeys you would like to have
+available in your Java code should be added as values under the plugins
+application section as shown above for "tapjoyAppID."
 
 ##### injectionXSL
 
-If you need to use XSLT parsing to modify the AndroidManifest.xml then you can provide a `manifest.xsl` that gets passed through xslt during the build.
+If you need to use XSLT parsing to modify the AndroidManifest.xml then you can
+provide a `manifest.xsl` that gets passed through xslt during the build.
 
-This is the method you may use to access `manifest.json` keys.  In the following example, "tapjoyAppID" is routed from `android:tapjoyAppId` in `manifest.json` to a key that is accessible from the Java code:
+This is the method you may use to access `manifest.json` keys.  In the
+following example, "tapjoyAppID" is routed from `android:tapjoyAppId` in
+`manifest.json` to a key that is accessible from the Java code:
 
 ~~~
 <?xml version="1.0" encoding="UTF-8"?>
@@ -183,7 +210,8 @@ This is the method you may use to access `manifest.json` keys.  In the following
 </xsl:stylesheet>
 ~~~
 
-Note that `manifest.json` keys typically follow the convention that the first character is lower-case and word breaks are camel-cased.
+Note that `manifest.json` keys typically follow the convention that the first
+character is lower-case and word breaks are camel-cased.
 
 ##### injectionSource
 
@@ -196,7 +224,9 @@ The "injectionSource" key is an array of JSON objects with the format:
 	}
 ~~~
 
-It allows you to replace strings in the plugin Java code before building with strings from the game's `manifest.json` file.  In the example above, Java code like this:
+It allows you to replace strings in the plugin Java code before building with
+strings from the game's `manifest.json` file.  In the example above, Java code
+like this:
 
 ~~~
 private String leadBoltPackage = "LEADBOLT_PACKAGE";
@@ -218,13 +248,16 @@ Assuming that the game's `manifest.json` contains the key:
 
 ### Android Plugin: Code
 
-Your plugin class must be packaged under `com.tealeaf.plugin.plugins` with a `package com.tealeaf.plugin.plugins;` line:
+Your plugin class must be packaged under `com.tealeaf.plugin.plugins` with a
+`package com.tealeaf.plugin.plugins;` line:
 
 ~~~
 package com.tealeaf.plugin.plugins;
 ~~~
 
-Your Java code will implement the IPlugin interface that is imported with a `import com.tealeaf.plugin.IPlugin;` line.  There are a number of other useful imports that are worth looking into:
+Your Java code will implement the IPlugin interface that is imported with a
+`import com.tealeaf.plugin.IPlugin;` line.  There are a number of other useful
+imports that are worth looking into:
 
 ~~~
 import com.tealeaf.plugin.IPlugin;
@@ -236,7 +269,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 ~~~
 
-The IPlugin interface provides a number of callbacks for common events that occur while running games, which you can react to:
+The IPlugin interface provides a number of callbacks for common events that
+occur while running games, which you can react to:
 
 ~~~
 public interface IPlugin {
@@ -255,7 +289,8 @@ public interface IPlugin {
 
 ##### Reading manifest.json keys at runtime
 
-If the keys were routed using the `manifest.xsl` method shown above, then the keys can be read at runtime like this:
+If the keys were routed using the `manifest.xsl` method shown above, then the
+keys can be read at runtime like this:
 
 ~~~
 	HashMap<String, String> manifestKeyMap = new HashMap<String,String>();
@@ -279,14 +314,18 @@ If the keys were routed using the `manifest.xsl` method shown above, then the ke
 	}
 ~~~
 
-Note here that we are doing `meta.get(k).toString()`, where `k` is a manifest.json key under the "Android" section.  It is a mistake to do `meta.toString(k)` because this will cause an exception when the manifest.json key contains integer-like data such as "1234567".
+Note here that we are doing `meta.get(k).toString()`, where `k` is a
+manifest.json key under the "Android" section.  It is a mistake to do
+`meta.toString(k)` because this will cause an exception when the manifest.json
+key contains integer-like data such as "1234567".
 
 
 ##### Handling JavaScript Events
 
-It is important that the JavaScript code specifies the exact plugin class name and method to call.  Note that the above class matches the JavaScript name:
+It is important that the JavaScript code specifies the exact plugin class name
+and method to call.  Note that the above class matches the JavaScript name:
 
-~~~  
+~~~
 NATIVE.plugins.sendEvent("GeolocPlugin", "onRequest", '{"method":"getPosition"}');
 ~~~
 
@@ -313,7 +352,8 @@ public class GeolocPlugin implements IPlugin {
 
 ##### Sending JavaScript Events
 
-To set up an Event that will get passed back to JavaScript write a class that looks like this:
+To set up an Event that will get passed back to JavaScript write a class that
+looks like this:
 
 ~~~
 public class GeolocEvent extends com.tealeaf.event.Event {
@@ -328,15 +368,18 @@ public class GeolocEvent extends com.tealeaf.event.Event {
 }
 ~~~
 
-The Event name is chosen in the constructor.  It should be somewhat unique to prevent naming conflicts.
+The Event name is chosen in the constructor.  It should be somewhat unique to
+prevent naming conflicts.
 
-To pass the event to JavaScript, create a new instance of your Event class and push it onto the `EventQueue`:
+To pass the event to JavaScript, create a new instance of your Event class and
+push it onto the `EventQueue`:
 
 ~~~
 EventQueue.pushEvent(new GeolocEvent(83.2106, -10.1984));
 ~~~
 
-The EventQueue will serialize the event for you into a string that can be read from JavaScript in the NATIVE event handler.
+The EventQueue will serialize the event for you into a string that can be read
+from JavaScript in the NATIVE event handler.
 
 Your JavaScript wrapper can listen for this event by registering for it:
 
@@ -348,4 +391,7 @@ NATIVE.events.registerHandler('geoloc', function(e) {
 });
 ~~~
 
-It is a good idea to wrap this message passing code inside your JavaScript wrapper so that the user of your plugin does not need to call any NATIVE functions directly.
+It is a good idea to wrap this message passing code inside your JavaScript
+wrapper so that the user of your plugin does not need to call any NATIVE
+functions directly.
+
