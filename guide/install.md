@@ -7,7 +7,7 @@ and development. Once everything is installed and ready
 to go, please read the [Hello, World! Guide](../guide/hello-world.html)
 to create your first application.
 
-This guide is mainly for Linux or OSX.  To install on Windows please follow the [Windows install guide](../guide/windows-guide.html) first.
+This guide is mainly for Linux or OSX.  To install on Windows please follow the [Windows install guide](https://github.com/gameclosure/devkit2/wiki/Install-Instructions---Windows).
 
 ## Prerequisites
 
