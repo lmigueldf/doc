@@ -30,15 +30,8 @@ Click **[Download]** to download the .mobileprovision file.
 
 ##Building
 
-Edit your `manifest.json` or your Basil global `config.json` to add the following keys:
-
-~~~
-ios:developer="Christopher Taylor"  (change to your name)
-ios:provision="/Users/cat/Desktop/Kiwi_Run.mobileprovision"  (change to your file)
-~~~
-
 From your app directory run this command:
-`$ basil build native-ios --ipa --no-compress`
+`$ devkit release native-ios --ipa --provision "/Users/bboy/Desktop/BeardsOnBoards.mobileprovision" --name="Bob Baxter"`
 It will create an .IPA file under build/native-ios/appShortName/appShortName.ipa
 
 Browse to your [testflightapp.com](http://testflightapp.com) account.
