@@ -99,13 +99,6 @@ $ brew install android-ndk
 
 The homebrew install script will add the required NDK tools to your path.
 
-## Install Android Plugin for Devkit
-
-Devkit is the command-line tool you will use from the Game Closure DevKit to
-perform native builds.  Make sure your version of devkit is up to date with
-`npm update -g devkit`.
-
-
 ## Generating a Keystore
 
 To digitally sign your game's binary file for release, you will need to
