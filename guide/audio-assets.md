@@ -6,7 +6,13 @@ sound within your game, consult the [AudioManager API](../api/audio.html).
 
 ## The Essentials
 
-On iOS you cannot play .OGG audio, so ensure that your sound files are in .MP3 format as discussed in this guide.  With the Game Closure DevKit, you can easily support both .OGG for Android and .MP3 for iOS by having two copies of each sound file.  When building, basil will take the .OGG version when it can be used on the target platform (Android for example) and will fall back to the .MP3 extension version if needed (iOS).  Inside your game, name your sound files with a .MP3 extension rather than .OGG.
+On iOS you cannot play .OGG audio, so ensure that your sound files are in .MP3
+format as discussed in this guide.  With the Game Closure DevKit, you can
+easily support both .OGG for Android and .MP3 for iOS by having two copies of
+each sound file.  When building, devkit will take the .OGG version when it can
+be used on the target platform (Android for example) and will fall back to the
+.MP3 extension version if needed (iOS).  Inside your game, name your sound
+files with a .MP3 extension rather than .OGG.
 
 ## Audio Recording and Editing Tools
 
@@ -33,7 +39,10 @@ formats, but it is important for developers to be aware of the
 format restrictions of the operating systems, and browsers,
 on which their game will be deployed. Check the target
 platform's website for the latest information on supported
-audio file formats, [the browser](https://developer.mozilla.org/en-US/docs/HTML/Supported_media_formats#Browser_compatibility), [iOS](http://developer.apple.com/library/ios/#documentation/AudioVideo/Conceptual/MultimediaPG/UsingAudio/UsingAudio.html) and [Android](http://developer.android.com/guide/appendix/media-formats.html).
+audio file formats, [the
+browser](https://developer.mozilla.org/en-US/docs/HTML/Supported_media_formats#Browser_compatibility),
+[iOS](http://developer.apple.com/library/ios/#documentation/AudioVideo/Conceptual/MultimediaPG/UsingAudio/UsingAudio.html)
+and [Android](http://developer.android.com/guide/appendix/media-formats.html).
 
 Other important considerations, when choosing a file format
 for your audio assets, are restrictions that are inherent to
