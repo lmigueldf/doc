@@ -43,12 +43,12 @@ and runs the same on both web browsers and mobile
 devices. When running on a native device, this code is run
 by the V8 interpreter on Android and Spidermonkey on iOS.
 
-### GC API
+### Devkit-Core
 
-* **git**: [gcapi](https://github.com/gameclosure/gcapi)
+* **git**: [devkit-core](https://github.com/gameclosure/devkit-core)
 * **language**: JavaScript
 * **directories:**
-	- **native**: This holds the js code used to communicate to and from native  
+	- **native**: This holds the js code used to communicate to and from native
 
 This layer provides the backend implementations for the
 DevKit JavaScript layer. It provides platform-specific code
@@ -64,7 +64,7 @@ accessed directly by game code.
 * **git**: [native-android](https://github.com/gameclosure/native-android), [native-ios](https://github.com/gameclosure/native-ios)
 * **language**: C++
 * **directories:**
-	- **android:Tealeaf/jni/js**: Directory containing the code to interface with the V8 interpreter.  
+	- **android:Tealeaf/jni/js**: Directory containing the code to interface with the V8 interpreter.
 	- **ios:tealeaf/js**: Directory containing the code to interface with the Spidermonkey interpreter.
 
 This is the native layer that interprets all the JavaScript
@@ -79,7 +79,7 @@ Native Core/Platform layers.
 * **git**: [native-core](https://github.com/gameclosure/native-core)
 * **language**: C/C++
 **directories:**
-	- **platform**: Contains header files that are implemented differently per native platform.  
+	- **platform**: Contains header files that are implemented differently per native platform.
 	- **timestep**: Directory containing code dealing specifically with the timestep game engine.
 
 Native accelerated components of the Game Closure DevKit. This
@@ -90,7 +90,7 @@ games running smoothly.
 
 ### Platform
 
-* **git**: [native-android](https://github.com/gameclosure/native-android), [native-ios](https://github.com/gameclosure/native-ios)  
+* **git**: [native-android](https://github.com/gameclosure/native-android), [native-ios](https://github.com/gameclosure/native-ios)
 * **language**: C++, Objective C++
 * **directories:**
 	- **android: Tealeaf/jni/platform**: Directory containing code to interface between Android Java code, native code, and native core.
@@ -102,8 +102,8 @@ iOS it is in Objective-C.
 
 ### Android/Java
 
-* **git**: [native-android](https://github.com/gameclosure/native-android)   
-* **language**: Java  
+* **git**: [native-android](https://github.com/gameclosure/native-android)
+* **language**: Java
 
 Java code used to directly communicate with the Android OS
 and other device features.
@@ -117,16 +117,16 @@ because of the need to communicate between various
 programming languages and because they allow code reuse
 between different platforms.
 
-### Game Closure DevKit to/from GC API
+### Game Closure DevKit to/from Devkit-Core
 
 Moving from the Game Closure DevKit requires calling JavaScript
 functions that live within the native folder of
-gcapi. Since the Game Closure DevKit makes the correct calls to
-gcapi behind the scenes the user does not need to know
+devkit-core. Since the Game Closure DevKit makes the correct calls to
+devkit-core behind the scenes the user does not need to know
 which platform their code will be running on.
 
-### GC API to/from Core or Platform through the JavaScript Interpreter
-	
+### Devkit-Core to/from Native-Core or Platform through the JavaScript Interpreter
+
 From within native code several JavaScript objects are
 created and added to the single object `NATIVE`. This global
 object in JavaScript provides functions that allow moving
@@ -134,7 +134,7 @@ from JavaScript to C and back. Native code can also
 use the interpreter to make calls other functions that live
 inside of JavaScript.
 
-### Core to/from Platform
+### Native-Core to/from Platform
 
 Using code defined in platform headers, calls can be made
 into platform code so that it can be processed by the
@@ -172,7 +172,7 @@ This file represents an API for playing named sounds. In our
 example it will use the `Audio.js` class in native to try
 and play the sound.
 
-3. **[gcapi/src/native/Audio.js](https://github.com/gameclosure/gcapi/tree/master/src/native/Audio.js)**:
+3. **[devkit-core/src/clientapi/native/Audio.js](https://github.com/gameclosure/devkit-core/tree/master/src/clientapi/native/Audio.js)**:
 Since the sound that is trying to be played has not yet been
 loaded it will be loaded by making a call to
 `Native.sound.loundSound`. This is a function that is
@@ -250,11 +250,11 @@ the events back to JavaScript. The events are dispatched
 using the `NATIVE.events.dispatchEvent` which lives on the
 `NATIVE` object in JavaScript.
 
-15. **[gcapi/src/native/events.js](https://github.com/gameclosure/gcapi/tree/master/src/native/events.js)**:
+15. **[devkit-core/src/clientapi/native/events.js](https://github.com/gameclosure/devkit-core/tree/master/src/clientapi/native/events.js)**:
 The call from native code ends up in the `events.js` file
 which eventually sends the event to `soundLoading.js`.
 
-16. **[gcapi/src/native/soundLoading.js](https://github.com/gameclosure/gcapi/tree/master/src/native/soundLoading.js)**:
+16. **[devkit-core/src/native/soundLoading.js](https://github.com/gameclosure/devkit-core/tree/master/src/clientapi/native/soundLoading.js)**:
 Finally, the event makes it to the listener that was
 registered from with `soundLoading.js`. This function takes
 the sound event and calls the `onLoad` handler associated with
