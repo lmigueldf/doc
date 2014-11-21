@@ -16,8 +16,11 @@ format and can be edited by hand. For example, a minimal
   "supportedOrientations": ["portrait"],
   "studio": {
     "name": "Jolly Fun Times, Inc.",
-	"domain": "example.com"
-  }
+    "domain": "example.com"
+  },
+  "dependencies": {
+    "devkit-core": "https://github.com/gameclosure/devkit-core#v2.0.11"
+  },
 }
 ~~~
 
@@ -29,6 +32,11 @@ keys, and configures the environment to build for native devices.
 From inside the JavaScript code for your game, these options are
 accessible at runtime via the CONFIG global variable.
 For example: `CONFIG.title` and `CONFIG.appID`.
+
+The manifest also specifies and manages module dependencies, including
+the devkit-core runtime itself. Dependencies are automatically
+added when you use `devkit install <module_path>` and are in the form
+"module_name": "repositorypath#version".
 
 
 ## Supported Configuration Settings
@@ -82,27 +90,13 @@ The version number or string for your game, for example:
 `'v0.1-beta'`. This is provided as a convenience for game
 developers, so use whatever convention you wish.
 
-### sdkVersion
-1. `{string}`
-
-The version of the Game Closure DevKit used to build this
-project. This value is automatically filled in when the game
-is run by devkit.
-
-
-### doc
-1. `{string}` ---URL.
-
-This is a URL link pointing to documentation for the
-project. This is used for the examples to display the
-annotated source code and displayed in the devkit project list.
-
 ### supportedOrientations
 1. `{array} = ["portrait"]` ---Options are `"portrait"`, `"landscape"`, or both.
 
 Specify which orientations are allowed on the mobile
-device. The simulator will default to the first entry in the
-array, for example:
+device. If only one is specified, the game and the simulator will be locked to
+the specified orientation (you may need to prevent rotation in your device
+build).
 
 ~~~
 "supportedOrientations": ["landscape", "portrait"],
@@ -121,16 +115,16 @@ interface for your game.
 ### splash
 
 1. `{object}`
-	* `autoHide {boolean} = false` ---Automatically hide the splash image when the app starts.
-	* `universal {string}` ---Path to a high resoution universal splash image that will automatically be used to fill in any of the missing sizes for the splash keys below.
-	* `portrait480 {string} (optional)` ---Path to splash image, 320x480px, topside-left.
-	* `portrait960 {string} (optional)` ---Path to splash image, 640x960px, topside-left.
-	* `portrait1024 {string} (optional)` ---Path to splash image, 768x1024px, topside-up.
-	* `portrait1136 {string} (optional)` ---Path to splash image, 640x1136px, topside-left.
-	* `portrait2048 {string} (optional)` ---Path to splash image, 1536x2048px, topside-up.
-	* `landscape768 {string} (optional)` ---Path to splash image, 1024x768px, topside-up.
-	* `landscape1536 {string} (optional)` ---Path to splash image, 2048x1536px, topside-up.
-	* `music {string}` ---Path to music to play on startup.
+    * `autoHide {boolean} = false` ---Automatically hide the splash image when the app starts.
+    * `universal {string}` ---Path to a high resoution universal splash image that will automatically be used to fill in any of the missing sizes for the splash keys below.
+    * `portrait480 {string} (optional)` ---Path to splash image, 320x480px, topside-left.
+    * `portrait960 {string} (optional)` ---Path to splash image, 640x960px, topside-left.
+    * `portrait1024 {string} (optional)` ---Path to splash image, 768x1024px, topside-up.
+    * `portrait1136 {string} (optional)` ---Path to splash image, 640x1136px, topside-left.
+    * `portrait2048 {string} (optional)` ---Path to splash image, 1536x2048px, topside-up.
+    * `landscape768 {string} (optional)` ---Path to splash image, 1024x768px, topside-up.
+    * `landscape1536 {string} (optional)` ---Path to splash image, 2048x1536px, topside-up.
+    * `music {string}` ---Path to music to play on startup.
 
 For easy usage, set `autoHide` set to true and provide a `universal` image.
 For a portrait game you should specify a portrait image for universal,
@@ -144,12 +138,12 @@ The splash section is used to specify splash screen images
 for Android and iPhone/iPad devices. All splash screens
 should be PNG image files at 8-bit 3-channel RGB color.
 
-Setting the `autoHide` property to `true` causes the
+Setting the `autoHide` property to `true` (the default) causes the
 splash screen to be automatically removed after loading
-completes. If `autoHide` is `false`---the default---the
+completes. If `autoHide` is `false` the
 developer can manually remove the splash screen by calling `GC.hidePreloader()`.
 
-Example simple `manifest.json` settings:
+Example simple splash settings:
 
 ~~~
 "splash": {
@@ -158,7 +152,7 @@ Example simple `manifest.json` settings:
 }
 ~~~
 
-Example advanced `manifest.json` settings:
+Example advanced splash settings:
 
 ~~~
 "splash": {
@@ -177,11 +171,6 @@ Example advanced `manifest.json` settings:
 1. `{boolean} = false`
 
 Mobile browser flag for setting device DPI or low DPI.
-
-### unlockViewport
-1. `{boolean} = false`
-
-If this is set to `true`, scrolling in a mobile web browser will display the address bar.
 
 ### nativeURLScheme
 1. `{string} = "tealeaf"`
@@ -202,11 +191,11 @@ device to pinpoint where in the stack an error is occurring.
 1. `{object}`
     * `versionCode {number}` ---Google Play version code.
     * `"icons" {object}` contains:
-	    * `36 {string}` ---Path to small game app icon, size: 36x36px.
-    	* `48 {string}` ---Path to medium game app icon, size: 48x48px.
-	    * `72 {string}` ---Path to large game app icon, size: 72x72px.
-    	* `96 {string}` ---Path to extra-large game app icon, size: 96x96px.
-    	* `144 {string}` ---Path to Nexus 10 game app icon, size: 144x144px.
+        * `36 {string}` ---Path to small game app icon, size: 36x36px.
+        * `48 {string}` ---Path to medium game app icon, size: 48x48px.
+        * `72 {string}` ---Path to large game app icon, size: 72x72px.
+        * `96 {string}` ---Path to extra-large game app icon, size: 96x96px.
+        * `144 {string}` ---Path to Nexus 10 game app icon, size: 144x144px.
 
 Device specific settings for Android phones and tablets.  The Google Play store version code can be set here, and app icon paths are set in this section.
 
@@ -236,14 +225,14 @@ In the `manifest.json` file, include the icon images like this:
     * `appleID {string}` ---The game Apple ID from iTunes Connect.
     * `version {string}` ---The game version from iTunes Connect.
     * `"icons" {object}` contains:
-    	* `renderGloss {boolean}` ---Specify `true` to have Xcode render gloss over your icon images.
-	    * `57 {string}` ---Path to iPhone/iPod Touch game app icon, size: 57x57px.
-	    * `72 {string}` ---Path to iPad game app icon, size: 72x72px.
-	    * `76 {string}` ---Path to iOS 7 iPad non-retina game app icon, size: 76x76px.
-	    * `114 {string}` ---Path to retina iPhone/iPod Touch game app icon, size: 114x114px.
-	    * `120 {string}` ---Path to iOS 7 retina iPhone game app icon, size: 120x120px.
-	    * `144 {string}` ---Path to retina iPad game app icon, size: 144x144px.
-	    * `152 {string}` ---Path to iOS 7 retina iPad game app icon, size: 152x152px.
+        * `renderGloss {boolean}` ---Specify `true` to have Xcode render gloss over your icon images.
+        * `57 {string}` ---Path to iPhone/iPod Touch game app icon, size: 57x57px.
+        * `72 {string}` ---Path to iPad game app icon, size: 72x72px.
+        * `76 {string}` ---Path to iOS 7 iPad non-retina game app icon, size: 76x76px.
+        * `114 {string}` ---Path to retina iPhone/iPod Touch game app icon, size: 114x114px.
+        * `120 {string}` ---Path to iOS 7 retina iPhone game app icon, size: 120x120px.
+        * `144 {string}` ---Path to retina iPad game app icon, size: 144x144px.
+        * `152 {string}` ---Path to iOS 7 retina iPad game app icon, size: 152x152px.
 
 Device specific settings for iOS phones and tablets.  In this section you can copy settings from iTunes Connect to have your game hooked up properly for in-app purchases.  You should also specify icon images in this section.
 
@@ -272,25 +261,6 @@ In the `manifest.json` file, include the icon images like this:
 ~~~
 
 Note that your app will be rejected from the iOS App Store if any of these images are missing.
-
-### TrueType Fonts (TTF)
-
-Provide a list of TrueType fonts that are used by your game.
-
-~~~
-	"ttf": [
-		"resources/fonts/Arial Black.ttf"
-	],
-~~~
-
-For Android targets, it is crucial that custom .TTF file names match a name inside the font file.
-
-For iOS targets, it is crucial that custom fonts do not have the same name as a default system font.  A complete list of default iOS fonts is available at [iosfonts.com](http://iosfonts.com).
-
-### mpMetricsKey
-1. `{string}`
-
-The MixPanel metrics key.
 
 ### fonts
 1. `{array}`
