@@ -191,9 +191,7 @@ of the new connected device.  At the bottom of the Organizer, press the (+)
 [Add To Portal] button.  This will add the device to your developer portal.
 
 At this point you are ready to start building for iOS!  Check out the [building
-guide](./ios-build.html) for information on building your game, or the [test
-app guide](./ios-test-app.html) for instructions on how to use the test app for
-expedited development and testing.
+guide](./ios-build.html) for information on building your game.
 
 ## Troubleshooting Issues
 

@@ -1,19 +1,10 @@
 # Scaling the Game to Fit the Device
 
 In this guide you'll see how to scale your game in a way
-that fits multiple device aspect ratios. This example is
-part of the *examples* add-on, which can be installed in to
-basil with the following at your command line:
+that fits multiple device aspect ratios.
 
-~~~
-$ basil install examples
-~~~
-
-In the basil web interface, navigate to **Projects >
-Examples > Layout: Scale Region** to run the example in the simulator.
-
-It can also be [viewed online](../example/basics-scalescreen/)
-along with the other examples. 
+This example can also be [viewed online](../example/basics-scalescreen/)
+along with the other examples.
 
 ## Aspect Ratio
 
@@ -201,10 +192,10 @@ var vx = 0;
 exports = Class(GC.Application, function () {
 
   this.initUI = function () {
-    
+
     //scale the root view
     this.view.style.scale = scale;
-    
+
     var background = new ImageView({
       superview: this.view,
       x: 0,
@@ -245,7 +236,6 @@ exports = Class(GC.Application, function () {
         sprite.stopAnimation();
         if (sprite.style.flipX) { sprite.style.flipX = false; }
         sprite.startAnimation('walk', {loop: true});
-        
       } else {
         //walk right
         vx = 2;

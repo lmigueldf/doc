@@ -61,13 +61,8 @@ the approach used to connect to iOS devices on the LAN.
 
 On the device side, the iOS codebase for Game Closure runs a custom debug
 server written from scratch.  The core of the D8 protocol is implemented in
-Objective-C++ for this platform, making it mostly feature-complete.  To avoid
-running the debug server for every game, the debug server will only run in Test
-App mode.
+Objective-C++ for this platform, making it mostly feature-complete.
 
-When the Test App connects to the devkit simulation server, the devkit server
-will report the requesting IP address over UDP to the NativeInspector as
-indicated above.
 
 ## Troubleshooting
 

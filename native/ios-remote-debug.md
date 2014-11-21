@@ -5,7 +5,7 @@
 On a mobile iOS device it is possible to watch console logs, inspect JavaScript
 objects, set breakpoints in running JavaScript code, and break on exceptions
 with the Game Closure DevKit.  This feature is called Remote JavaScript
-Debugging and is only available in the Game Closure iOS Test App.
+Debugging.
 
 When your JavaScript code throws an exception running on the native device but
 not the browser, normally you would be out of luck.  A typical way to debug
@@ -40,14 +40,9 @@ Inspect: Lurking at http://0.0.0.0:9220
 
 Open your Chrome browser and go to localhost:9220.
 
-Remote JavaScript debugging is only available when using the [Test
-App](./ios-test-app.html).  To install the test app, launch its Xcode project
-([see test app documentation](./ios-test-app.html)), attach a mobile device,
-and run the Xcode project on the device.
-
 ## Console Usage
 
-When the Test App on the mobile device loads a game, the remote debugger will
+When the application on the mobile device loads a game, the remote debugger will
 connect to the mobile device.  The web inspector pane will display the console
 output from your game.
 

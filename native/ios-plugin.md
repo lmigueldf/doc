@@ -27,7 +27,7 @@ This will install the accelerometer plugin in your modules folder and will
 add the installed tag to the dependencies list in your manifest.json.
 
 
-And do a full build:
+Do a full build:
 
 ~~~
 devkit debug native-ios --clean
@@ -40,16 +40,10 @@ Some plugins require additional configuration.  Please read the README.md file
 that comes with the plugin to see what additional steps you should take to use
 it.
 
-The iOS Test App *does not* work with native plugins at this time.  You will
-see warnings that look like:
-
-~~~
-{plugins} WARNING: Event could not be delivered for plugin: AccelerometerPlugin
-~~~
 
 ### iOS Plugin: ios/config.json
 
-Under `addons/geoloc/ios/config.json` is the configuration used while building
+Under `geoloc/ios/config.json` is the configuration used while building
 iOS targets with the GeoLocation plugin.
 
 It specifies the code and frameworks needed to build the iOS plugin:
@@ -212,7 +206,7 @@ for system frameworks.  Be sure to include the header in your plugin code
 
 For static libraries, pass in a file path relative to the `ios` directory
 containing the `config.json` file for iOS.  As an example you may add a new
-static library under `addons/geoloc/gcif_reader.a`  And in this case the
+static library under `geoloc/gcif_reader.a`  And in this case the
 `ios/config.json` file would contain:
 
 ~~~
@@ -418,8 +412,8 @@ var e = {method:"getPosition"};
 NATIVE.plugins.sendEvent("GeolocPlugin", "onRequest", JSON.stringify(e));
 ~~~
 
-It is important that the case of the class name matches the case of the event.
-And it should be the same class name used for the Android version.  So
+It is important that the case of the class name matches the case of the event,
+which should be the same class name used for the Android version.  So
 "GeolocPlugin" in the above JavaScript code is the same as the `GeolocPlugin`
 class name in the native code.
 

@@ -5,14 +5,10 @@ with the Game Closure DevKit.
 
 ## [Overview](./ios-stages.html)
 
-The development cycle can be broken down into [five stages](./ios-stages.html),
+The development cycle can be broken down into [four stages](./ios-stages.html),
 leading up to deployment on the iTunes App Store.  Initially, all
 development is done with [web tools](../guide/install.html) and emulated
 devices.
-
-Then the [Test App](./ios-test-app.html) is used to accelerate transition onto
-the mobile devices, with the help of [remote
-debugging](./ios-remote-debug.html) tools.
 
 Then [iOS building](./ios-build.html) is encouraged to test and demo your game,
 which graduates into group testing with TestFlight, and finally deployment

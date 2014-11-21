@@ -34,13 +34,13 @@ This will start a server on your machine on port
 9200. Navigate your web browser to `http://localhost:9200`
 and you're greeted with the following screen:
 
-<img src="./assets/game-walkthrough/basil-start.png" alt="basil start screenshot" class="screenshot">
+<img src="./assets/game-walkthrough/basil-start.png" alt="devkit start screenshot" class="screenshot">
 
 
 First, we need to select our project: select the **Whack-that-Mole!** game from
 the list on the left.
 
-<img src="./assets/game-walkthrough/basil-projects.png" alt="basil project select screenshot" class="screenshot">
+<img src="./assets/game-walkthrough/basil-projects.png" alt="devkit project select screenshot" class="screenshot">
 
 With the game icon selected, click the **Simulate** button in the top right
 to launch the game in a new web browser tab.

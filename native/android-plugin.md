@@ -38,12 +38,6 @@ Some plugins require additional configuration.  Please read the README.md file
 that comes with the plugin to see what additional steps you should take to use
 it.
 
-The Android Test App *does not* work with native plugins at this time.  You
-will see warnings that look like:
-
-~~~
-{plugins} WARNING: Event could not be delivered for plugin: AccelerometerPlugin
-~~~
 
 ### Android Plugin: android/config.json
 
@@ -72,7 +66,7 @@ final build product.  You can accomplish this by adding a string to the
 "copyGameFiles" array.
 
 This will copy the given files from the game folder, relative to the game's
-`manifest.json` root directory, into the addon folder's `/android/` before
+`manifest.json` root directory, into the modules folder's `/android/` before
 performing any of the other build steps.
 
 For example you can allow each game to specify a `leadbolt.jar` file that then
@@ -110,6 +104,7 @@ includes an XML layout file.  Here is the plugin directory structure:
 ~~~
 .
 ├── README.md
+├── package.json
 ├── android
 │   ├── AirpushPlugin.java
 │   ├── airpush.jar
@@ -137,12 +132,12 @@ section:
 
 ##### libraries
 
-A list of .a static library files in the `addons/accelerometer/android/`
+A list of .a static library files in the `accelerometer/android/`
 directory.
 
 ##### jars
 
-A list of .jar files in the `addons/accelerometer/android/` directory.
+A list of .jar files in the `accelerometer/android/` directory.
 
 ##### injectionXML
 
