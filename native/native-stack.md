@@ -34,7 +34,7 @@ component is included for reference.
 * **git**: [devkit](https://github.com/gameclosure/devkit)
 * **language**: JavaScript
 * **directories**:
-	- **src**: Contains the source of the code used to build the basil tool.
+	- **src**: Contains the source of the code used to build the devkit tool.
 	- **lib**: Contains the source code for the Game Closure DevKit components.
 
 The JavaScript code for the Game Closure DevKit and running
