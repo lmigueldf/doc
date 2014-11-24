@@ -89,15 +89,7 @@ system font.  A complete list of default iOS fonts is available at
 [iosfonts.com](http://iosfonts.com).
 
 Make sure that you have included the .TTF (TrueType Font) file under
-`./resources/fonts` in your game directory.  And that under `./manifest.json`
-you have a "ttf" section containing the relative path to the file, as in the
-following example:
-
-~~~
-	"ttf": [
-		"resources/fonts/Arial Black.ttf"
-	],
-~~~
+`./resources/fonts` in your game directory.
 
 Inside your game you can reference the font by one of the names inside the font
 file.  For best interoperability, the .TTF file name should also match one of
