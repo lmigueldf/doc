@@ -53,6 +53,13 @@ console will display log messages you would normally see at the Xcode console.
 It will also show when scripts are loaded and other useful information for
 analyzing the execution of your game.
 
+<div class="figure-wrapper">
+<figure>
+<img src="./assets/ios/ios-debugger-console.png" />
+<figcaption>Remote iOS Debugger.</figcaption>
+</figure>
+</div>
+
 ## Sources Usage
 
 Click over to the Sources tab to view game source code and interact with the
@@ -61,7 +68,7 @@ browser.  The most useful debugging features will work remotely.
 
 <div class="figure-wrapper">
 <figure>
-<img src="./assets/ios/ios-debugger.png" />
+<img src="./assets/ios/ios-debugger-source.png" />
 <figcaption>Remote iOS Debugger.</figcaption>
 </figure>
 </div>

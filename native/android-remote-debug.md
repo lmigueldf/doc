@@ -32,6 +32,7 @@ and running:
 
 This will start the native inspector server, which by listens on port 9220
 by default.
+
 ~~~
 Inspect: Listening for browsers
 Inspect: Listening for controllers on port 9320
@@ -54,7 +55,7 @@ display the console output from your game.
 
 <div class="figure-wrapper">
 <figure>
-<img src="./assets/android/android-console.png"></img>
+<img src="./assets/android/android-debugger-console.png"></img>
 <figcaption>Android Remote Debugger Console.</figcaption>
 </figure>
 </div>
@@ -74,7 +75,7 @@ browser.  The most useful debugging features will work remotely.
 
 <div class="figure-wrapper">
 <figure>
-<img src="./assets/android/android-debugger.png"></img>
+<img src="./assets/android/android-debugger-source.png"></img>
 <figcaption>Android Remote Debugger Sources.</figcaption>
 </figure>
 </div>
@@ -123,39 +124,6 @@ From left to right:
 + While execution is paused: Step out of current function scope
 + Disable or enable all breakpoints
 
-## CPU Profiler
-
-With the CPU Profiler you can identify code hotspots with ease, and instantly
-determine where code optimization efforts should be focused if performance
-needs to be improved.  Try starting and stopping the profiling to cover only
-critical parts of gameplay to finely focus on the functions that are most
-helpful to optimize for better game performance.
-
-<div class="figure-wrapper">
-<figure>
-<img src="./assets/android/android-cpu-profiler.png"></img>
-<figcaption>Android Remote CPU Profiler.</figcaption>
-</figure>
-</div>
-
-In the image above, a breakpoint was used to artificially inflate the time
-spent at Molehill.js line 52.  In practice, this may mean that code around that
-line should be refactored.
-
-## Heap Profiler
-
-By using the Heap Profiler you can quickly get a feel for how much memory is
-being used by different objects in your game.
-
-<div class="figure-wrapper">
-<figure>
-<img src="./assets/android/android-heap-profiler.png"></img>
-<figcaption>Android Remote Heap Profiler.</figcaption>
-</figure>
-</div>
-
-By taking two snapshots and enabling Comparison mode you can identify the types
-and number of objects that are being created or destroyed.
 
 ## Troubleshooting Issues
 
