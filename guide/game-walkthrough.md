@@ -3,10 +3,11 @@
 *Whack That Mole!* is a basic, non-trivial, game built using
 the Game Closure DevKit. The [source code](https://github.com/gameclosure/whack-that-mole)
 is available and in this guide we'll step through it
-to see how the components of the Game Closure DevKit fit together.
+to see how the components of the Game Closure DevKit fit together. You can also
+[play in the browser](http://storage.googleapis.com/devkit-example-games/whackthatmole/index.html).
 
 This walk-through assumes that you have the Game Closure DevKit
-up and running. See the [Quick Start Guide](../guide/install.html)
+up and running. See the [Installation Guide](../guide/install.html)
 for details on how to get set up.
 
 ## Game Install
@@ -49,7 +50,7 @@ to launch the game in a new web browser tab.
 
 The game is now running in the browser simulator! On the
 title screen, click the **Play** button to begin. The game
-is simple enough, just whack the moles when they peak out of
+is simple enough, just whack the moles when they peek out of
 their holes in the ground. After 20 seconds or so, the game
 ends and your score is displayed. Then simply click anywhere
 on the screen to return back to the title screen.
@@ -275,17 +276,19 @@ exports = Class(GC.Application, function () {
     var titlescreen = new TitleScreen(),
         gamescreen = new GameScreen();
 
-    this.view.style.backgroundColor = '#30B040';
+    this.view.style.backgroundColor = '#008a42';
 
-    //Add a new StackView to the root of the scene graph
+    // Add a new StackView to the root of the scene graph
+    // create everything at size 320x480, then scale so to
+    // fit horizontally
     var rootView = new StackView({
       superview: this,
-      x: device.width / 2 - 160,
-      y: device.height / 2 - 240,
+      x: 0,
+      y: 0,
       width: 320,
       height: 480,
       clip: true,
-      backgroundColor: '#37B34A'
+      scale: device.width / 320
     });
 
     rootView.push(titlescreen);
@@ -449,7 +452,7 @@ placed over the portion of the background image designated
 as the play button. This button will detect an input event, then
 signal to the main application that the user is ready to
 start the game. Since this is such a small class, we'll look
-at the file in its entirety here, then break down it's component
+at the file in its entirety here, then break down its component
 pieces:
 
 ~~~
