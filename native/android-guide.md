@@ -5,13 +5,10 @@ devices with the Game Closure DevKit.
 
 ## [Overview](./android-stages.html)
 
-The development cycle can be broken down into [four
+The development cycle can be broken down into [three
 stages](./android-stages.html), leading up to deployment on Google Play.
 Initially, all development is done with [web tools](../guide/install.html) and
 emulated devices.
-
-Then the [Test App](./android-test-app.html) is used to accelerate transition
-onto mobile devices.
 
 Then [Android building](./android-build.html) is encouraged to test and demo
 your game, with the help of [remote debugging](./android-remote-debug.html)

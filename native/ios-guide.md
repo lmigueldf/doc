@@ -19,13 +19,6 @@ via the iTunes App Store.
 The [Game Closure DevKit setup guides](./ios-setup.html) will get you up and
 running as fast as possible.
 
-## [Test App](./ios-test-app.html) with [Remote Debugging](./ios-remote-debug.html)
-
-With the [Test App](./ios-test-app.html) you can quickly iterate through
-changes to your game on a mobile device, and the integrated [remote JavaScript
-debugging](./ios-remote-debug.html) allows you to isolate and annihilate *all*
-the bugs.
-
 ## [Build](./ios-build.html)
 
 When you are ready to start building your game, the [build
