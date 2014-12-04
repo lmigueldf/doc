@@ -115,10 +115,12 @@ formats and other details.
     "57": "resources/icons/ios57.png",
     "72": "resources/icons/ios72.png",
     "76": "resources/icons/ios76.png",
+    "87": "resources/icons/ios87.png",
     "114": "resources/icons/ios114.png",
     "120": "resources/icons/ios120.png",
     "144": "resources/icons/ios144.png",
     "152": "resources/icons/ios152.png"
+    "180": "resources/icons/ios180.png"
   }
 }
 ~~~
