@@ -716,7 +716,7 @@ rect.getCenter(); //=> {x: 5, y: 2.5}
 ### getCorner (corner)
 
 Parameters
-:    1. `corner {Rect.CORNER}`
+:    1. `corner {Rect.CORNERS}`
 
 Returns
 :    1. `{Point}`
@@ -729,16 +729,16 @@ the section below.
 var rect = new Rect(0, 2, 10, 5);
 
 //Enumerable values used to represent the four corners of the rectangle object.
-rect.getCorner(Rect.CORNER.TOP_LEFT); //=> {x: 0, y: 2}
-rect.getCorner(Rect.CORNER.TOP_RIGHT); //=> {x: 10, y: 2}
-rect.getCorner(Rect.CORNER.BOTTOM_LEFT); //=> {x: 0, y: 7}
-rect.getCorner(Rect.CORNER.BOTTOM_RIGHT); //=> {x: 10, y: 7}
+rect.getCorner(Rect.CORNERS.TOP_LEFT); //=> {x: 0, y: 2}
+rect.getCorner(Rect.CORNERS.TOP_RIGHT); //=> {x: 10, y: 2}
+rect.getCorner(Rect.CORNERS.BOTTOM_LEFT); //=> {x: 0, y: 7}
+rect.getCorner(Rect.CORNERS.BOTTOM_RIGHT); //=> {x: 10, y: 7}
 ~~~
 
 ### getSide (side)
 
 Parameters
-:    1. `side {Rect.SIDE}`
+:    1. `side {Rect.SIDES}`
 
 Returns
 :    1. `{Line}`
@@ -750,22 +750,22 @@ section below.
 ~~~
 var rect1 = new Rect(0, 2, 10, 5);
 
-rect.getSide(Rect.SIDE.TOP);    //=> {start: {x: 0, y: 2}, end: {x: 10, y:2}}
-rect.getSide(Rect.SIDE.RIGHT);  //=> {start: {x: 10, y: 2}, end: {x: 10, y:7}}
-rect.getSide(Rect.SIDE.BOTTOM); //=> {start: {x: 10, y: 7}, end: {x: 0, y:7}}
-rect.getSide(Rect.SIDE.LEFT);   //=> {start: {x: 0, y: 7}, end: {x: 0, y:2}}
+rect.getSide(Rect.SIDES.TOP);    //=> {start: {x: 0, y: 2}, end: {x: 10, y:2}}
+rect.getSide(Rect.SIDES.RIGHT);  //=> {start: {x: 10, y: 2}, end: {x: 10, y:7}}
+rect.getSide(Rect.SIDES.BOTTOM); //=> {start: {x: 10, y: 7}, end: {x: 0, y:7}}
+rect.getSide(Rect.SIDES.LEFT);   //=> {start: {x: 0, y: 7}, end: {x: 0, y:2}}
 ~~~
 
 ## Class Properties
 
-### Rect.CORNER `{object}`
+### Rect.CORNERS `{object}`
 
 * `TOP_LEFT`
 * `TOP_RIGHT`
 * `BOTTOM_LEFT`
 * `BOTTOM_RIGHT`
 
-### Rect.SIDE `{object}`
+### Rect.SIDES `{object}`
 
 * `TOP`
 * `RIGHT`
