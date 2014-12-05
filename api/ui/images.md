@@ -1,8 +1,8 @@
 # Class: ui.ImageView
 
 Inherits from
-:    1. [ui.View](./ui-view.html)
-     2. [event.Emitter](./event.html#class-event.emitter)
+:    [ui.View](./ui-view.html)
+:    [event.Emitter](./event.html#class-event.emitter)
 
 Display an image within a `View`.
 
@@ -22,9 +22,10 @@ Display an image within a `View`.
 ### new ImageView ([options])
 
 Parameters
-:    1. `options {object}`
-	     * `image {string|ui.resource.Image} = false` ---Image to render. A path in the resources directory or [`Image`](#class-ui.resource.image) instance.
-		 * `autoSize {boolean} = false` ---If `false`, stretch the image to the dimensions of the view. Use the image dimensions if `true`.
+:    `options {object}`
+
+* `image {string|ui.resource.Image} = false` ---Image to render. A path in the resources directory or [`Image`](#class-ui.resource.image) instance.
+* `autoSize {boolean} = false` ---If `false`, stretch the image to the dimensions of the view. Use the image dimensions if `true`.
 
 ~~~
 import ui.ImageView as ImageView;
@@ -42,16 +43,17 @@ var imageview = new ImageView({
 ### getImage ()
 
 Returns
-:    1. `{ui.resource.Image}`
+:    `{ui.resource.Image}`
 
 Returns the internal `ui.resource.Image` instance to be rendered.
 
 ### setImage (url [, options])
 
 Parameters
-:    1. `url {string}`
-	 2. `options {object}` ---Optional.
-	     * `autoSize {boolean} = false` ---Stretch the image to the View dimensions if `false`. Use the image dimensions if `true`.
+:    `url {string}`
+:    `options {object}` ---Optional.
+
+* `autoSize {boolean} = false` ---Stretch the image to the View dimensions if `false`. Use the image dimensions if `true`.
 
 Set the image from its path in the resources directory. This
 will create a new `Image` instance on each call to
@@ -65,9 +67,10 @@ imageview.setImage('resources/images/example2.png');
 ### setImage (img [, options])
 
 Parameters
-:    1. `img {ui.resource.Image}`
-	 2. `options {object}`
-	     * `autoSize {boolean} = false` ---Stretch the image to the view dimensions if `false`. Use the image dimensions if `true`.
+:    `img {ui.resource.Image}`
+:    `options {object}`
+
+* `autoSize {boolean} = false` ---Stretch the image to the view dimensions if `false`. Use the image dimensions if `true`.
 
 Sets the image for the `ImageView` using an instance of `ui.resource.Image`.
 
@@ -87,14 +90,14 @@ constrain the dimensions to the ratio.
 ### getOrigWidth ()
 
 Returns
-:    1. `{number}`
+:    `{number}`
 
 Returns the source image width.
 
 ### getOrigHeight ()
 
 Returns
-:    1. `{number}`
+:    `{number}`
 
 Returns the source image height.
 
@@ -103,10 +106,10 @@ Returns the source image height.
 ### doOnLoad (callback)
 
 Parameters
-:    1. `callback {function}`
+:    `callback {function}`
 
 Returns
-:    1. `{this}`
+:    `{this}`
 
 Registers a callback to be run once the image has fully
 loaded (uses [event.Callback](./event.html#class-event.callback)). Callback
@@ -116,8 +119,8 @@ is executed with the `ImageView` instance as the context.
 # Class: ui.ImageScaleView
 
 Inherits from
-:    1. [ui.View](./ui-view.html)
-     2. [event.Emitter](./event.html#class-event.emitter)
+:    [ui.View](./ui-view.html)
+:    [event.Emitter](./event.html#class-event.emitter)
 
 A specialized `ImageView` for advanced scaling techniques, including 9-Slice.
 
@@ -126,30 +129,31 @@ A specialized `ImageView` for advanced scaling techniques, including 9-Slice.
 ### new ImageScaleView ([options])
 
 Parameters
-:    1. `options {object}`
-	     * `image {string|ui.resource.Image} = false` ---Source image. Just like `ImageView`, specify a string path or an instance of `ui.resource.Image`.
-		 * `autoSize {boolean} = false` ---Stretch the image to the view dimensions if `false`. Use the image dimensions if `true`.
-		 * `scaleMethod {string} = 'stretch'` ---Valid options are `'none'`, `'stretch'`, `'cover'`, `'contain'`, `'tile'`, `'9slice'`, `'6slice'`, `'3slice'` and `'2slice'`.
-		 * `debug {boolean} = false` ---Display scaling measurements.
-		 * `rows {number} = undefined` ---Number of rows when `scaleMethod` is `'tile'`.
-		 * `columns {number} = undefined` ---Number of columns when `scaleMethod` is `'tile'`.
-		 * `renderCenter {boolean} = true` ---Render the center of a 9-slice. Make this `false` if you want your `ImageScaleView` to be a frame.
-		 * `sourceSlices {object}` ---source slices. See below for details.
-		     * `horizontal {object}`
-			     * `left {number}`
-				 * `center {number}`
-				 * `right {number}`
-			 * `vertical {object}`
-				 * `top {number}`
-				 * `middle {number}`
-				 * `bottom {number}`
-		 * `destSlices {object}` ---destination slices. Setting these values to 0 can create 3- and 6-slice scaling.
-		     * `horizontal {object}`
-				 * `left {number}`
-				 * `right {number}`
-			 * `vertical {object}`
-				 * `top {number}`
-				 * `bottom {number}`
+:    `options {object}`
+
+* `image {string|ui.resource.Image} = false` ---Source image. Just like `ImageView`, specify a string path or an instance of `ui.resource.Image`.
+* `autoSize {boolean} = false` ---Stretch the image to the view dimensions if `false`. Use the image dimensions if `true`.
+* `scaleMethod {string} = 'stretch'` ---Valid options are `'none'`, `'stretch'`, `'cover'`, `'contain'`, `'tile'`, `'9slice'`, `'6slice'`, `'3slice'` and `'2slice'`.
+* `debug {boolean} = false` ---Display scaling measurements.
+* `rows {number} = undefined` ---Number of rows when `scaleMethod` is `'tile'`.
+* `columns {number} = undefined` ---Number of columns when `scaleMethod` is `'tile'`.
+* `renderCenter {boolean} = true` ---Render the center of a 9-slice. Make this `false` if you want your `ImageScaleView` to be a frame.
+* `sourceSlices {object}` ---source slices. See below for details.
+  * `horizontal {object}`
+    * `left {number}`
+    * `center {number}`
+    * `right {number}`
+  * `vertical {object}`
+    * `top {number}`
+    * `middle {number}`
+    * `bottom {number}`
+* `destSlices {object}` ---destination slices. Setting these values to 0 can create 3- and 6-slice scaling.
+  * `horizontal {object}`
+    * `left {number}`
+    * `right {number}`
+  * `vertical {object}`
+    * `top {number}`
+    * `bottom {number}`
 
 ## Tile Options
 
@@ -157,20 +161,20 @@ When `scaleMethod` is `'tile'`, you must define either `rows` or `columns` (_not
 
 ~~~
 new ui.ImageScaleView({
-	superview: this,
-	image: 'resources/images/flower.png',
-	layout: 'box',
-	scaleMethod: 'tile',
-	columns: 5
+    superview: this,
+    image: 'resources/images/flower.png',
+    layout: 'box',
+    scaleMethod: 'tile',
+    columns: 5
 });
 ~~~
 
 ## 9-Slice Options
 
-The `sourceSlices` is an object that specifies where the slices 
-start and end. For 9-slice you need to specify the sizes of the 
-3 columns and 3 rows. `horizontal` refers to the columns and `vertical` 
-refers to the rows if you were to visualise it as a grid. 
+The `sourceSlices` is an object that specifies where the slices
+start and end. For 9-slice you need to specify the sizes of the
+3 columns and 3 rows. `horizontal` refers to the columns and `vertical`
+refers to the rows if you were to visualise it as a grid.
 
 <div class="figure-wrapper">
 <figure>
@@ -204,20 +208,20 @@ side.
 For horizontal slices you must pass the following properties:
 
 * `sourceSlices {object}`
-	* `horizontal {object}`
-		* `left {number}`
-		* `center {number}`
-		* `right {number}`
-	* `vertical {object}`
-		* `top {number}`
-		* `bottom {number}`
+  * `horizontal {object}`
+    * `left {number}`
+    * `center {number}`
+    * `right {number}`
+  * `vertical {object}`
+    * `top {number}`
+    * `bottom {number}`
 * `destSlices {object}` ---Optional, if omitted then the `sourceSlices` will be used
-	* `horizontal {object}`
-		* `left {number}`
-		* `right {number}`
-	* `vertical {object}`
-		* `top {number}`
-		* `bottom {number}`
+  * `horizontal {object}`
+    * `left {number}`
+    * `right {number}`
+  * `vertical {object}`
+    * `top {number}`
+    * `bottom {number}`
 
 <div class="figure-wrapper">
 <figure>
@@ -229,20 +233,20 @@ For horizontal slices you must pass the following properties:
 For vertical slices you must pass the following properties:
 
 * `sourceSlices {object}`
-	* `horizontal {object}`
-		* `left {number}`
-		* `right {number}`
-	* `vertical {object}`
-		* `top {number}`
-		* `middle {number}`
-		* `bottom {number}`
+  * `horizontal {object}`
+    * `left {number}`
+    * `right {number}`
+  * `vertical {object}`
+    * `top {number}`
+    * `middle {number}`
+    * `bottom {number}`
 * `destSlices {object}` ---Optional, if omitted then the `sourceSlices` will be used
-	* `horizontal {object}`
-		* `left {number}`
-		* `right {number}`
-	* `vertical {object}`
-		* `top {number}`
-		* `bottom {number}`
+  * `horizontal {object}`
+    * `left {number}`
+    * `right {number}`
+  * `vertical {object}`
+    * `top {number}`
+    * `bottom {number}`
 
 <div class="figure-wrapper">
 <figure>
@@ -256,14 +260,14 @@ For vertical slices you must pass the following properties:
 For horizontal slices you must pass the following properties:
 
 * `sourceSlices {object}`
-	* `horizontal {object}`
-		* `left {number}`
-		* `center {number}`
-		* `right {number}`
+  * `horizontal {object}`
+    * `left {number}`
+    * `center {number}`
+    * `right {number}`
 * `destSlices {object}` ---Optional, if omitted then the `sourceSlices` will be used
-	* `horizontal {object}`
-		* `left {number}`
-		* `right {number}`
+  * `horizontal {object}`
+    * `left {number}`
+    * `right {number}`
 
 <div class="figure-wrapper">
 <figure>
@@ -275,14 +279,14 @@ For horizontal slices you must pass the following properties:
 For vertical slices you must pass the following properties:
 
 * `sourceSlices {object}`
-	* `vertical {object}`
-		* `top {number}`
-		* `middle {number}`
-		* `bottom {number}`
+  * `vertical {object}`
+    * `top {number}`
+    * `middle {number}`
+    * `bottom {number}`
 * `destSlices {object}` ---Optional, if omitted then the `sourceSlices` will be used
-	* `vertical {object}`
-		* `top {number}`
-		* `bottom {number}`
+ * `vertical {object}`
+    * `top {number}`
+    * `bottom {number}`
 
 <div class="figure-wrapper">
 <figure>
@@ -300,12 +304,12 @@ properties.
 For horizontal slices you must pass the following properties:
 
 * `sourceSlices {object}`
-	* `horizontal {object}`
-		* `left {number}`
-		* `right {number}`
+  * `horizontal {object}`
+    * `left {number}`
+    * `right {number}`
 * `destSlices {object}` ---Optional, if omitted then the `sourceSlices` will be used
-	* `horizontal {object}`
-		* `left {number}`
+  * `horizontal {object}`
+    * `left {number}`
 
 <div class="figure-wrapper">
 <figure>
@@ -317,12 +321,12 @@ For horizontal slices you must pass the following properties:
 For vertical slices you must pass the following properties:
 
 * `sourceSlices {object}`
-	* `vertical {object}`
-		* `top {number}`
-		* `bottom {number}`
+  * `vertical {object}`
+    * `top {number}`
+    * `bottom {number}`
 * `destSlices {object}` ---Optional, if omitted then the `sourceSlices` will be used
-	* `vertical {object}`
-		* `top {number}`
+ * `vertical {object}`
+    * `top {number}`
 
 <div class="figure-wrapper">
 <figure>
@@ -348,19 +352,20 @@ by the View class.
 ### new Image ([options])
 
 Parameters
-:    1. `options {object}`
-	     * `scale {boolean} = false` ---If `true`, will scale the width and height according to the original ratio.
-		 * `sourceW {number} = -1` ---Source width of the desired area on the image.
-		 * `sourceH {number} = -1` ---Source height of the desired area on the source image.
-		 * `sourceX {number} = 0` ---Source X position of the desired area on the source image.
-		 * `sourceY {number} = 0` ---Source Y position of the desired area on the source image.
-		 * `marginTop {number} = 0`
-		 * `marginBottom {number} = 0`
-		 * `marginRight {number} = 0`
-		 * `marginLeft {number} = 0`
-		 * `sourceScale {number} = 1` ---Scale of the source area.
-		 * `url {string}` ---A URL or a base64 encoded image string.
-		 * `srcImage {Image}` ---Using an instance of the native DOM Image object.
+:    `options {object}`
+
+  * `scale {boolean} = false` ---If `true`, will scale the width and height according to the original ratio.
+  * `sourceW {number} = -1` ---Source width of the desired area on the image.
+  * `sourceH {number} = -1` ---Source height of the desired area on the source image.
+  * `sourceX {number} = 0` ---Source X position of the desired area on the source image.
+  * `sourceY {number} = 0` ---Source Y position of the desired area on the source image.
+  * `marginTop {number} = 0`
+  * `marginBottom {number} = 0`
+  * `marginRight {number} = 0`
+  * `marginLeft {number} = 0`
+  * `sourceScale {number} = 1` ---Scale of the source area.
+  * `url {string}` ---A URL or a base64 encoded image string.
+  * `srcImage {Image}` ---Using an instance of the native DOM Image object.
 
 Creates an Image.
 
@@ -373,7 +378,7 @@ var image = new Image({url: 'resources/images/example.png'};
 ### isReady ()
 
 Returns
-:    1. `{boolean}`
+:    `{boolean}`
 
 Returns whether the image has loaded.
 
@@ -384,76 +389,76 @@ Destroys the image.
 ### setSrcImage (image)
 
 Parameters
-:    1. `image {Image}`
+:    `image {Image}`
 
 Sets the raw (HTML) internal image.
 
 ### setSrcImage (image)
 Parameters
-:    1. `image {string}`
+:    `image {string}`
 
 Sets the raw (HTML) internal image's URL.
 
 ### getURL ()
 
 Returns
-:    1. `{string}`
+:    `{string}`
 
 Returns the image URL.
 
 ### setURL (url)
 
 Parameters
-:    1. `url {string}`
+:    `url {string}`
 
 Sets the image URL.
 
 ### getImageData ()
 
 Returns
-:    1. `{ImageData}`
+:    `{ImageData}`
 
 Returns the image data object from a canvas. Only available in browsers.
 
 ### getWidth ()
 
 Returns
-:    1. `{number}`
+:    `{number}`
 
 Returns the image's computed width (taking into account margin and scale).
 
 ### getOrigWidth ()
 
 Returns
-:    1. `{number}`
+:    `{number}`
 
 Returns the image's actual, "natural" width (i.e. width ignoring margin and scale).
 
 ### getHeight ()
 
 Returns
-:    1. `{number}`
+:    `{number}`
 
 Returns the image's computed height (taking into account margin and scale).
 
 ### getOrigHeight ()
 
 Returns
-:    1. `{number}`
+:    `{number}`
 
 Returns the image's actual, "natural" height (i.e. height ignoring margin and scale).
 
 ### getSource ()
 
 Returns
-:    1. `{Image}`
+:    `{Image}`
 
 Returns the raw (HTML) image.
 
 ### getMap ()
 
 Returns
-:    1. `{object}`
+:    `{object}`
 
 Returns the internal `ImageMap` object. This class models
 the region of a larger image that this "Image" references.
@@ -461,14 +466,14 @@ the region of a larger image that this "Image" references.
 ### setMap (x, y, w, h, marginTop, marginRight, marginBottom, marginLeft)
 
 Parameters
-:    1. `x {number}`
-	 2. `y {number}`
-	 3. `w {number}`
-	 4. `h {number}`
-	 5. `marginTop {number}`
-	 6. `marginRight {number}`
-	 7. `marginBottom {number}`
-	 8. `marginLeft {number}`
+:    `x {number}`
+:    `y {number}`
+:    `w {number}`
+:    `h {number}`
+:    `marginTop {number}`
+:    `marginRight {number}`
+:    `marginBottom {number}`
+:    `marginLeft {number}`
 
 Sets the properties of the internal `ImageMap` object.
 
@@ -477,10 +482,10 @@ Sets the properties of the internal `ImageMap` object.
 ### doOnLoad (callback)
 
 Parameters
-:    1. `callback {function}`
+:    `callback {function}`
 
 Returns
-:    1. `{this}`
+:    `{this}`
 
 Registers a callback to be run once the image has fully
 loaded (done with [event.Callback](./event.html#class-event.callback)).
