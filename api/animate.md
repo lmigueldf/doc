@@ -12,6 +12,8 @@ your game loop.
 
 ## Examples
 
+* [See all the Animations in
+Action](http://storage.googleapis.com/devkit-modules/animations/index.html)
 * [Basic Animation](../example/animation-basic/)
 * [Continuous Animation](../example/animation-continuous/)
 * [Pause an Animation](../example/animation-pause/)
