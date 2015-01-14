@@ -75,10 +75,6 @@ $ cd ./anotherproject
 $ devkit install
 ~~~
 
-A list of registered projects is
-maintained in the `config.json` file located in the root of
-your devkit install and can be edited directly.
-
 ### Devkit Help
 
 The `devkit` tool has a number of commands to help you in
