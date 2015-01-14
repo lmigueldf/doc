@@ -8,13 +8,13 @@ the directory where you would like to start your project and
 run:
 
 ~~~
-$ devkit init hello-world
+$ devkit init helloworld
 ~~~
 
-This creates the `./hello-world/` directory at the current
+This creates the `./helloworld/` directory at the current
 working path, and generates a new application that inherits
 from the "empty" template. Now you can start the devkit
-simulator, which should show your new 'hello-world' application
+simulator, which should show your new 'helloworld' application
 on the left.
 
 ~~~
