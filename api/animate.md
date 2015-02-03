@@ -27,11 +27,11 @@ Action](http://storage.googleapis.com/devkit-modules/animations/index.html)
 ### animate (obj, groupID)
 
 Parameters
-:    1. `obj {ui.View|object}` ---The view or object to animate.
-     2. `groupID {number}` ---The group identifier for this animation, [see below](#class-group)
+:    `obj {ui.View|object}` ---The view or object to animate.
+:    `groupID {number}` ---The group identifier for this animation, [see below](#class-group)
 
 Returns
-:    1. `{Animator}` ---Returns the animator object so the function call can be chained.
+:    `{Animator}` ---Returns the animator object so the function call can be chained.
 
 Create an Animator for a [View](../api/ui-view.html) or
 generic JavaScript object. Note that when animating a
@@ -53,10 +53,10 @@ animate(myView).now({x: 100}).then({y: 100});
 ### animate.getGroup (id)
 
 Parameters
-:    1. `id {number}` ---The group identifier of the group to fetch.
+:    `id {number}` ---The group identifier of the group to fetch.
 
 Returns
-:    1. `{Group}`
+:    `{Group}`
 
 Returns the Group with the specified
 identifier. [See below](#class-group) for more information on groups.
@@ -65,7 +65,7 @@ identifier. [See below](#class-group) for more information on groups.
 # Class: animate.Animator
 
 Inherits from
-:    1. [event.Emitter](./event.html#class-event.emitter)
+:    [event.Emitter](./event.html#class-event.emitter)
 
 The animation engine.
 
@@ -75,8 +75,8 @@ The animation engine.
 ### new Animator (subject, group)
 
 Parameters
-:    1. `subject {object}` ---The view or object to animate.
-     2. `group {Group}` ---The group object for this animation, [see below](#class-group)
+:    `subject {object}` ---The view or object to animate.
+:    `group {Group}` ---The group object for this animation, [see below](#class-group)
 
 Creates a new Animator with a [View](../api/ui-view.html) or
 object to animate, with an optional Group to add them
@@ -94,7 +94,7 @@ var animator = animate(object);
 ### clear ()
 
 Returns
-:    1. `{this}`
+:    `{this}`
 
 Clears any animation frames currently scheduled. This will
 stop the animation immediately without completing any
@@ -115,7 +115,7 @@ Pauses the animation.
 ### isPaused ()
 
 Returns
-:    1. `{boolean}`
+:    `{boolean}`
 
 Returns whether the animation is paused.
 
@@ -126,17 +126,17 @@ Resumes the animation if paused.
 ### hasFrames ()
 
 Returns
-:    1. `{boolean}`
+:    `{boolean}`
 
 Returns whether there are any frames left in the animation queue.
 
 ### wait (duration)
 
 Parameters
-:    1. `duration {number}` ---Duration of the wait in milliseconds.
+:    `duration {number}` ---Duration of the wait in milliseconds.
 
 Returns
-:    1. `{this}`
+:    `{this}`
 
 Adds a delay (in milliseconds) to the animation queue. This
 function can be invoked instead of `setTimeout`, and when
@@ -152,13 +152,13 @@ animate(view).wait(500).then(function () {
 ### now (target, duration, transition, onTick)
 
 Parameters
-:    1. `target {View|object}` ---Will interpolate the appropriate number values of the provided object.
-     2. `duration {number}` ---Duration of the animation in milliseconds.
-     3. `transition {number}` ---Type of animation transition. See below for transition types.
-     4. `onTick {function}` ---A callback to control the speed of the transition.
+:    `target {View|object}` ---Will interpolate the appropriate number values of the provided object.
+:    `duration {number}` ---Duration of the animation in milliseconds.
+:    `transition {number}` ---Type of animation transition. See below for transition types.
+:    `onTick {function}` ---A callback to control the speed of the transition.
 
 Returns
-:    1. `{this}`
+:    `{this}`
 
 Starts an animation frame immediately. An animation frame is
 defined by the duration, transition type, and properties
@@ -174,13 +174,13 @@ An animation transition can be one of the following:
 ### then (target, duration, transition, onTick)
 
 Parameters
-:    1. `target {View|object}` ---Will interpolate the appropriate number values of the provided object.
-     2. `duration {number}` ---Duration of the animation in milliseconds.
-     3. `transition {number}` ---Type of animation transition. See above for transition types.
-     4. `onTick {function}` ---A callback to control the speed of the transition.
+:    `target {View|object}` ---Will interpolate the appropriate number values of the provided object.
+:    `duration {number}` ---Duration of the animation in milliseconds.
+:    `transition {number}` ---Type of animation transition. See above for transition types.
+:    `onTick {function}` ---A callback to control the speed of the transition.
 
 Returns
-:    1. Return: `{this}`
+:    `{this}`
 
 Similar to `.now()`, but adds the animation frame to the
 object's animation queue rather than animating the frame
@@ -205,10 +205,10 @@ animate(view).now({x: 10}, 300).then({
 ### then (callback)
 
 Parameters
-:    1. `callback {function}` ---The callback function to be invoked at the appropriate point in the queue.
+:    `callback {function}` ---The callback function to be invoked at the appropriate point in the queue.
 
 Returns
-:    1. `{this}`
+:    `{this}`
 
 Adds a callback function to the queue. Useful for running
 code after an animation frame completes.
@@ -224,7 +224,7 @@ You can also specify a duration after the callback.  This will execute the given
 ### debug ()
 
 Returns
-:    1. `{this}`
+:    `{this}`
 
 Turns debug logging on. This will log information about the
 current animation frame like duration, transition, and what
@@ -233,7 +233,7 @@ properties are being animated.
 ### commit ()
 
 Returns
-:    1. `{this}`
+:    `{this}`
 
 Finishes the animation immediately, moving all values to the
 position specified by the final frame in the animation
@@ -253,7 +253,7 @@ setTimeout( function() {
 # Class: Group
 
 Inherits from
-:    1. [event.Emitter](./event.html#class-event.emitter)
+:    [event.Emitter](./event.html#class-event.emitter)
 
 A group of animations. Groups are typically used to track a
 complex animation involving multiple view animations.
@@ -278,10 +278,10 @@ animate.getGroup('complexAnimation1').on('Finish', function(){
 ### get (id)
 
 Parameters
-:    1. `id {string}` ---The identifier of the animation to fetch from the group.
+:    `id {string}` ---The identifier of the animation to fetch from the group.
 
 Returns
-:    1. `{Animator}`
+:    `{Animator}`
 
 Returns an animation from the group.
 
@@ -294,18 +294,18 @@ var anim = animGroup.get('loopDeLoops');
 ### add (id, animation)
 
 Parameters
-:    1. `id {string}` ---The identifier of the animation to add to the group.
-     2. `animation {Animator}`
+:    `id {string}` ---The identifier of the animation to add to the group.
+     `animation {Animator}`
 
 Returns
-:    1. `{Animator}`
+:    `{Animator}`
 
 Adds an animation to the group and returns it.
 
 ### isActive ()
 
 Returns
-:    1. `{boolean}`
+:    `{boolean}`
 
 Returns true if any animations in the group have frames in
 their animation queue.
@@ -313,7 +313,7 @@ their animation queue.
 ### onAnimationFinish (animation)
 
 Parameters
-:     1. `animation {Animator}` ---The animation object to signal as being finished.
+:     `animation {Animator}` ---The animation object to signal as being finished.
 
 Removes an animation from the group. If none of the
 remaining animations in the group have frames left in their
@@ -331,7 +331,7 @@ all the frames in their respective animation queues.
 # Class: ParticleEngine
 
 Inherits from
-:    1. [ui.View](./ui-view.html)
+:    [ui.View](./ui-view.html)
 
 The goal of this class is to facilitate high performance
 view animation with minimal garbage collection.
@@ -341,30 +341,30 @@ view animation with minimal garbage collection.
 ### obtainParticleArray (count)
 
 Parameters
-:    1. `count {number}` ---How many particle objects to return.
+:    `count {number}` ---How many particle objects to return.
 
 Returns
-:    1. `{Array}` ---Returns an array of `count` particle objects.
+:    `{Array}` ---Returns an array of `count` particle objects.
 
 Call `obtainParticleArray` to get the array of particle objects from the engine. These objects should be modified and passed into `emitParticles` when they're ready. Note that there is only one particle objects array per engine. This array is provided by the engine, and there's no need to create your own.
 
 ### emitParticles (pArray)
 
 Parameters
-:    1. `pArray {array}` ---An array of particle objects to animate.
+:    `pArray {array}` ---An array of particle objects to animate.
 
 Call `emitParticles` with the array of particle objects to queue them up for animation. Remember that this is the same array returned by `obtainParticleArray`.
 
 ### runTick (dt)
 
 Parameters
-:    1. `dt {number}` ---How many milliseconds of particle animations to run.
+:    `dt {number}` ---How many milliseconds of particle animations to run.
 
 Calling `runTick` runs enqueued particle animations for `dt` milliseconds. This arrangement means that you can have hundreds of particle engines in your game, and none of them will tick unless you explicitly ask them to. It also makes it easy to speed up or slow down your effects by simply scaling the `dt` you pass into `runTick`.
 
 ## Overview
 
-`ParticleEngine.js` uses a pool of `ImageView`s to animate special effects as defined by particle objects. To create an effect, first call `obtainParticleArray(n)` where n is the number of particles you want in your effect. You will receive an array with n particle object literals pre-populated with their default property values. Modify the particle object properties to define how they move through space and time. Once all of your objects' properties are established, pass the same array back to the particle engine via `emitParticles(array)`. The arrays, object literals, and `ImageView`s are all managed internally by the engine to minimize garbage creation and collection.
+ParticleEngine.js uses a pool of `ImageView`s to animate special effects as defined by particle objects. To create an effect, first call `obtainParticleArray(n)` where n is the number of particles you want in your effect. You will receive an array with n particle object literals pre-populated with their default property values. Modify the particle object properties to define how they move through space and time. Once all of your objects' properties are established, pass the same array back to the particle engine via `emitParticles(array)`. The arrays, object literals, and `ImageView`s are all managed internally by the engine to minimize garbage creation and collection.
 
 Set up a particle engine like this:
 
