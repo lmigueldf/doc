@@ -154,7 +154,7 @@ animate(view).wait(500).then(function () {
 Parameters
 :    `target {View|object}` ---Will interpolate the appropriate number values of the provided object.
 :    `duration {number}` ---Duration of the animation in milliseconds.
-:    `transition {number}` ---Type of animation transition. See below for transition types.
+:    `transition {number}` ---Type of animation transition. [See the transitions section](#transitions) for transition types.
 :    `onTick {function}` ---A callback to control the speed of the transition.
 
 Returns
@@ -164,12 +164,6 @@ Starts an animation frame immediately. An animation frame is
 defined by the duration, transition type, and properties
 that are being "tweened" by the animation engine.
 
-An animation transition can be one of the following:
-
-* `animate.linear` ---Animation has the same speed from start to finish.
-* `animate.easeIn` ---Animation has a slow start.
-* `animate.easeOut` ---Animation has a slow end.
-* `animate.easeInOut` ---Animation has both slow start and slow end.
 
 ### then (target, duration, transition, onTick)
 
@@ -248,6 +242,52 @@ setTimeout( function() {
   myAnimation.commit(); //view.x is now at 100 and the animation is complete.
 }, 1500);
 ~~~
+
+
+## Transitions
+
+DevKit provides many animation transition options that control how the
+animating parameters are updated over the duration of the animation. An
+animation transition can be one of the following:
+
+* `animate.linear`
+* `animate.easeIn`
+* `animate.easeOut`
+* `animate.easeInOut`
+* `animate.easeInQuad`
+* `animate.easeOutQuad`
+* `animate.easeInOutQuad`
+* `animate.easeInCubic`
+* `animate.easeOutCubic`
+* `animate.easeInOutCubic`
+* `animate.easeInQuart`
+* `animate.easeOutQuart`
+* `animate.easeInOutQuart`
+* `animate.easeInQuint`
+* `animate.easeOutQuint`
+* `animate.easeInOutQuint`
+* `animate.easeInSine`
+* `animate.easeOutSine`
+* `animate.easeInOutSine`
+* `animate.easeInExpo`
+* `animate.easeOutExpo`
+* `animate.easeInOutExpo`
+* `animate.easeInCirc`
+* `animate.easeOutCirc`
+* `animate.easeInOutCirc`
+* `animate.easeInElastic`
+* `animate.easeOutElastic`
+* `animate.easeInOutElastic`
+* `animate.easeInBack`
+* `animate.easeOutBack`
+* `animate.easeInOutBack`
+* `animate.easeInBounce`
+* `animate.easeOutBounce`
+* `animate.easeInOutBounce`
+
+Check out the [transition
+demo](http://storage.googleapis.com/devkit-modules/animations/index.html) to
+see all the different transitions applied to the same looping animation.
 
 
 # Class: Group
