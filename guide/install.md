@@ -7,7 +7,7 @@ and development. Once everything is installed and ready
 to go, please read the [Hello, World! Guide](../guide/hello-world.html)
 to create your first application.
 
-This guide is mainly for Linux or OSX.  To install on Windows please follow the [Windows install guide](https://github.com/gameclosure/devkit2/wiki/Install-Instructions---Windows).
+This guide is mainly for Linux or OSX.  To install on Windows please follow the [Windows install guide](https://github.com/gameclosure/devkit/wiki/Install-Instructions---Windows).
 
 ## Prerequisites
 
@@ -51,7 +51,7 @@ Now problematic characters like NBSP will be highlighted in red and you can dele
 
 With the prerequisites installed, we're ready to set up the
 Game Closure DevKit. The library and tools are open source and
-hosted in our [GitHub repository](https://github.com/gameclosure/devkit2).
+hosted in our [GitHub repository](https://github.com/gameclosure/devkit).
 
 You can install devkit using a current version of npm.
 
