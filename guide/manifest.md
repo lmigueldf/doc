@@ -204,6 +204,7 @@ device to pinpoint where in the stack an error is occurring.
 ### android
 1. `{object}`
     * `versionCode {number}` ---Google Play version code.
+    * `fullscreen {boolean} = true` ---If this is set to `false` then app runs in non-fullscreen mode (i.e. status bar always remains visible).
     * `"icons" {object}` contains:
 	    * `36 {string}` ---Path to small game app icon, size: 36x36px.
     	* `48 {string}` ---Path to medium game app icon, size: 48x48px.
