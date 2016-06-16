@@ -440,27 +440,6 @@ exports = Class(View, function(supr) {
 ...
 ~~~
 
-### render (ctx)
-
-By overriding the render call, you are able to bypass the normal rendering of the view to access OpenGL calls on native platforms more directly.  When the view would normally be rendered to the backbuffer, this function is called and you are responsible for providing render commands.
-
-Please see the [Context2D class documentation](./context.html) for more information.
-
-Example of deriving from View in MyView.js :
-
-~~~
-exports = Class(View, function(supr) {
-	this.init = function(opts) {
-		supr(this, 'init', [opts]);
-
-		// Handle class instantiation here
-	}
-
-	this.render = function(ctx) {
-		// Handle manual rendering operations here
-	}
-...
-~~~
 
 ### onFocus ()
 
